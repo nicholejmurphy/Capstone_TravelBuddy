@@ -76,10 +76,12 @@ class User {
            (username,
             password,
             first_name,
-            last_name)
-           VALUES ($1, $2, $3, $4)
+            last_name,
+            location_id,
+            location_name)
+           VALUES ($1, $2, $3, $4, $5, $6)
            RETURNING id, username, first_name AS "firstName", last_name AS "lastName"`,
-      [username, hashedPassword, firstName, lastName]
+      [username, hashedPassword, firstName, lastName, null, null]
     );
 
     const user = result.rows[0];

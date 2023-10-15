@@ -53,9 +53,9 @@ describe("authenticate", function () {
   });
 });
 
-/************************************** register */
+/************************************** signup */
 
-describe("register", function () {
+describe("signup", function () {
   const newUser = {
     username: "new",
     firstName: "Test",
@@ -63,7 +63,7 @@ describe("register", function () {
   };
 
   test("works", async function () {
-    let user = await User.register({
+    let user = await User.signup({
       ...newUser,
       password: "password",
     });
@@ -75,11 +75,11 @@ describe("register", function () {
 
   test("bad request with dup data", async function () {
     try {
-      await User.register({
+      await User.signup({
         ...newUser,
         password: "password",
       });
-      await User.register({
+      await User.signup({
         ...newUser,
         password: "password",
       });
