@@ -50,14 +50,14 @@ class User {
     throw new UnauthorizedError("Invalid username/password");
   }
 
-  /** Register user with data.
+  /** Signup user with data.
    *
    * Returns { id, username, firstName, lastName }
    *
    * Throws BadRequestError on duplicates.
    **/
 
-  static async register({ username, password, firstName, lastName }) {
+  static async signup({ username, password, firstName, lastName }) {
     const duplicateCheck = await db.query(
       `SELECT username
            FROM users
