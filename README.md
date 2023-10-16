@@ -1,4 +1,4 @@
-# Capstone_TravelBuddy
+# TravelBuddy
 
 _"Everything you need in a travel app."_
 
