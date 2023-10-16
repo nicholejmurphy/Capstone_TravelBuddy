@@ -6,7 +6,7 @@ TravelBuddy is a full-stack web application that allows a user to seemlesly achi
 
 ## General Overview
 
-TravelBuddy is a mobile friendly application that allows users to search for attractions, resturaunts, hotels, and general geographic locations. In the same place, a user can create instant language translations, currency conversions, and simply check the wether for their destination. This is a single page application that emphasizes user ease and customization.
+TravelBuddy is a mobile friendly application that allows users to search for attractions, resturaunts, hotels, and general geographic locations. In the same place, a user can create instant language translations, currency conversions, and simply check the weather for their destination. This is a single page application that emphasizes user ease and customization.
 
 ## Documentation
 
