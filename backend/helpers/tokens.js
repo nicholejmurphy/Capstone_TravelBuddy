@@ -6,7 +6,7 @@ const { SECRET_KEY } = require("../config");
 function createToken(user) {
   let payload = {
     username: user.username,
-    user_id: user.id,
+    id: user.id,
   };
 
   return jwt.sign(payload, SECRET_KEY);

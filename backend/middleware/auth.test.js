@@ -79,7 +79,7 @@ describe("ensureLoggedIn", function () {
 describe("ensureCorrectUser", function () {
   test("works: same user", function () {
     expect.assertions(1);
-    const req = { params: { username: "test" } };
+    const req = { params: { userId: 4 } };
     const res = { locals: { user: { username: "test", id: 4 } } };
     const next = function (err) {
       expect(err).toBeFalsy();
@@ -89,8 +89,8 @@ describe("ensureCorrectUser", function () {
 
   test("unauth: mismatch", function () {
     expect.assertions(1);
-    const req = { params: { username: "wrong" } };
-    const res = { locals: { user: { username: "test", id: 4 } } };
+    const req = { params: { userId: 4 } };
+    const res = { locals: { user: { username: "test", id: 2 } } };
     const next = function (err) {
       expect(err instanceof UnauthorizedError).toBeTruthy();
     };
@@ -99,7 +99,7 @@ describe("ensureCorrectUser", function () {
 
   test("unauth: if anon", function () {
     expect.assertions(1);
-    const req = { params: { username: "test" } };
+    const req = { params: { userId: 4 } };
     const res = { locals: {} };
     const next = function (err) {
       expect(err instanceof UnauthorizedError).toBeTruthy();

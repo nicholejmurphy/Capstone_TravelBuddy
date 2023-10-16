@@ -18,9 +18,13 @@ describe("config can come from env", function () {
     delete process.env.BCRYPT_WORK_FACTOR;
     delete process.env.DATABASE_URL;
 
-    expect(config.getDatabaseUri()).toEqual("travelbuddy");
+    expect(config.getDatabaseUri()).toEqual(
+      "postgresql://localhost:5432/travelbuddy"
+    );
     process.env.NODE_ENV = "test";
 
-    expect(config.getDatabaseUri()).toEqual("travelbuddy_test");
+    expect(config.getDatabaseUri()).toEqual(
+      "postgresql://localhost:5432/travelbuddy_test"
+    );
   });
 });

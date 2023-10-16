@@ -4,7 +4,8 @@ const db = require("../db.js");
 const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
 
-const testJobIds = [];
+const users = {};
+const userTokens = {};
 
 async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
@@ -28,6 +29,12 @@ async function commonBeforeAll() {
     lastName: "U3L",
     password: "password3",
   });
+
+  users.user1 = await User.authenticate("u1", "password1");
+  users.user2 = await User.authenticate("u2", "password2");
+
+  userTokens.u1Token = createToken(users.user1);
+  userTokens.u2Token = createToken(users.user2);
 }
 
 async function commonBeforeEach() {
@@ -42,17 +49,11 @@ async function commonAfterAll() {
   await db.end();
 }
 
-const u1Token = createToken({ username: "u1", isAdmin: false });
-const u2Token = createToken({ username: "u2", isAdmin: false });
-const adminToken = createToken({ username: "admin", isAdmin: true });
-
 module.exports = {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testJobIds,
-  u1Token,
-  u2Token,
-  adminToken,
+  users,
+  userTokens,
 };
