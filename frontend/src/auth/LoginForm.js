@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import "./LoginForm.css";
+// import "./LoginForm.css";
 import Alerts from "../common/Alerts";
 
 /** Handles user login attemps.

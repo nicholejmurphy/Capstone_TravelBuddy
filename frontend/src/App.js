@@ -5,8 +5,8 @@ import UserApi from "./api/userApi";
 import { decodeToken } from "react-jwt";
 import UserContext from "./auth/UserContext";
 import Loading from "./common/Loading";
-// import Navigation from "./navigation_routes/Navigation";
-// import Routes from "./navigation_routes/Routes";
+import Navigation from "./navigation_routes/Navigation";
+import Routes from "./navigation_routes/Routes";
 
 /** TravelBuddy Application
  *
@@ -97,9 +97,9 @@ function App() {
 
   return (
     <UserContext.Provider value={{ currUser, setCurrUser }}>
-      {/* <Navigation logout={logout} /> */}
+      <Navigation logout={logout} />
       <div className="App">
-        {/* <Routes login={login} signup={signup} /> */}
+        <Routes login={login} signup={signup} />
       </div>
     </UserContext.Provider>
   );

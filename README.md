@@ -32,3 +32,5 @@ TravelBuddy utilizes multiple external APIs as well.
 4. Weather [TBD]
 
 ![React.js API Calls list](/documentaion/React.jsAPICalls.jpg)
+
+Notes:

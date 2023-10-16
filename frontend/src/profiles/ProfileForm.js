@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, FormGroup, Label, Input, Button, FormText } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";

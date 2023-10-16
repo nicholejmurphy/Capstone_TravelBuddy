@@ -38,7 +38,7 @@ class UserApi {
 
   /** User signup. { username, password, firstName, lastName } => { token }. */
   static async signup(data) {
-    let res = await this.request(`auth/register`, data, "post");
+    let res = await this.request(`auth/signup`, data, "post");
     return res.token;
   }
 
@@ -61,7 +61,7 @@ class UserApi {
    * { userId } => { deleted: userId}
    */
   static async deleteProfile(userId) {
-    let res = await this.request(`users/${userId}`, (data = {}), "delete");
+    let res = await this.request(`users/${userId}`, {}, "delete");
     return res.user;
   }
 }

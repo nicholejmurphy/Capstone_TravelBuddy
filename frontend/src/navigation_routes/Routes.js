@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./Routes.css";
+import PrivateRoute from "./PrivateRoutes";
 import Homepage from "../homepage/Homepage";
 import ProfileForm from "../profiles/ProfileForm";
 import LoginForm from "../auth/LoginForm";
@@ -20,9 +21,9 @@ function Routes({ login, signup }) {
         <Route path="/signup">
           <SignupForm signup={signup} />
         </Route>
-        <Route path="/profile">
+        <PrivateRoute path="/profile">
           <ProfileForm />
-        </Route>
+        </PrivateRoute>
         <Route path="*">
           <NotFound />
         </Route>
