@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+// import "./App.css";
 import useLocalStorage from "./hooks/useLocalStorage";
 import UserApi from "./api/userApi";
 import { decodeToken } from "react-jwt";
 import UserContext from "./auth/UserContext";
-// import Loading from "./common/Loading";
+import Loading from "./common/Loading";
 // import Navigation from "./navigation_routes/Navigation";
 // import Routes from "./navigation_routes/Routes";
 
@@ -97,10 +97,10 @@ function App() {
 
   return (
     <UserContext.Provider value={{ currUser, setCurrUser }}>
-      {/* <Navigation logout={logout} />
+      {/* <Navigation logout={logout} /> */}
       <div className="App">
-        <Routes login={login} signup={signup} />
-      </div> */}
+        {/* <Routes login={login} signup={signup} /> */}
+      </div>
     </UserContext.Provider>
   );
 }
