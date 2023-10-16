@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="NotFound bg-dark text-light p-4 rounded shadow"
+    >
+      <h2>
+        404 Error.
+      </h2>
+      <p
+        class="lead"
+      >
+        The requested URL was not found on this server 🙃
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

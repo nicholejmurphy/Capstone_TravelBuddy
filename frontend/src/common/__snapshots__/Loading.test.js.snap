@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Loading"
+  >
+    <p>
+      <span
+        aria-hidden="true"
+        class="Loading-spinner spinner-grow spinner-grow-lg"
+        role="status"
+      >
+         
+      </span>
+      <span
+        aria-hidden="true"
+        class="Loading-spinner spinner-grow spinner-grow-lg"
+        role="status"
+      >
+         
+      </span>
+      <span
+        aria-hidden="true"
+        class="Loading-spinner spinner-grow spinner-grow-lg"
+        role="status"
+      >
+         
+      </span>
+    </p>
+  </div>
+</DocumentFragment>
+`;
