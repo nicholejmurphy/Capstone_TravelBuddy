@@ -95,7 +95,6 @@ describe("DELETE /locations/:locationId/:userId", function () {
     const res = await request(app)
       .delete(`/locations/test_id/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
-    console.log(await SavedLocation.getAll(users.user1.id));
 
     expect(res.body).toEqual({
       deleted: `location test_id for user ${users.user1.id}`,
