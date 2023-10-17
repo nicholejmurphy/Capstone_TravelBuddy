@@ -170,55 +170,6 @@ class User {
 
     if (!user) throw new NotFoundError(`User not found. id: ${user_id}`);
   }
-
-  /** Get all saved locations for user from database: returns locations.
-   *
-   **/
-  static async getSavedLocations(user_id) {
-    let result = await db.query(
-      `SELECT l.location_id AS locationId,
-              l.name
-              FROM saved_locations AS "l"
-              WHERE l.user_id = $1`,
-      [user_id]
-    );
-
-    return result.rows;
-  }
-
-  /** Get all saved translations for user from database: returns translations.
-   *
-   **/
-  static async getSavedTranslations(user_id) {
-    let result = await db.query(
-      `SELECT t.from_language AS fromLanguage,
-              t.to_language AS toLanguage,
-              t.from_text AS fromText,
-              t.to_text AS toText
-              FROM saved_translations AS "t"
-              WHERE t.user_id = $1`,
-      [user_id]
-    );
-
-    return result.rows;
-  }
-
-  /** Get all saved conversions for user from database: returns conversions.
-   *
-   **/
-  static async getSavedConversions(user_id) {
-    let result = await db.query(
-      `SELECT c.from_currency AS fromCurrency,
-              c.to_currency AS toCurrency,
-              c.from_amount AS fromAmount,
-              c.to_amount AS toAmount
-              FROM saved_conversions AS "c"
-              WHERE c.user_id = $1`,
-      [user_id]
-    );
-
-    return result.rows;
-  }
 }
 
 module.exports = User;
