@@ -1,21 +1,17 @@
 "use strict";
 
-/** Routes for users. */
-
-const jsonschema = require("jsonschema");
+/** Routes for user's saved locations. */
 
 const express = require("express");
 const { ensureCorrectUser } = require("../middleware/auth");
-const { BadRequestError } = require("../expressError");
 const SavedLocation = require("../models/savedLocation");
-const userUpdateSchema = require("../schemas/userUpdate.json");
 
 const router = express.Router();
 
 /** GET /[userId] => { locations }
  *
  * Retrieves all locations saved by user
- * Returns [{ id, location_id, name, address_string }]
+ * Returns [{ location_id, name, address_string }]
  *
  * Authorization required: same user-as-:userId
  **/
@@ -38,7 +34,9 @@ router.get("/:userId", ensureCorrectUser, async function (req, res, next) {
 
 router.post("/:userId", ensureCorrectUser, async function (req, res, next) {
   try {
-    const location = await SavedLocation.add(req.params.userId, req.body);
+    const location = await SavedLocation.add(req.params.userId, {
+      ...req.body,
+    });
     return res.json({ location });
   } catch (err) {
     return next(err);
@@ -47,7 +45,7 @@ router.post("/:userId", ensureCorrectUser, async function (req, res, next) {
 
 /** DELETE /[locationId]/[userId]  =>  { deleted: location locationId for user userId }
  *
- * Authorization required: admin or same-user-as-:userId
+ * Authorization required: same-user-as-:userId
  **/
 
 router.delete(
@@ -55,8 +53,10 @@ router.delete(
   ensureCorrectUser,
   async function (req, res, next) {
     try {
-      await User.remove(req.params.userId, req.params.locationId);
-      return res.json({ deleted: req.params.userId });
+      await SavedLocation.remove(req.params.userId, req.params.locationId);
+      return res.json({
+        deleted: `location ${req.params.locationId} for user ${req.params.userId}`,
+      });
     } catch (err) {
       return next(err);
     }

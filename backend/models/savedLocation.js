@@ -28,12 +28,12 @@ class SavedLocation {
    * Throws BadRequestError on duplicates.
    **/
 
-  static async add({ userId, locationId, name, addressString }) {
+  static async add(userId, { locationId, name, addressString }) {
     const duplicateCheck = await db.query(
       `SELECT id
            FROM saved_locations
-           WHERE user_id = $1`,
-      [userId]
+           WHERE user_id = $1 AND location_id = $2`,
+      [userId, locationId]
     );
 
     if (duplicateCheck.rows[0]) {
@@ -86,7 +86,7 @@ class SavedLocation {
       `DELETE
            FROM saved_locations
            WHERE user_id = $1 AND location_id = $2
-           RETURNING user_id, location_id`,
+           RETURNING id`,
       [userId, locationId]
     );
     const location = result.rows[0];

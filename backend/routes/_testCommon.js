@@ -2,14 +2,15 @@
 
 const db = require("../db.js");
 const User = require("../models/user");
+const SavedLocation = require("../models/savedLocation.js");
 const { createToken } = require("../helpers/tokens");
 
 const users = {};
 const userTokens = {};
 
 async function commonBeforeAll() {
-  // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
+  await db.query("DELETE FROM saved_locations");
 
   await User.signup({
     username: "u1",
@@ -32,6 +33,14 @@ async function commonBeforeAll() {
 
   users.user1 = await User.authenticate("u1", "password1");
   users.user2 = await User.authenticate("u2", "password2");
+
+  const newLocation = {
+    locationId: "test_id",
+    name: "test_location",
+    addressString: "test_address",
+  };
+
+  await SavedLocation.add(users.user1.id, newLocation);
 
   userTokens.u1Token = createToken(users.user1);
   userTokens.u2Token = createToken(users.user2);

@@ -55,7 +55,7 @@ router.patch("/:userId", ensureCorrectUser, async function (req, res, next) {
 
 /** DELETE /[userId]  =>  { deleted: userId }
  *
- * Authorization required: admin or same-user-as-:userId
+ * Authorization requiredsame-user-as-:userId
  **/
 
 router.delete("/:userId", ensureCorrectUser, async function (req, res, next) {

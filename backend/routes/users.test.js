@@ -23,7 +23,6 @@ afterAll(commonAfterAll);
 
 describe("GET /users/:userId", function () {
   test("works for same user", async function () {
-    console.log("USERS: ", users.user1.id);
     const res = await request(app)
       .get(`/users/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
