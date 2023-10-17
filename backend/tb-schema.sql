@@ -9,13 +9,14 @@ CREATE TABLE users (
   location_name TEXT
 );
 
--- CREATE TABLE saved_locations (
---   id SERIAL PRIMARY KEY,
---   location_id TEXT NOT NULL,
---   user_id INTEGER 
---     REFERENCES users ON DELETE CASCADE,
---   name TEXT NOT NULL
--- );
+CREATE TABLE saved_locations (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER
+    REFERENCES users ON DELETE CASCADE,
+  location_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  address_string TEXT
+);
 
 -- CREATE TABLE saved_translations (
 --   id SERIAL PRIMARY KEY,
