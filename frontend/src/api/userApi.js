@@ -43,15 +43,15 @@ class UserApi {
   }
 
   /** Get current user details. */
-  // {userId} => { id, username, first_name, last_name, location_id, location_name }
+  // {userId} => { id, username, first_name, last_name }
   static async getCurrUser(userId) {
     let res = await this.request(`users/${userId}`);
     return res.user;
   }
 
   /** Update user profile.
-   * { firstName, lastName, location_id, location_name } =>
-   * { id, username, firstName, lastName, locationId, locationName }. */
+   * { firstName, lastName } =>
+   * { id, username, firstName, lastName }. */
   static async updateProfile(userId, data) {
     let res = await this.request(`users/${userId}`, data, "patch");
     return res.user;
@@ -66,7 +66,7 @@ class UserApi {
   }
 
   /** Add savedLocation to User.
-   * { userId, location: { locationId, name, addressString }} => { location }
+   * { userId, { locationId, name, addressString }} => { location }
    */
   static async addSavedLocation(userId, location) {
     let res = await this.request(`locations/${userId}`, location, "post");
@@ -74,7 +74,7 @@ class UserApi {
   }
 
   /** Get User's savedLocations.
-   * { userId, location: { locationId, name, addressString }} => { location }
+   * { userId } => { locations }
    */
   static async getSavedLocations(userId) {
     let res = await this.request(`locations/${userId}`);

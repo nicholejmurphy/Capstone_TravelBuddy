@@ -29,7 +29,7 @@ class TravelApi {
   // Individual API routes
 
   /** Location Search. { name, category } =>
-   *    { data: [{ location1 }, {location2 }] }
+   *    { [{ location1 }, {location2 }] }
    *
    * category options: { geos, attractions, restaurants, hotels }
    * >>> TIP: For a general search, use category: geos to yield
