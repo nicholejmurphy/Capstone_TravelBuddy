@@ -97,7 +97,7 @@ describe("DELETE /locations/:locationId/:userId", function () {
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
     expect(res.body).toEqual({
-      deleted: `location test_id for user ${users.user1.id}`,
+      deleted: `Location test_id for User ${users.user1.id}`,
     });
   });
 

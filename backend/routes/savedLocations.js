@@ -55,7 +55,7 @@ router.delete(
     try {
       await SavedLocation.remove(req.params.userId, req.params.locationId);
       return res.json({
-        deleted: `location ${req.params.locationId} for user ${req.params.userId}`,
+        deleted: `Location ${req.params.locationId} for User ${req.params.userId}`,
       });
     } catch (err) {
       return next(err);
