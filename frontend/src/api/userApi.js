@@ -62,7 +62,35 @@ class UserApi {
    */
   static async deleteProfile(userId) {
     let res = await this.request(`users/${userId}`, {}, "delete");
-    return res.user;
+    return res;
+  }
+
+  /** Add savedLocation to User.
+   * { userId, location: { locationId, name, addressString }} => { location }
+   */
+  static async addSavedLocation(userId, location) {
+    let res = await this.request(`locations/${userId}`, location, "post");
+    return res.location;
+  }
+
+  /** Get User's savedLocations.
+   * { userId, location: { locationId, name, addressString }} => { location }
+   */
+  static async getSavedLocations(userId) {
+    let res = await this.request(`locations/${userId}`);
+    return res.locations;
+  }
+
+  /** Delete location from User's savedLocations.
+   * { locationId, userId } => { deleted: location $locationId from user $userId }
+   */
+  static async deleteSavedLocation(locationId, userId) {
+    let res = await this.request(
+      `locations/${locationId}/${userId}`,
+      {},
+      "delete"
+    );
+    return res;
   }
 }
 
