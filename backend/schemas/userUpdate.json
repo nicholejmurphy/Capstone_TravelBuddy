@@ -12,16 +12,6 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 30
-    },
-    "locationId": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 30
-    },
-    "location_name": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 30
     }
   },
   "additionalProperties": false,

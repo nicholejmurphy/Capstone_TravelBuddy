@@ -29,8 +29,6 @@ describe("authenticate", function () {
       username: "u1",
       firstName: "U1F",
       lastName: "U1L",
-      locationId: "60742",
-      locationName: "Asheville, NC",
     });
   });
 
@@ -103,8 +101,6 @@ describe("get", function () {
       username: "u1",
       firstName: "U1F",
       lastName: "U1L",
-      locationId: "60742",
-      locationName: "Asheville, NC",
     });
   });
 
@@ -134,8 +130,6 @@ describe("update", function () {
     expect(user).toEqual({
       id: user1Id,
       username: "u1",
-      locationId: "60742",
-      locationName: "Asheville, NC",
       ...updateData,
     });
   });

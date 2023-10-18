@@ -4,9 +4,7 @@ CREATE TABLE users (
   username VARCHAR(25) UNIQUE NOT NULL,
   password TEXT NOT NULL,
   first_name VARCHAR(25) NOT NULL,
-  last_name VARCHAR(25) NOT NULL,
-  location_id TEXT,
-  location_name TEXT
+  last_name VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE saved_locations (

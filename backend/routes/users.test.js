@@ -33,8 +33,6 @@ describe("GET /users/:userId", function () {
         username: "u1",
         firstName: "U1F",
         lastName: "U1L",
-        locationId: null,
-        locationName: null,
       },
     });
   });
@@ -68,8 +66,6 @@ describe("PATCH /users/:userId", () => {
         username: "u1",
         firstName: "New",
         lastName: "U1L",
-        locationId: null,
-        locationName: null,
       },
     });
   });

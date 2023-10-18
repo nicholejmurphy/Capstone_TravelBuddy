@@ -27,10 +27,7 @@ describe("add", function () {
   test("works", async function () {
     const res = await db.query(`SELECT * FROM users WHERE username = 'u1'`);
     const user = res.rows[0];
-    let location = await SavedLocation.add({
-      ...newLocation,
-      userId: user.id,
-    });
+    let location = await SavedLocation.add(user.id, newLocation);
     expect(location).toEqual({
       ...newLocation,
       id: expect.any(Number),
@@ -46,14 +43,8 @@ describe("add", function () {
     const res = await db.query(`SELECT * FROM users WHERE username = 'u2'`);
     const user = res.rows[0];
     try {
-      await SavedLocation.add({
-        ...newLocation,
-        userId: user.id,
-      });
-      await SavedLocation.add({
-        ...newLocation,
-        userId: user.id,
-      });
+      await SavedLocation.add(user.id, newLocation);
+      await SavedLocation.add(user.id, newLocation);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();

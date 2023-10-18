@@ -14,7 +14,7 @@ const router = express.Router();
 
 /** GET /[userId] => { user }
  *
- * Returns { id, username, firstName, lastName, location_id, location_name }
+ * Returns { id, username, firstName, lastName }
  *
  * Authorization required: same user-as-:userId
  **/
@@ -31,9 +31,9 @@ router.get("/:userId", ensureCorrectUser, async function (req, res, next) {
 /** PATCH /[userId] { user } => { user }
  *
  * Data can include:
- *   { firstName, lastName, location_id, location_name }
+ *   { firstName, lastName }
  *
- * Returns { id, username, firstName, lastName, location_id, location_name }
+ * Returns { id, username, firstName, lastName }
  *
  * Authorization required: same-user-as-:userId
  **/

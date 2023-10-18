@@ -16,7 +16,7 @@ const { BCRYPT_WORK_FACTOR } = require("../config.js");
 class User {
   /** authenticate user with username, password.
    *
-   * Returns { id, username, first_name, last_name, location_id, location_name }
+   * Returns { id, username, first_name, last_name }
    *
    * Throws UnauthorizedError is user not found or wrong password.
    **/
@@ -28,9 +28,7 @@ class User {
               username,
               password,
               first_name AS "firstName",
-              last_name AS "lastName",
-              location_id AS "locationId",
-              location_name AS "locationName"
+              last_name AS "lastName"
            FROM users
            WHERE username = $1`,
       [username]
@@ -76,12 +74,10 @@ class User {
            (username,
             password,
             first_name,
-            last_name,
-            location_id,
-            location_name)
-           VALUES ($1, $2, $3, $4, $5, $6)
+            last_name)
+           VALUES ($1, $2, $3, $4)
            RETURNING id, username, first_name AS "firstName", last_name AS "lastName"`,
-      [username, hashedPassword, firstName, lastName, null, null]
+      [username, hashedPassword, firstName, lastName]
     );
 
     const user = result.rows[0];
@@ -91,7 +87,7 @@ class User {
 
   /** Given a user id, return data about user.
    *
-   * Returns { username, first_name, last_name, location_id, location_name }
+   * Returns { username, first_name, last_name }
    *
    * Throws NotFoundError if user not found.
    **/
@@ -101,9 +97,7 @@ class User {
       `SELECT id,
               username,
               first_name AS "firstName",
-              last_name AS "lastName",
-              location_id AS "locationId",
-              location_name AS "locationName"
+              last_name AS "lastName"
            FROM users
            WHERE id = $1`,
       [user_id]
@@ -122,9 +116,9 @@ class User {
    * all the fields; this only changes provided ones.
    *
    * Data can include:
-   *   { firstName, lastName, location_id, location_name }
+   *   { firstName, lastName }
    *
-   * Returns { id, username, firstName, lastName, locationId, locationName }
+   * Returns { id, username, firstName, lastName }
    *
    * Throws NotFoundError if not found.
    *
@@ -134,8 +128,6 @@ class User {
     const { setCols, values } = sqlForPartialUpdate(data, {
       firstName: "first_name",
       lastName: "last_name",
-      locationId: "location_id",
-      locationName: "location_name",
     });
     const userIdVarIdx = "$" + (values.length + 1);
 
@@ -145,9 +137,7 @@ class User {
                       RETURNING id,
                                 username,
                                 first_name AS "firstName",
-                                last_name AS "lastName",
-                                location_id AS "locationId",
-                                location_name AS "locationName"`;
+                                last_name AS "lastName"`;
     const result = await db.query(querySql, [...values, user_id]);
     const user = result.rows[0];
 
