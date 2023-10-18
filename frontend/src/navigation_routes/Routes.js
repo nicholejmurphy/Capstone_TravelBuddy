@@ -6,6 +6,8 @@ import Homepage from "../homepage/Homepage";
 import ProfileForm from "../profiles/ProfileForm";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
+import Locations from "../locations/Locations";
+import LocationDetails from "../locations/LocationDetLocationsDetails";
 import NotFound from "../common/NotFound";
 
 function Routes({ login, signup }) {
@@ -21,6 +23,12 @@ function Routes({ login, signup }) {
         <Route path="/signup">
           <SignupForm signup={signup} />
         </Route>
+        <PrivateRoute exact path="/locations">
+          <Locations />
+        </PrivateRoute>
+        <PrivateRoute path="/locations/:locationId">
+          <LocationDetails />
+        </PrivateRoute>
         <PrivateRoute path="/profile">
           <ProfileForm />
         </PrivateRoute>
