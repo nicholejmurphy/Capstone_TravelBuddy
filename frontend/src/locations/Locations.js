@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LocationSearchForm from "./LocationSearch";
 import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
@@ -14,15 +14,17 @@ function Locations() {
   const [dataIsLoading, setDataIsLoading] = useState(false);
   const [locations, setLocations] = useState(null);
   const [category, setCategory] = useState("geos");
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(
     function loadLocations() {
       async function getLocations() {
         if (searchTerm) {
+          setDataIsLoading(true);
           try {
             const res = await TravelApi.searchLocation(searchTerm, category);
             setLocations(res);
+            console.log(res);
           } catch (error) {
             console.error(
               "Failed to get locations based on search term and category: ",
@@ -36,7 +38,6 @@ function Locations() {
           setDataIsLoading(false);
         }
       }
-      setDataIsLoading(true);
       getLocations();
     },
     [searchTerm, category]

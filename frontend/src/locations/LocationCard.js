@@ -1,5 +1,4 @@
 import React from "react";
-import LocationCard from "./LocationCard";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 

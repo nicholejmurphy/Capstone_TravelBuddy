@@ -29,6 +29,9 @@ function Navigation({ logout }) {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/locations">Locations</NavLink>
+            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Hey, {currUser.firstName}!

@@ -39,7 +39,7 @@ class TravelApi {
     // Update name to be URL encoded if a space existis
     name = name.trim().replace(/\s+/g, "%20");
     let res = await this.request(
-      `search?key=${TRAVEL_API_KEY}&searchQuery=${name}%20nj&category=${category}}&language=en`
+      `search?key=${TRAVEL_API_KEY}&searchQuery=${name}%20nj&category=${category}&language=en`
     );
     return res.data;
   }
