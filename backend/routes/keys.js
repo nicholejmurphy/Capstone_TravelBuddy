@@ -1,0 +1,5 @@
+const TRAVEL_API_KEY = "E118A41A483E47E28DE2364D82887088";
+
+module.exports = {
+  TRAVEL_API_KEY,
+};
