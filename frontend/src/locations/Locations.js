@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ButtonGroup, Button } from "reactstrap";
 import LocationSearchForm from "./LocationSearch";
 import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
@@ -24,7 +25,6 @@ function Locations() {
           try {
             const res = await TravelApi.searchLocation(searchTerm, category);
             setLocations(res);
-            console.log(res);
           } catch (error) {
             console.error(
               "Failed to get locations based on search term and category: ",
@@ -52,12 +52,42 @@ function Locations() {
         setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}
       />
+      <ButtonGroup>
+        <Button
+          color="primary"
+          outline
+          onClick={() => setCategory("geos")}
+          active={category === "geos"}
+        >
+          General
+        </Button>
+        <Button
+          color="primary"
+          outline
+          onClick={() => setCategory("hotels")}
+          active={category === "hotels"}
+        >
+          Hotels
+        </Button>
+        <Button
+          color="primary"
+          outline
+          onClick={() => setCategory("restaurants")}
+          active={category === "restaurants"}
+        >
+          Restaurants
+        </Button>
+        <Button
+          color="primary"
+          outline
+          onClick={() => setCategory("attractions")}
+          active={category === "attractions"}
+        >
+          Attractions
+        </Button>
+      </ButtonGroup>
       {locations ? (
-        <LocationList
-          setCategory={setCategory}
-          category={category}
-          locations={locations}
-        />
+        <LocationList locations={locations} />
       ) : (
         <p>Search for a location to get started. Happy Trails!</p>
       )}

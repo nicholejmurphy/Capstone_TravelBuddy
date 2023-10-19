@@ -25,7 +25,7 @@ function LocationCard({ id, name, address }) {
       <CardBody>
         <CardTitle tag="h5">{name}</CardTitle>
         <CardText>{address}</CardText>
-        <Button onCLick={handleClick}>Button</Button>
+        <Button onClick={handleClick}>Details</Button>
       </CardBody>
     </Card>
   );
