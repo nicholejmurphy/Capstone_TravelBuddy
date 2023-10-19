@@ -3,7 +3,7 @@
 const request = require("supertest");
 
 const app = require("../app");
-const SavedLocation = require("../models/savedLocation");
+// const SavedLocation = require("../models/savedLocation");
 
 const {
   commonBeforeAll,
@@ -21,10 +21,10 @@ afterAll(commonAfterAll);
 
 /************************************** GET /locations/:userId*/
 
-describe("GET /locations/:userId", function () {
+describe("GET /savedLocations/:userId", function () {
   test("works for same user", async function () {
     const res = await request(app)
-      .get(`/locations/${users.user1.id}`)
+      .get(`/savedLocations/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
     expect(res.body).toEqual({
@@ -40,7 +40,7 @@ describe("GET /locations/:userId", function () {
 
   test("unauth for other users", async function () {
     const res = await request(app)
-      .get(`/locations/${users.user2.id}`)
+      .get(`/savedLocations/${users.user2.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
     expect(res.statusCode).toEqual(401);
   });
@@ -53,10 +53,10 @@ describe("GET /locations/:userId", function () {
 
 /************************************** POST /locations/:userId */
 
-describe("POST /locations/:userId", function () {
+describe("POST /savedLocations/:userId", function () {
   test("works for same user", async function () {
     const res = await request(app)
-      .post(`/locations/${users.user1.id}`)
+      .post(`/savedLocations/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`)
       .send({
         locationId: "new",
@@ -76,7 +76,7 @@ describe("POST /locations/:userId", function () {
 
   test("bad request with dup data", async function () {
     const res = await request(app)
-      .post(`/locations/${users.user1.id}`)
+      .post(`/savedLocations/${users.user1.id}`)
       .send({
         locationId: "test_id",
         name: "test_location",
@@ -90,10 +90,10 @@ describe("POST /locations/:userId", function () {
 
 /************************************** DELETE /locations/:locationId/:userId */
 
-describe("DELETE /locations/:locationId/:userId", function () {
+describe("DELETE /savedLocations/:locationId/:userId", function () {
   test("works for same user", async function () {
     const res = await request(app)
-      .delete(`/locations/test_id/${users.user1.id}`)
+      .delete(`/savedLocations/test_id/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
     expect(res.body).toEqual({
@@ -103,14 +103,14 @@ describe("DELETE /locations/:locationId/:userId", function () {
 
   test("unauth if not same user", async function () {
     const res = await request(app)
-      .delete(`/locations/test_id/${users.user1.id}`)
+      .delete(`/savedLocations/test_id/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u2Token}`);
     expect(res.statusCode).toEqual(401);
   });
 
   test("unauth for anon", async function () {
     const res = await request(app).delete(
-      `/locations/test_id/${users.user1.id}`
+      `/savedLocations/test_id/${users.user1.id}`
     );
     expect(res.statusCode).toEqual(401);
   });
