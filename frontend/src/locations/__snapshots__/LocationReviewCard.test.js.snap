@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div>
+      <p />
+      <p>
+        Date: 
+      </p>
+      <p>
+        Rating:  
+        <img
+          alt="rating icon"
+        />
+      </p>
+      <p>
+        Trip type: 
+      </p>
+      <p />
+      <small>
+        <a>
+          Read More on TripAdvisor
+        </a>
+      </small>
+    </div>
+  </div>
+</DocumentFragment>
+`;

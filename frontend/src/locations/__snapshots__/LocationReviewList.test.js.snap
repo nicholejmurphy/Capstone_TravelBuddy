@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div>
+      <p>
+        No reviews to show.
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot for no reviews 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div>
+      <h4>
+        REVIEWS
+      </h4>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot with reviews 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div>
+      <h4>
+        REVIEWS
+      </h4>
+      <div
+        class=""
+      >
+        <div>
+          <p />
+          <p>
+            Date: 
+          </p>
+          <p>
+            Rating:  
+            <img
+              alt="rating icon"
+            />
+          </p>
+          <p>
+            Trip type: 
+          </p>
+          <p />
+          <small>
+            <a>
+              Read More on TripAdvisor
+            </a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
