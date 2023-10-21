@@ -10,7 +10,7 @@ import Locations from "../locations/Locations";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
 
-function Routes({ login, signup }) {
+function Routes({ login, signup, logout }) {
   return (
     <div className="Routes rounded shadow">
       <Switch>
@@ -30,7 +30,7 @@ function Routes({ login, signup }) {
           <LocationDetails />
         </PrivateRoute>
         <PrivateRoute path="/profile">
-          <ProfileForm />
+          <ProfileForm logout={logout} />
         </PrivateRoute>
         <Route path="*">
           <NotFound />

@@ -3,13 +3,15 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 /** Handles user profile information update
  *  - Pulls user data from currUser state to populate form.
  *  - Requires password input to verify submission
  *  - Updates user info across site state.
  */
-function ProfileForm() {
+function ProfileForm({ logout }) {
+  const history = useHistory();
   const { currUser, setCurrUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     firstName: currUser.firstName,
@@ -61,6 +63,14 @@ function ProfileForm() {
     setFormErrors([]);
   }
 
+  async function handleDelete(e) {
+    e.preventDefault();
+    UserApi.deleteProfile(currUser.id);
+    logout();
+    alert(`${currUser.username} has been successfully deleted.`);
+    history.push("/");
+  }
+
   return (
     <div className="ProfileForm bg-light p-4 w-100 shadow rounded">
       {updateConfirmed ? (
@@ -103,6 +113,10 @@ function ProfileForm() {
           />
         </FormGroup>
         <Button className="bg-primary">Update</Button>
+        <br />
+        <Button className="bg-danger" onClick={handleDelete}>
+          Delete Account
+        </Button>
       </Form>
     </div>
   );
