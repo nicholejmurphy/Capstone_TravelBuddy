@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Form, Row, Col, Input, Button, FormFeedback } from "reactstrap";
 
 /** Search input for locations
- *
  *  - Parent passes setSearchTerm {state} which will trigger
  *    useEffect updating locations in parent
- *
  */
 function LocationSearchForm({ searchTerm, setSearchTerm }) {
   const [formData, setFormData] = useState(searchTerm);

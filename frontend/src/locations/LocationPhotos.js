@@ -1,14 +1,7 @@
-// ROUTE TO => params of location id from a route
-
-// CHILDREN => location id
-// Reviews List
-// Photos container (sliding gallery??)
 import React from "react";
 
-/** Shows a list of all locations
- *
- * - Saves locations as state
- *   usesrs to filter location list by name
+/** Shows location photos
+ * - Recieves list of photos from parent: LocationDetails
  */
 function LocationPhotos({ photos }) {
   // const DEFAULT_IMG =

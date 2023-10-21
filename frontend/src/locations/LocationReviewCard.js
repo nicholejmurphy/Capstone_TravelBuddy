@@ -1,10 +1,8 @@
 import React from "react";
 
-// /** Shows a list of all locations
-//  *
-//  * - Saves locations as state
-//  *   usesrs to filter location list by name
-//  */
+/** Shows details about a location's review
+ * - Recieves review from parent: LocationReviewList
+ */
 function LocationReviewCard({ review }) {
   return (
     <div className="">

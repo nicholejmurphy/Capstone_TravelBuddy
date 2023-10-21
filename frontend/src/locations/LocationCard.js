@@ -2,11 +2,10 @@ import React from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-/** Shows a list of all locations
+/** Shows a basic details about a location
  *
- * - Saves locations as state
- * - Passes 'search()' to LocationSearchForm which allows
- *   usesrs to filter location list by name
+ * - Recieves details about locations from parent: LocationList
+ * - Passes location information to children: LocationCard
  */
 function LocationCard({ id, name, address }) {
   const history = useHistory();

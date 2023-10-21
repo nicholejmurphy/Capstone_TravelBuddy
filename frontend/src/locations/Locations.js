@@ -5,11 +5,14 @@ import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
 import Loading from "../common/Loading";
 
-/** Shows a list of all locations
+/** Main container to render Location components
  *
  * - Saves locations as state
  * - Passes 'setSearchTerm' to LocationSearchForm which allows
  *   usesrs to filter location list by name
+ * - Toggles search category with category buttons which triggers
+ *   new search filtered by category.
+ * - Passes 'locations' to LocationList
  */
 function Locations() {
   const [dataIsLoading, setDataIsLoading] = useState(false);

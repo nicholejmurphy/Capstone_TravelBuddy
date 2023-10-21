@@ -3,8 +3,8 @@ import LocationReviewCard from "./LocationReviewCard";
 
 /** Shows a list of all locations
  *
- * - Saves locations as state
- *   usesrs to filter location list by name
+ * - Recieves reviews list from parent: LcoationDetails
+ * - Passes review data to children: LocationReviewCard
  */
 function LocationReviewList({ reviews }) {
   return (

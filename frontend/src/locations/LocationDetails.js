@@ -1,8 +1,3 @@
-// ROUTE TO => params of location id from a route
-
-// CHILDREN => location id
-// Reviews List
-// Photos container (sliding gallery??)
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import TravelApi from "../api/travelApi";
@@ -10,10 +5,11 @@ import LocationPhotos from "./LocationPhotos";
 import Loading from "../common/Loading";
 import LocationReviewList from "./LocationReviewList";
 
-/** Shows a list of all locations
+/** Shows location details
  *
- * - Saves locations as state
- *   usesrs to filter location list by name
+ * - Gets location id from url params
+ * - Retrieves location details, reviews, and photos from API
+ * - Passes reviews and photos to children
  */
 function LocationDetails() {
   const [dataIsLoading, setDataIsLoading] = useState(false);
