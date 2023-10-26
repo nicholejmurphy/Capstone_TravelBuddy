@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UserContext from "../auth/UserContext";
-import UserApi from "../api/userApi";
 
 /** Shows a basic details about a location
  *
@@ -12,7 +11,7 @@ import UserApi from "../api/userApi";
 function LocationCard({ id, name, address }) {
   const [saved, setSaved] = useState();
   const history = useHistory();
-  const { currUser, saveLocation, hasSaved } = useContext(UserContext);
+  const { saveLocation, hasSaved, removeLocation } = useContext(UserContext);
 
   // Check if user has saved the location
   useEffect(() => {
@@ -20,9 +19,15 @@ function LocationCard({ id, name, address }) {
   }, [id, hasSaved]);
 
   async function handleSave(e) {
-    if (hasSaved(id)) return;
-    saveLocation(id);
-    setSaved(true);
+    if (e.target.value === "Save") {
+      // Handle saving location
+      saveLocation(id);
+      setSaved(true);
+    } else {
+      // Handle removing location
+      removeLocation(id);
+      setSaved(false);
+    }
   }
   function handleClick() {
     history.push(`/locations/${id}`);

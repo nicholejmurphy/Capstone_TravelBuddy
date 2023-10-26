@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ProfileForm from "./ProfileForm";
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";

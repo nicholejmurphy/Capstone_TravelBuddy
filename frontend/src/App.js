@@ -100,12 +100,25 @@ function App() {
   }
 
   // User saves location
-  // - Send api request to apply to job
-  // - Add jobId to applicationIds set
+  // - Send api request to save location
+  // - Add locaitonId to savedLocationIds set
   async function saveLocation(id) {
     if (hasSaved(id)) return;
     UserApi.addSavedLocation(currUser.id, id);
     setSavedLocationIds(new Set([...savedLocationIds, id]));
+  }
+
+  // User removes saved location
+  // - Send api request to remove saved location
+  // - Remove locationId from savedLocationIds set
+  async function removeLocation(id) {
+    if (!hasSaved(id)) return;
+    UserApi.deleteSavedLocation(currUser.id, id);
+    setSavedLocationIds((ids) => {
+      const updatedSet = new Set(ids);
+      updatedSet.delete(id);
+      return updatedSet;
+    });
   }
 
   // Show loading component if data is still loading.
@@ -120,6 +133,7 @@ function App() {
         setCurrUser,
         savedLocationIds,
         saveLocation,
+        removeLocation,
         hasSaved,
       }}
     >
