@@ -25,7 +25,14 @@ function Profile({ logout }) {
 
   return (
     <div className="Profile bg-light p-4 shadow rounded">
-      <LocationList locations={locations} />
+      <div className="m-3">
+        <h4>Saved Locations</h4>
+        {locations.length ? (
+          <LocationList locations={locations} />
+        ) : (
+          <p>You have no saved locations yet.</p>
+        )}
+      </div>
       <ProfileForm logout={logout} />
     </div>
   );
