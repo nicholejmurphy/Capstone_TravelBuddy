@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import UserContext from "../auth/UserContext";
+import UserApi from "../api/userApi";
 
 /** Shows a basic details about a location
  *
@@ -9,9 +11,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
  */
 function LocationCard({ id, name, address }) {
   const history = useHistory();
+  const { currUser } = useContext(UserContext);
 
   function handleClick() {
     history.push(`/locations/${id}`);
+  }
+
+  async function handleSave() {
+    UserApi.addSavedLocation(currUser.id, id);
   }
 
   return (

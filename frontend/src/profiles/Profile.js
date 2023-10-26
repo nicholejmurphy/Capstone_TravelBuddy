@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProfileForm from "./ProfileForm";
-import UserSavedContent from "./UserSavedContent";
+import UserContext from "../auth/UserContext";
+import TravelApi from "../api/travelApi";
+import LocationList from "../locations/LocationList";
 
-/** Handles user profile information update
- *  - Pulls user data from currUser state to populate form.
- *  - Requires password input to verify submission
- *  - Updates user info across site state.
+/** Shows user 's profile data
+ *  - Gets saved on data and passes to LocationList
  */
 function Profile({ logout }) {
+  const { currUser } = useContext(UserContext);
+  const [locations, setLocations] = useState(null);
+
+  useEffect(() => {
+    async function getLocationsOnMount() {
+      const promiseArray = [];
+      currUser.savedLocationIds.forEach((id) => {
+        promiseArray.push(TravelApi.getLocationDetails(id));
+      });
+      let res = await Promise.all(promiseArray);
+      setLocations(res);
+    }
+    getLocationsOnMount();
+  }, [currUser.savedLocationIds]);
+
   return (
-    <div className="ProfileForm bg-light p-4 w-100 shadow rounded">
-      <UserSavedContent />
+    <div className="Profile bg-light p-4 shadow rounded">
+      <LocationList locations={locations} />
       <ProfileForm logout={logout} />
     </div>
   );

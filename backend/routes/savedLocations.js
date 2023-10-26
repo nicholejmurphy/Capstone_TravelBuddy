@@ -8,36 +8,36 @@ const SavedLocation = require("../models/savedLocation");
 
 const router = express.Router();
 
-/** GET /[userId] => { locations }
+/** GET /[userId] => { locationIds }
  *
  * Retrieves all locations saved by user
- * Returns [{ location_id, name, address_string }]
+ * Returns [{ locationIds }]
  *
  * Authorization required: same user-as-:userId
  **/
 
 router.get("/:userId", ensureCorrectUser, async function (req, res, next) {
   try {
-    const locations = await SavedLocation.getAll(req.params.userId);
-    return res.json({ locations });
+    const locationIds = await SavedLocation.getAll(req.params.userId);
+    return res.json({ locationIds });
   } catch (err) {
     return next(err);
   }
 });
 
-/** POST /[userId] {data} => { location }
+/** POST /[userId] {data} => { locationId }
  *
- * Returns { id, location_id, name, address_string }
+ * Returns { locationId }
  *
  * Authorization required: same user-as-:userId
  **/
 
 router.post("/:userId", ensureCorrectUser, async function (req, res, next) {
   try {
-    const location = await SavedLocation.add(req.params.userId, {
+    const locationId = await SavedLocation.add(req.params.userId, {
       ...req.body,
     });
-    return res.json({ location });
+    return res.json({ locationId });
   } catch (err) {
     return next(err);
   }

@@ -1,15 +1,7 @@
 "use strict";
 
 const db = require("../db");
-const bcrypt = require("bcrypt");
-const { sqlForPartialUpdate } = require("../helpers/sql");
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require("../expressError");
-
-const { BCRYPT_WORK_FACTOR } = require("../config.js");
+const { NotFoundError, BadRequestError } = require("../expressError");
 
 /** Related functions for saved_locations
  *
@@ -23,32 +15,30 @@ const { BCRYPT_WORK_FACTOR } = require("../config.js");
 class SavedLocation {
   /** Adds location to user's saved_location.
    *
-   * Returns { id, locationId, name, addressString }
+   * Returns { locationId }
    *
    * Throws BadRequestError on duplicates.
    **/
 
-  static async add(userId, { locationId, name, addressString }) {
+  static async add(userId, locationId) {
     const duplicateCheck = await db.query(
       `SELECT id
            FROM saved_locations
-           WHERE user_id = $1 AND location_id = $2`,
+           WHERE user_id = $1 AND id = $2`,
       [userId, locationId]
     );
 
     if (duplicateCheck.rows[0]) {
-      throw new BadRequestError(`Duplicate location: ${name}`);
+      throw new BadRequestError(`Duplicate location: ${locationId}`);
     }
 
     const result = await db.query(
       `INSERT INTO saved_locations
            (user_id,
-            location_id,
-            name,
-            address_string)
-           VALUES ($1, $2, $3, $4)
-           RETURNING id, location_id AS "locationId", name, address_string AS "addressString"`,
-      [userId, locationId, name, addressString]
+            id)
+           VALUES ($1, $2)
+           RETURNING id`,
+      [userId, locationId]
     );
 
     const location = result.rows[0];
@@ -58,7 +48,7 @@ class SavedLocation {
 
   /** Given a user id, return data about user's saved locations.
    *
-   * Returns { location_id, name, address_string }
+   * Returns { id }
    *
    * Throws NotFoundError if not found.
    **/
@@ -66,9 +56,7 @@ class SavedLocation {
   static async getAll(user_id) {
     // try to find the user first
     const result = await db.query(
-      `SELECT location_id AS "locationId",
-              name, 
-              address_string AS "addressString"
+      `SELECT id 
            FROM saved_locations
            WHERE user_id = $1`,
       [user_id]
@@ -85,7 +73,7 @@ class SavedLocation {
     let result = await db.query(
       `DELETE
            FROM saved_locations
-           WHERE user_id = $1 AND location_id = $2
+           WHERE user_id = $1 AND id = $2
            RETURNING id`,
       [userId, locationId]
     );

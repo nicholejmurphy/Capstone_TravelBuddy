@@ -70,7 +70,7 @@ class UserApi {
    */
   static async addSavedLocation(userId, location) {
     let res = await this.request(`locations/${userId}`, location, "post");
-    return res.location;
+    return res.locationId;
   }
 
   /** Get User's savedLocations.
@@ -78,7 +78,7 @@ class UserApi {
    */
   static async getSavedLocations(userId) {
     let res = await this.request(`locations/${userId}`);
-    return res.locations;
+    return res.locationIds;
   }
 
   /** Delete location from User's savedLocations.

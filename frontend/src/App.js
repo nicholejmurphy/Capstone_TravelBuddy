@@ -22,6 +22,7 @@ function App() {
   const [dataIsLoading, setDataIsLoading] = useState(true);
   const [token, setToken] = useLocalStorage("user_token");
   const [currUser, setCurrUser] = useState(null);
+  const [savedLocationIds, setSavedLocationIds] = useState(null);
 
   console.debug(
     "App. Loading user data.",
@@ -46,6 +47,8 @@ function App() {
             // Set api token
             UserApi.token = token;
             const user = await UserApi.getCurrUser(id);
+            const locations = await UserApi.getSavedLocations(id);
+            setSavedLocationIds(locations);
             setCurrUser(user);
           } catch (error) {
             console.error("Failed to set current user.", error);

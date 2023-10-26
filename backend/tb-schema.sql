@@ -8,12 +8,10 @@ CREATE TABLE users (
 );
 
 CREATE TABLE saved_locations (
-  id SERIAL PRIMARY KEY,
+  id INTEGER NOT NULL,
   user_id INTEGER
     REFERENCES users ON DELETE CASCADE,
-  location_id TEXT NOT NULL,
-  name TEXT NOT NULL,
-  address_string TEXT
+  PRIMARY KEY (id, user_id)
 );
 
 -- CREATE TABLE saved_translations (
