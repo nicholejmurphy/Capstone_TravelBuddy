@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class=""
-  >
-    <div>
-      <p>
-        No reviews to show.
-      </p>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`matches snapshot for no reviews 1`] = `
 <DocumentFragment>
   <div
