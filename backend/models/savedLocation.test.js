@@ -20,20 +20,17 @@ afterAll(commonAfterAll);
 describe("add", function () {
   const newLocation = {
     locationId: "123",
-    name: "location",
-    addressString: "address",
   };
 
   test("works", async function () {
     const res = await db.query(`SELECT * FROM users WHERE username = 'u1'`);
     const user = res.rows[0];
-    let location = await SavedLocation.add(user.id, newLocation);
-    expect(location).toEqual({
-      ...newLocation,
-      id: expect.any(Number),
+    let locationId = await SavedLocation.add(user.id, newLocation);
+    expect(locationId).toEqual({
+      id: "123",
     });
     const found = await db.query(
-      "SELECT * FROM saved_locations WHERE location_id = '123'"
+      "SELECT * FROM saved_locations WHERE id = '123'"
     );
     expect(found.rows.length).toEqual(1);
     expect(found.rows[0].user_id).toEqual(user.id);
@@ -60,9 +57,7 @@ describe("get", function () {
     const user = res.rows[0];
     let locations = await SavedLocation.getAll(user.id);
     expect(locations[0]).toEqual({
-      locationId: "test_id",
-      name: "test_location",
-      addressString: "test_address",
+      id: "test_id",
     });
   });
 

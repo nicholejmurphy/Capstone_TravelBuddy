@@ -8,7 +8,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE saved_locations (
-  id INTEGER NOT NULL,
+  id TEXT NOT NULL,
   user_id INTEGER
     REFERENCES users ON DELETE CASCADE,
   PRIMARY KEY (id, user_id)

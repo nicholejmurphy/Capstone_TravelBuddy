@@ -28,11 +28,9 @@ describe("GET /savedLocations/:userId", function () {
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
     expect(res.body).toEqual({
-      locations: [
+      locationIds: [
         {
-          locationId: "test_id",
-          name: "test_location",
-          addressString: "test_address",
+          id: "test_id",
         },
       ],
     });
@@ -60,16 +58,11 @@ describe("POST /savedLocations/:userId", function () {
       .set("authorization", `Bearer ${userTokens.u1Token}`)
       .send({
         locationId: "new",
-        name: "new_location",
-        addressString: "new_address",
       });
 
     expect(res.body).toEqual({
-      location: {
-        id: expect.any(Number),
-        locationId: "new",
-        name: "new_location",
-        addressString: "new_address",
+      locationId: {
+        id: "new",
       },
     });
   });
@@ -79,8 +72,6 @@ describe("POST /savedLocations/:userId", function () {
       .post(`/savedLocations/${users.user1.id}`)
       .send({
         locationId: "test_id",
-        name: "test_location",
-        addressString: "test_address",
       })
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 

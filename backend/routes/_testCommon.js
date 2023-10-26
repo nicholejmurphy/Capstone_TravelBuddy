@@ -36,8 +36,6 @@ async function commonBeforeAll() {
 
   const newLocation = {
     locationId: "test_id",
-    name: "test_location",
-    addressString: "test_address",
   };
 
   await SavedLocation.add(users.user1.id, newLocation);

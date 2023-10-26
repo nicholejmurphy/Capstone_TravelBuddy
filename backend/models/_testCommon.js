@@ -22,8 +22,8 @@ async function commonBeforeAll() {
   );
   const user = await db.query(`SELECT * FROM users WHERE username = 'u2'`);
   await db.query(
-    `INSERT INTO saved_locations (user_id, location_id, name, address_string)
-                  VALUES ($1, 'test_id', 'test_location', 'test_address')`,
+    `INSERT INTO saved_locations (user_id, id)
+                  VALUES ($1, 'test_id')`,
     [user.rows[0].id]
   );
 }
