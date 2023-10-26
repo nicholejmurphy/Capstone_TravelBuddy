@@ -22,7 +22,7 @@ function App() {
   const [dataIsLoading, setDataIsLoading] = useState(true);
   const [token, setToken] = useLocalStorage("user_token");
   const [currUser, setCurrUser] = useState(null);
-  const [savedLocationIds, setSavedLocationIds] = useState(null);
+  const [savedLocationIds, setSavedLocationIds] = useState(new Set([]));
 
   console.debug(
     "App. Loading user data.",
@@ -47,8 +47,8 @@ function App() {
             // Set api token
             UserApi.token = token;
             const user = await UserApi.getCurrUser(id);
-            const locations = await UserApi.getSavedLocations(id);
-            setSavedLocationIds(locations);
+            const locationIds = await UserApi.getSavedLocations(id);
+            setSavedLocationIds(new Set(locationIds));
             setCurrUser(user);
           } catch (error) {
             console.error("Failed to set current user.", error);
@@ -93,13 +93,36 @@ function App() {
     setToken(null);
   }
 
+  // Check if user has saved location.
+  // - Is locationId in savedLocationIds?
+  function hasSaved(id) {
+    return savedLocationIds.has(id);
+  }
+
+  // User saves location
+  // - Send api request to apply to job
+  // - Add jobId to applicationIds set
+  async function saveLocation(id) {
+    if (hasSaved(id)) return;
+    UserApi.addSavedLocation(currUser.id, id);
+    setSavedLocationIds(new Set([...savedLocationIds, id]));
+  }
+
   // Show loading component if data is still loading.
   if (dataIsLoading) {
     return <Loading />;
   }
 
   return (
-    <UserContext.Provider value={{ currUser, setCurrUser }}>
+    <UserContext.Provider
+      value={{
+        currUser,
+        setCurrUser,
+        savedLocationIds,
+        saveLocation,
+        hasSaved,
+      }}
+    >
       <Navigation logout={logout} />
       <div className="App">
         <Routes login={login} signup={signup} logout={logout} />

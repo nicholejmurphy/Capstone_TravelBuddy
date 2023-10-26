@@ -8,20 +8,20 @@ import LocationList from "../locations/LocationList";
  *  - Gets saved on data and passes to LocationList
  */
 function Profile({ logout }) {
-  const { currUser } = useContext(UserContext);
+  const { savedLocationIds } = useContext(UserContext);
   const [locations, setLocations] = useState(null);
 
   useEffect(() => {
     async function getLocationsOnMount() {
       const promiseArray = [];
-      currUser.savedLocationIds.forEach((id) => {
+      savedLocationIds.forEach((id) => {
         promiseArray.push(TravelApi.getLocationDetails(id));
       });
       let res = await Promise.all(promiseArray);
       setLocations(res);
     }
     getLocationsOnMount();
-  }, [currUser.savedLocationIds]);
+  }, [savedLocationIds]);
 
   return (
     <div className="Profile bg-light p-4 shadow rounded">
