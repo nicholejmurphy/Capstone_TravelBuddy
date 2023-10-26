@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./Routes.css";
 import PrivateRoute from "./PrivateRoutes";
 import Homepage from "../homepage/Homepage";
-import ProfileForm from "../profiles/ProfileForm";
+import Profile from "../profiles/Profile";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import Locations from "../locations/Locations";
@@ -30,7 +30,7 @@ function Routes({ login, signup, logout }) {
           <LocationDetails />
         </PrivateRoute>
         <PrivateRoute path="/profile">
-          <ProfileForm logout={logout} />
+          <Profile logout={logout} />
         </PrivateRoute>
         <Route path="*">
           <NotFound />

@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import Alerts from "../common/Alerts";
+import React, { useState, useContext, useEffect } from "react";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";
 
@@ -25,7 +24,7 @@ function SavedContent() {
       }
       getLocations();
     },
-    [locations]
+    [locations, currUser.id]
   );
 
   /** Handles deletions of saved item

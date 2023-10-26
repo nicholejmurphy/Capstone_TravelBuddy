@@ -40,6 +40,7 @@ function Navigation({ logout }) {
                 <DropdownItem tag="a" href="/profile">
                   Profile
                 </DropdownItem>
+
                 <DropdownItem divider />
                 <DropdownItem onClick={logout}>logout</DropdownItem>
               </DropdownMenu>
