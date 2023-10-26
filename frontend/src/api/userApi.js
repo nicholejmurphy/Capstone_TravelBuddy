@@ -68,8 +68,8 @@ class UserApi {
   /** Add savedLocation to User.
    * { userId, { locationId, name, addressString }} => { location }
    */
-  static async addSavedLocation(userId, location) {
-    let res = await this.request(`locations/${userId}`, location, "post");
+  static async addSavedLocation(userId, locationId) {
+    let res = await this.request(`locations/${userId}`, locationId, "post");
     return res.locationId;
   }
 

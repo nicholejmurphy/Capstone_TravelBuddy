@@ -20,7 +20,7 @@ class SavedLocation {
    * Throws BadRequestError on duplicates.
    **/
 
-  static async add(userId, locationId) {
+  static async add(userId, { locationId }) {
     const duplicateCheck = await db.query(
       `SELECT id
            FROM saved_locations
