@@ -26,7 +26,7 @@ function LocationDetails() {
           const detailsRes = await TravelApi.getLocationDetails(locationId);
           const photosRes = await TravelApi.getLocationPhotos(locationId);
           const reviewsRes = await TravelApi.getLocationReviews(locationId);
-          setLocation(detailsRes.location);
+          setLocation(detailsRes);
           setPhotos(photosRes);
           setReviews(reviewsRes);
         } catch (error) {
