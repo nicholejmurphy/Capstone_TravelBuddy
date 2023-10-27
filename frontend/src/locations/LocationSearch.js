@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Input, Button, FormFeedback } from "reactstrap";
+import {
+  Form,
+  Row,
+  Col,
+  Input,
+  Button,
+  FormFeedback,
+  Popover,
+  PopoverBody,
+  PopoverHeader,
+} from "reactstrap";
 
 /** Search input for locations
  *  - Parent passes setSearchTerm {state} which will trigger
