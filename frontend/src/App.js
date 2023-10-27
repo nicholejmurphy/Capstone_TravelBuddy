@@ -104,7 +104,7 @@ function App() {
   // - Add locaitonId to savedLocationIds set
   async function saveLocation(id) {
     if (hasSaved(id)) return;
-    UserApi.addSavedLocation(currUser.id, id);
+    UserApi.addSavedLocation(id, currUser.id);
     setSavedLocationIds(new Set([...savedLocationIds, id]));
   }
 
@@ -113,7 +113,7 @@ function App() {
   // - Remove locationId from savedLocationIds set
   async function removeLocation(id) {
     if (!hasSaved(id)) return;
-    UserApi.deleteSavedLocation(currUser.id, id);
+    UserApi.deleteSavedLocation(id, currUser.id);
     setSavedLocationIds((ids) => {
       const updatedSet = new Set(ids);
       updatedSet.delete(id);
