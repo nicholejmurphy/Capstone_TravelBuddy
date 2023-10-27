@@ -48,10 +48,8 @@ class TravelApi {
       return res.location;
     } catch (error) {
       return {
-        location: {
-          location_id: locationId,
-          name: null,
-        },
+        location_id: locationId,
+        name: null,
       };
     }
   }
