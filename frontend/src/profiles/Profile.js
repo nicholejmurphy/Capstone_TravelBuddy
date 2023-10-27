@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import ProfileForm from "./ProfileForm";
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
-import LocationList from "../locations/LocationList";
 import Loading from "../common/Loading";
+import LocationList from "../locations/LocationList";
 
 /** Shows user 's profile data
  *  - Gets saved on data and passes to LocationList
@@ -12,6 +12,7 @@ function Profile({ logout }) {
   const { savedLocationIds } = useContext(UserContext);
   const [locations, setLocations] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(false);
+  const [notFoundIds, setNotFoundIds] = useState(null);
 
   useEffect(() => {
     async function getLocationsOnMount() {
@@ -26,6 +27,19 @@ function Profile({ logout }) {
     }
     getLocationsOnMount();
   }, [savedLocationIds]);
+
+  // TripAdvisor has some inconsitencies with their location ids. After a user has saved their location, it may not
+  // function filteredLocations() {
+  //   const notFoundIds = [];
+  //   const filtered = locations.map((l) => {
+  //     if (l.location_id) {
+  //       return l;
+  //     } else {
+  //       notFoundIds.push(l.location_id);
+  //     }
+  //   });
+  //   return <LocationList locations={filtered} />;
+  // }
 
   if (dataIsLoading) return <Loading />;
   return (
