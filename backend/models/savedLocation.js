@@ -62,9 +62,9 @@ class SavedLocation {
       [user_id]
     );
 
-    const locations = result.rows;
+    const locationIds = result.rows.map((r) => r.id);
 
-    return locations;
+    return locationIds;
   }
 
   /** Removes given saved location with given userId from database; returns undefined. */
