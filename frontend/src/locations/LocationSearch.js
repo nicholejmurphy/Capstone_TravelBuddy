@@ -49,6 +49,32 @@ function LocationSearchForm({ searchTerm, setSearchTerm }) {
             <Button className="bg-info shadow">Search</Button>
           </Col>
         </Row>
+        <div>
+          <Button id="search-tips" type="button">
+            Search Tips
+          </Button>
+          <Popover flip target="search-tips" toggle={function noRefCheck() {}}>
+            <PopoverHeader>Enhancing Your Search</PopoverHeader>
+            <PopoverBody>
+              Try ehancing your search criteria withe these suggestions:
+              <ul>
+                <li>
+                  Be specific with your location{" "}
+                  <small>"Manhattan, NY" instead of "New York"</small>
+                </li>
+                <li>
+                  Your search radius is about 10 miles, try searching with other
+                  nearby locations!
+                </li>
+                <li>
+                  Types of search queries: geographical locations, a resturaunt,
+                  a museum, or a coffee shop!
+                </li>
+              </ul>
+              We hope this helps!
+            </PopoverBody>
+          </Popover>
+        </div>
       </Form>
     </div>
   );
