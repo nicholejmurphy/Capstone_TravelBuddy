@@ -32,16 +32,22 @@ router.get("/:userId", ensureCorrectUser, async function (req, res, next) {
  * Authorization required: same user-as-:userId
  **/
 
-router.post("/:userId", ensureCorrectUser, async function (req, res, next) {
-  try {
-    const locationId = await SavedLocation.add(req.params.userId, {
-      ...req.body,
-    });
-    return res.json({ locationId });
-  } catch (err) {
-    return next(err);
+router.post(
+  "/:locationId/:userId",
+  ensureCorrectUser,
+  async function (req, res, next) {
+    try {
+      console.log("************INSIDE POST ROUTE******************");
+      const locationId = await SavedLocation.add(
+        req.params.userId,
+        req.params.locationId
+      );
+      return res.json({ locationId });
+    } catch (err) {
+      return next(err);
+    }
   }
-});
+);
 
 /** DELETE /[locationId]/[userId]  =>  { deleted: location locationId for user userId }
  *
