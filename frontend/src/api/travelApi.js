@@ -49,8 +49,8 @@ class TravelApi {
     } catch (error) {
       return {
         location: {
-          location_id: null,
-          error,
+          location_id: locationId,
+          name: null,
         },
       };
     }
