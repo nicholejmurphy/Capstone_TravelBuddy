@@ -70,9 +70,9 @@ function LocationDetails() {
             <p>{location.description}</p>
             <Button onClick={handleSave}>{saved ? "Saved" : "Save"}</Button>
             <p>
-              Rating: {location.rating} from {location.num_reviews} reviews
+              <img alt="rating icon" src={location.rating_image_url}></img>
+              {location.rating} ({location.num_reviews} reviews)
             </p>
-            <img alt="rating icon" src={location.rating_image_url}></img>
             <a href={location.write_review}>Write a review</a>
             <p>
               <a href={location.web_url}>Learn more on TripAdvisor</a>
