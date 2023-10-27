@@ -19,7 +19,6 @@ function LocationCard({ id, name, address }) {
   }, [id, hasSaved]);
 
   async function handleSave(e) {
-    console.log(id);
     if (e.target.innerHTML === "Save") {
       // Handle saving location
       saveLocation(id);
