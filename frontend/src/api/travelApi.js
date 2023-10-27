@@ -43,8 +43,17 @@ class TravelApi {
 
   /** Location Details. { locationId } => { locationDetails } */
   static async getLocationDetails(locationId) {
-    let res = await this.request(`locations/details/${locationId}`);
-    return res;
+    try {
+      let res = await this.request(`locations/details/${locationId}`);
+      return res.location;
+    } catch (error) {
+      return {
+        location: {
+          location_id: null,
+          error,
+        },
+      };
+    }
   }
 
   /** Location Photos. { locationId } => { locationPhotos } */
