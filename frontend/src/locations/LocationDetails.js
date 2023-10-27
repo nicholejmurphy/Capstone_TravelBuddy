@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "reactstrap";
 import TravelApi from "../api/travelApi";
 import LocationPhotos from "./LocationPhotos";
 import Loading from "../common/Loading";
@@ -12,6 +14,8 @@ import LocationReviewList from "./LocationReviewList";
  * - Passes reviews and photos to children
  */
 function LocationDetails() {
+  const { saveLocation, hasSaved, removeLocation } = useContext(UserContext);
+  const [saved, setSaved] = useState(false);
   const [dataIsLoading, setDataIsLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [reviews, setReviews] = useState(null);
@@ -29,6 +33,8 @@ function LocationDetails() {
           setLocation(detailsRes);
           setPhotos(photosRes);
           setReviews(reviewsRes);
+          // Check if user has saved the location
+          setSaved(hasSaved(locationId));
         } catch (error) {
           console.error("Failed to get location: ", locationId, error);
           setLocation(null);
@@ -37,8 +43,20 @@ function LocationDetails() {
       }
       getLocation();
     },
-    [locationId]
+    [locationId, hasSaved]
   );
+
+  async function handleSave(e) {
+    if (e.target.innerHTML === "Save") {
+      // Handle saving location
+      saveLocation(locationId);
+      setSaved(true);
+    } else {
+      // Handle removing location
+      removeLocation(locationId);
+      setSaved(false);
+    }
+  }
 
   if (dataIsLoading) return <Loading />;
 
@@ -50,6 +68,7 @@ function LocationDetails() {
           <div>
             <h1>{location.name}</h1>
             <p>{location.description}</p>
+            <Button onClick={handleSave}>{saved ? "Saved" : "Save"}</Button>
             <p>
               Rating: {location.rating} from {location.num_reviews} reviews
             </p>
