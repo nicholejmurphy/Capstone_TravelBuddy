@@ -37,7 +37,6 @@ router.post(
   ensureCorrectUser,
   async function (req, res, next) {
     try {
-      console.log("************INSIDE POST ROUTE******************");
       const locationId = await SavedLocation.add(
         req.params.userId,
         req.params.locationId
