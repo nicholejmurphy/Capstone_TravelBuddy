@@ -14,10 +14,10 @@ const BASE_URL = "https://api.api-ninjas.com/v1/trivia?category=geography";
  **/
 router.get("/", async function (req, res, next) {
   try {
-    const resp = await axios.get(BASE_URL, {
+    const result = await axios.get(BASE_URL, {
       headers: { "X-Api-Key": TRIVIA_API_KEY },
     });
-    return res.json(resp);
+    return res.json({ trivia: result.data[0] });
   } catch (err) {
     return next(err);
   }
