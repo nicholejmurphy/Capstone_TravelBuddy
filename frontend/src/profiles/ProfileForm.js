@@ -1,9 +1,30 @@
 import React, { useState, useContext } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Paper, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
 import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "auto",
+    padding: "15px",
+    width: "250px",
+  },
+  form: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+    },
+  },
+  submit: {
+    marginLeft: "8px",
+  },
+}));
 
 /** Handles user profile information update
  *  - Pulls user data from currUser state to populate form.
@@ -12,6 +33,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
  */
 function ProfileForm({ logout }) {
   const history = useHistory();
+  const classes = useStyles();
   const { currUser, setCurrUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     firstName: currUser.firstName,
@@ -72,53 +94,78 @@ function ProfileForm({ logout }) {
   }
 
   return (
-    <div className="ProfileForm bg-light p-4 w-100 shadow rounded">
+    <Paper className={classes.root}>
       {updateConfirmed ? (
         <Alerts
           type="success"
           messages={["Profile has been successfully updated!"]}
         />
       ) : null}
-      {formErrors ? <Alerts type="error" messages={formErrors} /> : null}
-      <Form onSubmit={handleSubmit}>
-        <h2>Update Profile</h2>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input
-            id="username"
-            name="username"
-            type="text"
-            value={currUser.username}
-            disabled
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="first_name">First name</Label>
-          <Input
-            id="first_name"
-            name="firstName"
-            type="text"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="last_name">Last name</Label>
-          <Input
-            id="last_name"
-            name="lastName"
-            type="text"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <Button className="bg-primary">Update</Button>
-        <br />
-        <Button className="bg-danger" onClick={handleDelete}>
-          Delete Account
+      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
+      <Typography variant="h2"></Typography>
+      <form className={classes.form} autoComplete="off">
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          direction="column"
+        >
+          <Grid item>
+            <TextField
+              disabled
+              id="username"
+              label="Username"
+              name="username"
+              type="text"
+              variant="outlined"
+              value={currUser.username}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              id="first_name"
+              label="First Name"
+              name="firstName"
+              type="text"
+              variant="outlined"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              id="last_name"
+              label="Last Name"
+              name="lastName"
+              type="text"
+              variant="outlined"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              id="password"
+              label="Password"
+              name="password"
+              type="password"
+              variant="outlined"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </Grid>
+        </Grid>
+        <Button className={classes.submit} onClick={handleSubmit}>
+          Update
         </Button>
-      </Form>
-    </div>
+        <br />
+        <Button onClick={handleDelete}>Delete Account</Button>
+      </form>
+    </Paper>
   );
 }
 
