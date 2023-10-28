@@ -16,30 +16,38 @@ import SignupForm from "../auth/SignupForm";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
   title: {
     paddingTop: "20px",
+    color: "#ffffff",
   },
   hook: {
     fontStyle: "italic",
     color: "#FFFFFF",
-    textAlign: "center",
     fontWeight: "200",
-    marginTop: "20px",
-    margin: "auto",
-    maxWidth: "500px",
+    marginTop: "40px",
+    minWidth: "400px",
+    maxWidth: "430px",
   },
   trivia: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "30px",
+    marginTop: "40px",
     padding: "8px",
     color: "#ffffff",
   },
   access: {
     margin: "5px",
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "center",
   },
   toggle: {
     height: "15px",
@@ -53,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Homepage() {
+function Homepage({ login, signup }) {
   const [trivia, setTrivia] = useState(null);
   const [method, setMethod] = useState("login");
   const [revealed, setRevealed] = useState(false);
@@ -76,25 +84,36 @@ function Homepage() {
   function notLoggedIn() {
     return (
       <Container className={classes.access}>
-        <div className={classes.accessToggle}>
-          <Button disabled={method === "login"} onClick={handleAccess}>
+        <div className={classes.buttons}>
+          <Button
+            onClick={handleAccess}
+            style={{
+              textDecoration: method === "login" ? "underline" : "none",
+            }}
+          >
             Login
           </Button>
-          <Button disabled={method === "signup"} onClick={handleAccess}>
+          <Button
+            style={{
+              textDecoration: method === "signup" ? "underline" : "none",
+            }}
+            onClick={handleAccess}
+          >
             SignUp
           </Button>
         </div>
-        {method === "login" ? <LoginForm /> : <SignupForm />}
+        {method === "login" ? (
+          <LoginForm login={login} />
+        ) : (
+          <SignupForm signup={signup} />
+        )}
       </Container>
     );
   }
 
   return (
     <Container className={classes.root}>
-      <Typography className={classes.title} variant="h4">
-        {currUser ? `back, ${currUser.firstName}!` : null}
-      </Typography>
-      <Typography className={classes.hook} variant="h4">
+      <Typography className={classes.hook} align="center" variant="h5">
         "All of your travel needs in one location."
       </Typography>
       {trivia && (

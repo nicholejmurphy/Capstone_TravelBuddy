@@ -1,8 +1,28 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-// import "./LoginForm.css";
+
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Paper } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
 import Alerts from "../common/Alerts";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "auto",
+    padding: "15px",
+    width: "250px",
+  },
+  form: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+    },
+  },
+  submit: {
+    marginLeft: "8px",
+  },
+}));
 
 /** Handles user login attemps.
  *  - Takes in form data and attempts to authenticate
@@ -12,6 +32,7 @@ import Alerts from "../common/Alerts";
  */
 function LoginForm({ login }) {
   const history = useHistory();
+  const classes = useStyles();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -39,38 +60,48 @@ function LoginForm({ login }) {
     }
   }
   return (
-    <div className="LoginForm bg-light p-4 w-100 shadow rounded">
+    <Paper className={classes.root}>
       {formErrors.length ? (
         <Alerts type="danger" messages={formErrors} />
       ) : null}
 
-      <Form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input
-            id="username"
-            name="username"
-            placeholder="Enter your username"
-            type="text"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <Button className="bg-primary">Login</Button>
-      </Form>
-    </div>
+      <form className={classes.form} autoComplete="off">
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          direction="column"
+        >
+          <Grid item>
+            <TextField
+              required
+              id="username"
+              label="Username"
+              name="username"
+              type="text"
+              variant="outlined"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              id="password"
+              label="Password"
+              name="password"
+              type="password"
+              variant="outlined"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </Grid>
+        </Grid>
+        <Button className={classes.submit} onClick={handleSubmit}>
+          Login
+        </Button>
+      </form>
+    </Paper>
   );
 }
 

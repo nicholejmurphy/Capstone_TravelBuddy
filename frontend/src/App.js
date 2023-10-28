@@ -5,7 +5,6 @@ import { decodeToken } from "react-jwt";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import UserApi from "./api/userApi";
 import UserContext from "./auth/UserContext";
@@ -25,6 +24,7 @@ import Routes from "./navigation_routes/Routes";
  */
 const useStyles = makeStyles((theme) => ({
   root: {
+    minWidth: "430px",
     [theme.breakpoints.up("sm")]: {
       width: "90%",
     },
@@ -37,18 +37,16 @@ const useStyles = makeStyles((theme) => ({
   },
   mainGrid: {
     flexGrow: 1,
-    height: "100vh",
+    height: "100%",
   },
 }));
-const BACKGROUND_IMG =
-  "https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?auto=format&fit=crop&q=80&w=2367&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
 function App() {
   const [dataIsLoading, setDataIsLoading] = useState(true);
   const [token, setToken] = useLocalStorage("user_token");
   const [currUser, setCurrUser] = useState(null);
   const [savedLocationIds, setSavedLocationIds] = useState(new Set([]));
   const classes = useStyles();
-  const isSmall = useMediaQuery("(max-width:600px)");
 
   console.debug(
     "App. Loading user data.",

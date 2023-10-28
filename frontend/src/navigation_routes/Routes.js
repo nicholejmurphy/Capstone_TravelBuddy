@@ -14,7 +14,7 @@ function Routes({ login, signup, logout }) {
     <div className="Routes">
       <Switch>
         <Route exact path="/">
-          <Homepage />
+          <Homepage login={login} signup={signup} />
         </Route>
         <Route path="/login">
           <LoginForm login={login} />
