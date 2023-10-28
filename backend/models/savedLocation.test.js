@@ -56,9 +56,7 @@ describe("get", function () {
     const res = await db.query(`SELECT * FROM users WHERE username = 'u2'`);
     const user = res.rows[0];
     let locations = await SavedLocation.getAll(user.id);
-    expect(locations[0]).toEqual({
-      id: "test_id",
-    });
+    expect(locations[0]).toEqual("test_id");
   });
 
   test("returns empty array if none found", async function () {

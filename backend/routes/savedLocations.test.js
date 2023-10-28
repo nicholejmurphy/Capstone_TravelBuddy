@@ -27,13 +27,7 @@ describe("GET /savedLocations/:userId", function () {
       .get(`/savedLocations/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
-    expect(res.body).toEqual({
-      locationIds: [
-        {
-          id: "test_id",
-        },
-      ],
-    });
+    expect(res.body).toEqual({ locationIds: ["test_id"] });
   });
 
   test("unauth for other users", async function () {
@@ -51,28 +45,18 @@ describe("GET /savedLocations/:userId", function () {
 
 /************************************** POST /locations/:userId */
 
-describe("POST /savedLocations/:userId", function () {
+describe("POST /savedLocations/:locationId/:userId", function () {
   test("works for same user", async function () {
     const res = await request(app)
-      .post(`/savedLocations/${users.user1.id}`)
-      .set("authorization", `Bearer ${userTokens.u1Token}`)
-      .send({
-        locationId: "new",
-      });
+      .post(`/savedLocations/1234/${users.user1.id}`)
+      .set("authorization", `Bearer ${userTokens.u1Token}`);
 
-    expect(res.body).toEqual({
-      locationId: {
-        id: "new",
-      },
-    });
+    expect(res.body).toEqual({ locationId: { id: "1234" } });
   });
 
   test("bad request with dup data", async function () {
     const res = await request(app)
-      .post(`/savedLocations/${users.user1.id}`)
-      .send({
-        locationId: "test_id",
-      })
+      .post(`/savedLocations/test_id/${users.user1.id}`)
       .set("authorization", `Bearer ${userTokens.u1Token}`);
 
     expect(res.statusCode).toEqual(400);

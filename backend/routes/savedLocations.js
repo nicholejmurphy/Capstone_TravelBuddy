@@ -37,10 +37,9 @@ router.post(
   ensureCorrectUser,
   async function (req, res, next) {
     try {
-      const locationId = await SavedLocation.add(
-        req.params.userId,
-        req.params.locationId
-      );
+      const locationId = await SavedLocation.add(req.params.userId, {
+        locationId: req.params.locationId,
+      });
       return res.json({ locationId });
     } catch (err) {
       return next(err);

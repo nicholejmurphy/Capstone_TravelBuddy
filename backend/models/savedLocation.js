@@ -20,7 +20,7 @@ class SavedLocation {
    * Throws BadRequestError on duplicates.
    **/
 
-  static async add(userId, locationId) {
+  static async add(userId, { locationId }) {
     const duplicateCheck = await db.query(
       `SELECT id
            FROM saved_locations
@@ -53,13 +53,13 @@ class SavedLocation {
    * Throws NotFoundError if not found.
    **/
 
-  static async getAll(user_id) {
+  static async getAll(userId) {
     // try to find the user first
     const result = await db.query(
       `SELECT id 
            FROM saved_locations
            WHERE user_id = $1`,
-      [user_id]
+      [userId]
     );
 
     const locationIds = result.rows.map((r) => r.id);
