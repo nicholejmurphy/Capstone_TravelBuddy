@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import "./App.css";
 import useLocalStorage from "./hooks/useLocalStorage";
 import UserApi from "./api/userApi";
 import { decodeToken } from "react-jwt";
