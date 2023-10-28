@@ -1,11 +1,14 @@
 import React from "react";
 import Alert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    marginTop: "5px",
+    marginBottom: "15px",
     "& > * + *": {
-      marginTop: theme.spacing(2),
+      margin: theme.spacing(2),
     },
   },
 }));
@@ -19,7 +22,7 @@ function Alerts({ type, messages }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       {messages.map((message) => (
         <Alert severity={type} key={message}>
           {message}
