@@ -154,7 +154,7 @@ function Homepage({ login, signup }) {
         <Box className={classes.trivia}>
           <Skeleton variant="text" height={30} width={150} />
           <Skeleton variant="text" height={40} width={200} />
-          <Skeleton variant="rec" height={20} width={50} />
+          <Skeleton variant="rect" height={20} width={50} />
         </Box>
       )}
       {!currUser && notLoggedIn()}

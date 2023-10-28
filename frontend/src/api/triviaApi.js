@@ -32,14 +32,14 @@ class TriviaApi {
    *   call to API Ninjas trivia endpoint
    */
   static async get() {
-    let trivia = await this.request(`trivia/`);
+    // let trivia = await this.request(`trivia/`);
     // A mock API response for testing
-    // const trivia = {
-    //   trivia: {
-    //     question: "Test question about the world.",
-    //     answer: "Test answer.",
-    //   },
-    // };
+    const trivia = {
+      trivia: {
+        question: "What is the capital of France?",
+        answer: "Paris",
+      },
+    };
     return trivia;
   }
 }
