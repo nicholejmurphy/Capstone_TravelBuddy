@@ -13,7 +13,7 @@ import TriviaApi from "../api/triviaApi";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     display: "flex",
