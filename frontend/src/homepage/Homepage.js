@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
 import ToggleButton from "@material-ui/lab/ToggleButton";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 import UserContext from "../auth/UserContext";
 import TriviaApi from "../api/triviaApi";
@@ -37,7 +38,7 @@ const useStyles = makeStyles(() => ({
   trivia: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    textAlign: "center",
     alignItems: "center",
     marginTop: "40px",
     padding: "8px",
@@ -123,8 +124,8 @@ function Homepage({ login, signup }) {
       <Typography className={classes.hook} align="center" variant="h5">
         "All of your travel needs in one location."
       </Typography>
-      {trivia && (
-        <Box className={classes.trivia} elevation={10}>
+      {trivia ? (
+        <Box className={classes.trivia}>
           <Typography variant="h5">Geography Trivia</Typography>
           <Typography variant="subtitle1">{trivia.question}</Typography>
           <ToggleButton
@@ -140,10 +141,20 @@ function Homepage({ login, signup }) {
             </Typography>
           </ToggleButton>
           <Fade in={revealed}>
-            <Typography className={classes.answer} variant="body1">
+            <Typography
+              className={classes.answer}
+              align="center"
+              variant="body2"
+            >
               {trivia.answer}
             </Typography>
           </Fade>
+        </Box>
+      ) : (
+        <Box className={classes.trivia}>
+          <Skeleton variant="text" height={30} width={150} />
+          <Skeleton variant="text" height={40} width={200} />
+          <Skeleton variant="rec" height={20} width={50} />
         </Box>
       )}
       {!currUser && notLoggedIn()}
