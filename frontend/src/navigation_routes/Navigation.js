@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuButton: {
-    marginRight: theme.spacing(2),
     color: "#ffffff",
   },
   title: {
@@ -72,7 +71,7 @@ function Navigation({ logout }) {
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={handleMenuClick}
-          edge="start"
+          edge="end"
           className={classes.menuButton}
           aria-label="menu"
         >
@@ -94,7 +93,7 @@ function Navigation({ logout }) {
 
   return (
     <AppBar className={classes.root} position="static">
-      <Container className={classes.content}>
+      <Container disableGutters className={classes.content}>
         <Toolbar>
           <Link href="/" className={classes.title}>
             <Typography variant="h5">TravelBuddy</Typography>
