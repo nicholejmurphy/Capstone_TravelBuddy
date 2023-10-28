@@ -25,7 +25,6 @@ import Routes from "./navigation_routes/Routes";
  */
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#ffffff",
     [theme.breakpoints.up("sm")]: {
       width: "90%",
     },
@@ -40,15 +39,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: "100vh",
   },
-  header: {
-    width: "100%",
-    height: "200px",
-    objectFit: "cover",
-  },
 }));
 const BACKGROUND_IMG =
   "https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?auto=format&fit=crop&q=80&w=2367&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
 function App() {
   const [dataIsLoading, setDataIsLoading] = useState(true);
   const [token, setToken] = useLocalStorage("user_token");
@@ -171,13 +164,6 @@ function App() {
       }}
     >
       <Navigation logout={logout} />
-      {isSmall && (
-        <img
-          className={classes.header}
-          src={BACKGROUND_IMG}
-          alt="mountains at sunset"
-        ></img>
-      )}
       <Container className={classes.root}>
         <Grid className={classes.mainGrid}>
           <Routes login={login} signup={signup} logout={logout} />

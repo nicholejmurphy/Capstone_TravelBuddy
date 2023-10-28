@@ -57,40 +57,7 @@ function Navigation({ logout }) {
 
   function isLoggedIn() {
     return (
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClick}>Profile</MenuItem>
-        <MenuItem onClick={handleClick}>Logout</MenuItem>
-      </Menu>
-    );
-  }
-
-  function isLoggedOut() {
-    return (
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClick}>Login</MenuItem>
-        <MenuItem onClick={handleClick}>SignUp</MenuItem>
-      </Menu>
-    );
-  }
-
-  return (
-    <AppBar className={classes.root} position="static">
-      <Toolbar>
-        <Link href="/" className={classes.title}>
-          <Typography variant="h5">TravelBuddy</Typography>
-        </Link>
+      <>
         <IconButton
           aria-controls="simple-menu"
           aria-haspopup="true"
@@ -101,7 +68,27 @@ function Navigation({ logout }) {
         >
           <MenuIcon />
         </IconButton>
-        {currUser ? isLoggedIn() : isLoggedOut()}
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClick}>Profile</MenuItem>
+          <MenuItem onClick={handleClick}>Logout</MenuItem>
+        </Menu>
+      </>
+    );
+  }
+
+  return (
+    <AppBar className={classes.root} position="static">
+      <Toolbar>
+        <Link href="/" className={classes.title}>
+          <Typography variant="h5">TravelBuddy</Typography>
+        </Link>
+        {currUser && isLoggedIn()}
       </Toolbar>
     </AppBar>
   );
