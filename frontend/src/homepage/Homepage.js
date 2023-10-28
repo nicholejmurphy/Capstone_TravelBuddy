@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   title: {
-    paddingTop: "20px",
+    marginTop: "40px",
     color: "#ffffff",
+    fontWeight: "200",
   },
   hook: {
     fontStyle: "italic",
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
+    margin: "8px",
   },
   toggle: {
     height: "15px",
@@ -88,14 +90,14 @@ function Homepage({ login, signup }) {
           <Button
             onClick={handleAccess}
             style={{
-              textDecoration: method === "login" ? "underline" : "none",
+              fontWeight: method === "login" ? "600" : "200",
             }}
           >
             Login
           </Button>
           <Button
             style={{
-              textDecoration: method === "signup" ? "underline" : "none",
+              fontWeight: method === "signup" ? "600" : "200",
             }}
             onClick={handleAccess}
           >
@@ -113,6 +115,11 @@ function Homepage({ login, signup }) {
 
   return (
     <Container className={classes.root}>
+      {currUser && (
+        <Typography className={classes.title} align="center" variant="h4">
+          Welcome back, {currUser.firstName}!
+        </Typography>
+      )}
       <Typography className={classes.hook} align="center" variant="h5">
         "All of your travel needs in one location."
       </Typography>
