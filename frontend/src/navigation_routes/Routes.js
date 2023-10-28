@@ -11,7 +11,7 @@ import NotFound from "../common/NotFound";
 
 function Routes({ login, signup, logout }) {
   return (
-    <div className="Routes rounded shadow">
+    <div className="Routes">
       <Switch>
         <Route exact path="/">
           <Homepage />

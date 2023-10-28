@@ -86,26 +86,24 @@ function Navigation({ logout }) {
   }
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Link href="/" className={classes.title}>
-            <Typography variant="h5">TravelBuddy</Typography>
-          </Link>
-          <IconButton
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleMenuClick}
-            edge="start"
-            className={classes.menuButton}
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          {currUser ? isLoggedIn() : isLoggedOut()}
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar className={classes.root} position="static">
+      <Toolbar>
+        <Link href="/" className={classes.title}>
+          <Typography variant="h5">TravelBuddy</Typography>
+        </Link>
+        <IconButton
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleMenuClick}
+          edge="start"
+          className={classes.menuButton}
+          aria-label="menu"
+        >
+          <MenuIcon />
+        </IconButton>
+        {currUser ? isLoggedIn() : isLoggedOut()}
+      </Toolbar>
+    </AppBar>
   );
 }
 
