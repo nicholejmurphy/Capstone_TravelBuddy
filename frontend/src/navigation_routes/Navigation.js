@@ -10,10 +10,20 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import Link from "@material-ui/core/Link";
 import UserContext from "../auth/UserContext";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  content: {
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "80%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "70%",
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -84,12 +94,14 @@ function Navigation({ logout }) {
 
   return (
     <AppBar className={classes.root} position="static">
-      <Toolbar>
-        <Link href="/" className={classes.title}>
-          <Typography variant="h5">TravelBuddy</Typography>
-        </Link>
-        {currUser && isLoggedIn()}
-      </Toolbar>
+      <Container className={classes.content}>
+        <Toolbar>
+          <Link href="/" className={classes.title}>
+            <Typography variant="h5">TravelBuddy</Typography>
+          </Link>
+          {currUser && isLoggedIn()}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 }

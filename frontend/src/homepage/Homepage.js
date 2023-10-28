@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -8,14 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
 import ToggleButton from "@material-ui/lab/ToggleButton";
-import EmojiObjectsTwoToneIcon from "@material-ui/icons/EmojiObjectsTwoTone";
-import Switch from "@material-ui/core/Switch";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 
 import UserContext from "../auth/UserContext";
 import TriviaApi from "../api/triviaApi";
 import LoginForm from "../auth/LoginForm";
+import SignupForm from "../auth/SignupForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,12 +39,11 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
   access: {
-    marginTop: "10px",
+    margin: "5px",
   },
   toggle: {
     height: "15px",
     margin: "5px",
-    color: "#ffffff",
   },
   answer: {
     padding: "10px",
@@ -63,7 +58,6 @@ function Homepage() {
   const [method, setMethod] = useState("login");
   const [revealed, setRevealed] = useState(false);
   const { currUser } = useContext(UserContext);
-  const history = useHistory();
   const classes = useStyles();
 
   useEffect(function loadTrivia() {
@@ -74,22 +68,23 @@ function Homepage() {
     getTrivia();
   }, []);
 
-  const handleReveal = (event) => {
-    event.preventDefault();
-    setRevealed((prev) => !prev);
-  };
-
-  const handleClick = (event) => {
-    const route = event.target.innerText.toLowerCase();
-    history.push(`/${route}`);
+  const handleAccess = (event) => {
+    const access = event.target.innerText.toLowerCase();
+    setMethod(access);
   };
 
   function notLoggedIn() {
     return (
       <Container className={classes.access}>
-        <Button onClick={handleClick}>Login</Button>
-        <Button onClick={handleClick}>SignUp</Button>
-        <LoginForm />
+        <div className={classes.accessToggle}>
+          <Button disabled={method === "login"} onClick={handleAccess}>
+            Login
+          </Button>
+          <Button disabled={method === "signup"} onClick={handleAccess}>
+            SignUp
+          </Button>
+        </div>
+        {method === "login" ? <LoginForm /> : <SignupForm />}
       </Container>
     );
   }
