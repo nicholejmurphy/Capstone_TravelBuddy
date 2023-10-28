@@ -32,8 +32,14 @@ class TriviaApi {
    *   call to API Ninjas trivia endpoint
    */
   static async get() {
-    let res = await this.request(`trivia/`);
-    return res;
+    // let trivia = await this.request(`trivia/`);
+    const trivia = {
+      trivia: {
+        question: "Test question about the world.",
+        answer: "Test answer.",
+      },
+    };
+    return trivia;
   }
 }
 
