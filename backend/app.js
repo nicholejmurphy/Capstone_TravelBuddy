@@ -12,6 +12,7 @@ const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
 const savedLocations = require("./routes/savedLocations");
 const travelApiRoutes = require("./routes/travelApi");
+const triviaApiRoutes = require("./routes/triviaApi");
 
 const morgan = require("morgan");
 
@@ -26,6 +27,7 @@ app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/savedLocations", savedLocations);
 app.use("/locations", travelApiRoutes);
+app.use("/trivia", triviaApiRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
