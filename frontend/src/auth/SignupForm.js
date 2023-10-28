@@ -62,9 +62,7 @@ function SignupForm({ signup }) {
   }
   return (
     <Paper className={classes.root}>
-      {formErrors.length ? (
-        <Alerts type="danger" messages={formErrors} />
-      ) : null}
+      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
 
       <form className={classes.form} autoComplete="off">
         <Grid

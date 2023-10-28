@@ -79,7 +79,7 @@ function ProfileForm({ logout }) {
           messages={["Profile has been successfully updated!"]}
         />
       ) : null}
-      {formErrors ? <Alerts type="danger" messages={formErrors} /> : null}
+      {formErrors ? <Alerts type="error" messages={formErrors} /> : null}
       <Form onSubmit={handleSubmit}>
         <h2>Update Profile</h2>
         <FormGroup>

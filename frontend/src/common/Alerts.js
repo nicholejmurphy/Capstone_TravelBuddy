@@ -1,5 +1,14 @@
 import React from "react";
-import { Alert } from "reactstrap";
+import Alert from "@material-ui/lab/Alert";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 /** Alert Component shows error messages from a variety of components.
  *  - renders with "type" { success, danger, warning }
@@ -7,10 +16,12 @@ import { Alert } from "reactstrap";
  *  - errors maps through to show each error message
  */
 function Alerts({ type, messages }) {
+  const classes = useStyles();
+
   return (
     <div>
       {messages.map((message) => (
-        <Alert color={type} key={message}>
+        <Alert severity={type} key={message}>
           {message}
         </Alert>
       ))}
