@@ -38,6 +38,7 @@ class TravelApi {
     searchTerm = searchTerm.trim().replace(/\s+/g, "%20").replace(/,/g, "%2C");
     let res = await this.request(`locations/search/${searchTerm}/${category}`);
     const locations = res.locations.data;
+    console.log("SEARCH:", locations);
     return locations;
   }
 
@@ -45,6 +46,7 @@ class TravelApi {
   static async getLocationDetails(locationId) {
     try {
       let res = await this.request(`locations/details/${locationId}`);
+      console.log("GET DETAILS:", res);
       return res.location;
     } catch (error) {
       return {
@@ -57,12 +59,14 @@ class TravelApi {
   /** Location Photos. { locationId } => { locationPhotos } */
   static async getLocationPhotos(locationId) {
     let res = await this.request(`locations/photos/${locationId}`);
+    console.log("GET PHOTOS:", res.photos.data);
     return res.photos.data;
   }
 
   /** Location Reviews. { locationId } => { locationReviews } */
   static async getLocationReviews(locationId) {
     let res = await this.request(`locations/reviews/${locationId}`);
+    console.log("GET REVIEWS:", res.reviews.data);
     return res.reviews.data;
   }
 }

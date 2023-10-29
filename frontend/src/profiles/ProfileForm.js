@@ -125,9 +125,9 @@ function ProfileForm({ logout }) {
 
   async function handleDelete(e) {
     e.preventDefault();
+    alert(`${currUser.username} has been successfully deleted.`);
     UserApi.deleteProfile(currUser.id);
     logout();
-    alert(`${currUser.username} has been successfully deleted.`);
     history.push("/");
   }
 

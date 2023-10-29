@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,12 +10,18 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import Link from "@material-ui/core/Link";
-import UserContext from "../auth/UserContext";
 import Container from "@material-ui/core/Container";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import PersonIcon from "@material-ui/icons/Person";
+import UserContext from "../auth/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "100%",
   },
   content: {
     width: "100%",
@@ -38,12 +45,18 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
     },
   },
+  bottom: {
+    width: "100%",
+    position: "fixed",
+    bottom: 0,
+  },
 }));
 
 function Navigation({ logout }) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const history = useHistory();
   const { currUser } = useContext(UserContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [value, setValue] = useState(0);
+  const history = useHistory();
   const classes = useStyles();
 
   const handleClick = (event) => {
@@ -51,6 +64,7 @@ function Navigation({ logout }) {
     handleClose();
     if (route === "logout") {
       logout();
+      history.push(`/`);
     } else {
       history.push(`/${route}`);
     }
@@ -62,6 +76,11 @@ function Navigation({ logout }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    history.push(`/${event.target.innerText.toLowerCase()}`);
   };
 
   function isLoggedIn() {
@@ -92,16 +111,30 @@ function Navigation({ logout }) {
   }
 
   return (
-    <AppBar className={classes.root} position="static">
-      <Container disableGutters className={classes.content}>
-        <Toolbar>
-          <Link href="/" className={classes.title}>
-            <Typography variant="h5">TravelBuddy</Typography>
-          </Link>
-          {currUser && isLoggedIn()}
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <>
+      <AppBar className={classes.root} position="static">
+        <Container disableGutters className={classes.content}>
+          <Toolbar>
+            <Link href="/" className={classes.title}>
+              <Typography variant="h5">TravelBuddy</Typography>
+            </Link>
+            {currUser && isLoggedIn()}
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {currUser && (
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          showLabels
+          className={classes.bottom}
+        >
+          <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
+        </BottomNavigation>
+      )}
+    </>
   );
 }
 

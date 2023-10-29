@@ -24,8 +24,8 @@ function Routes({ login, signup, logout }) {
         <PrivateRoute path="/locations/:locationId">
           <LocationDetails />
         </PrivateRoute>
-        <PrivateRoute path="/profile">
-          <Profile logout={logout} />
+        <PrivateRoute path="/favorites">
+          <Profile />
         </PrivateRoute>
         <Route path="*">
           <NotFound />

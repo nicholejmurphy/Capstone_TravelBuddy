@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import ProfileForm from "./ProfileForm";
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
 import Loading from "../common/Loading";
@@ -74,7 +73,6 @@ function Profile({ logout }) {
           <p>You have no saved locations yet.</p>
         )} */}
       </div>
-      <ProfileForm logout={logout} />
     </div>
   );
 }
