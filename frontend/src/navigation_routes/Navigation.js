@@ -84,7 +84,7 @@ function Navigation({ logout }) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClick}>Profile</MenuItem>
+          <MenuItem onClick={handleClick}>Settings</MenuItem>
           <MenuItem onClick={handleClick}>Logout</MenuItem>
         </Menu>
       </>

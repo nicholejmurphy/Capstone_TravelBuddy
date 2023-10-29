@@ -3,8 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoutes";
 import Homepage from "../homepage/Homepage";
 import Profile from "../profiles/Profile";
-import LoginForm from "../auth/LoginForm";
-import SignupForm from "../auth/SignupForm";
+import ProfileForm from "../profiles/ProfileForm";
 import Locations from "../locations/Locations";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
@@ -16,11 +15,8 @@ function Routes({ login, signup, logout }) {
         <Route exact path="/">
           <Homepage login={login} signup={signup} />
         </Route>
-        <Route path="/login">
-          <LoginForm login={login} />
-        </Route>
-        <Route path="/signup">
-          <SignupForm signup={signup} />
+        <Route path="/settings">
+          <ProfileForm logout={logout} />
         </Route>
         <PrivateRoute exact path="/locations">
           <Locations />
