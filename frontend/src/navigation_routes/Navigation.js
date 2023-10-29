@@ -79,8 +79,9 @@ function Navigation({ logout }) {
   };
 
   const handleChange = (event, newValue) => {
+    const routes = ["locations", "favorites", "settings"];
     setValue(newValue);
-    history.push(`/${event.target.innerText.toLowerCase()}`);
+    history.push(`/${routes[newValue]}`);
   };
 
   function isLoggedIn() {
