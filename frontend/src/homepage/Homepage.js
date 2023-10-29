@@ -31,7 +31,8 @@ const useStyles = makeStyles(() => ({
     color: "#FFFFFF",
     fontWeight: "200",
     marginTop: "40px",
-    minWidth: "400px",
+    fontSize: "180%",
+    minWidth: "350px",
     maxWidth: "430px",
   },
   trivia: {
@@ -116,7 +117,7 @@ function Homepage({ login, signup }) {
   return (
     <Container className={classes.root}>
       {currUser && (
-        <Typography className={classes.title} align="center" variant="h4">
+        <Typography className={classes.title} align="center" variant="h5">
           Welcome back, {currUser.firstName}!
         </Typography>
       )}
