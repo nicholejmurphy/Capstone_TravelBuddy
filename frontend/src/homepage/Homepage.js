@@ -28,7 +28,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: "200",
   },
   hook: {
-    fontStyle: "italic",
     color: "#FFFFFF",
     fontWeight: "200",
     marginTop: "40px",
@@ -121,8 +120,10 @@ function Homepage({ login, signup }) {
           Welcome back, {currUser.firstName}!
         </Typography>
       )}
-      <Typography className={classes.hook} align="center" variant="h5">
-        "All of your travel needs in one location."
+      <Typography className={classes.hook} align="center" variant="h4">
+        What are you waiting for?
+        <br />
+        Let's do this.
       </Typography>
       {trivia ? (
         <Box className={classes.trivia}>
