@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   submit: {
-    marginLeft: "8px",
+    margin: "8px 12px",
   },
 }));
 
@@ -95,7 +95,12 @@ function LoginForm({ login }) {
             />
           </Grid>
         </Grid>
-        <Button className={classes.submit} onClick={handleSubmit}>
+        <Button
+          className={classes.submit}
+          color="primary"
+          size="small"
+          onClick={handleSubmit}
+        >
           Login
         </Button>
       </form>

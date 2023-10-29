@@ -5,16 +5,40 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Modal from "@material-ui/core/Modal";
 
 import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
+    marginTop: "20px",
     padding: "15px",
     width: "250px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  title: {
+    fontWeight: "200",
+    color: "#ffffff",
   },
   form: {
     "& .MuiTextField-root": {
@@ -22,7 +46,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   submit: {
-    marginLeft: "8px",
+    margin: "4px",
+  },
+  delete: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: "12px",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  confirm: {
+    marginRight: "10px",
   },
 }));
 
@@ -32,15 +67,17 @@ const useStyles = makeStyles((theme) => ({
  *  - Updates user info across site state.
  */
 function ProfileForm({ logout }) {
-  const history = useHistory();
-  const classes = useStyles();
   const { currUser, setCurrUser } = useContext(UserContext);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
+  const [updateConfirmed, setUpdateConfirmed] = useState(false);
   const [formData, setFormData] = useState({
     firstName: currUser.firstName,
     lastName: currUser.lastName,
   });
-  const [formErrors, setFormErrors] = useState([]);
-  const [updateConfirmed, setUpdateConfirmed] = useState(false);
+  const history = useHistory();
+  const classes = useStyles();
 
   /** Handle form input changes
    *  - update formData state to catch all form changes
@@ -94,78 +131,137 @@ function ProfileForm({ logout }) {
   }
 
   return (
-    <Paper className={classes.root}>
-      {updateConfirmed ? (
-        <Alerts
-          type="success"
-          messages={["Profile has been successfully updated!"]}
-        />
-      ) : null}
-      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
-      <Typography variant="h2"></Typography>
-      <form className={classes.form} autoComplete="off">
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
+    <div>
+      <Typography variant="h3" align="center" className={classes.title}>
+        Profile Settings
+      </Typography>
+      <Paper className={classes.root}>
+        {updateConfirmed ? (
+          <Alerts
+            type="success"
+            messages={["Profile has been successfully updated!"]}
+          />
+        ) : null}
+        {formErrors.length ? (
+          <Alerts type="error" messages={formErrors} />
+        ) : null}
+        <Typography variant="h2"></Typography>
+        <form className={classes.form} autoComplete="off">
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            direction="column"
+          >
+            <Grid item>
+              <TextField
+                disabled
+                id="username"
+                label="Username"
+                name="username"
+                type="text"
+                variant="outlined"
+                value={currUser.username}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="first_name"
+                label="First Name"
+                name="firstName"
+                type="text"
+                variant="outlined"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="last_name"
+                label="Last Name"
+                name="lastName"
+                type="text"
+                variant="outlined"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="password"
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </Grid>
+          </Grid>
+          <Button
+            className={classes.submit}
+            color="primary"
+            onClick={handleSubmit}
+          >
+            Update
+          </Button>
+          <br />
+        </form>
+      </Paper>
+      <Paper className={classes.root}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.submitDelete}
+          onClick={() => {
+            setOpen(!open);
+          }}
+          startIcon={<DeleteIcon />}
         >
-          <Grid item>
-            <TextField
-              disabled
-              id="username"
-              label="Username"
-              name="username"
-              type="text"
-              variant="outlined"
-              value={currUser.username}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="first_name"
-              label="First Name"
-              name="firstName"
-              type="text"
-              variant="outlined"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="last_name"
-              label="Last Name"
-              name="lastName"
-              type="text"
-              variant="outlined"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="password"
-              label="Password"
-              name="password"
-              type="password"
-              variant="outlined"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </Grid>
-        </Grid>
-        <Button className={classes.submit} onClick={handleSubmit}>
-          Update
+          Delete My Account
         </Button>
-        <br />
-        <Button onClick={handleDelete}>Delete Account</Button>
-      </form>
-    </Paper>
+        <Modal
+          open={open}
+          onClose={() => {
+            setOpen(!open);
+          }}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div className={classes.delete} style={modalStyle}>
+            <Typography variant="h5">Are you sure??</Typography>
+
+            <Typography variant="body1">
+              Deleteing your account will erase all of the really cool data
+              you've saved.{" "}
+            </Typography>
+            <hr />
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.confirm}
+              onClick={handleDelete}
+            >
+              Yea, I'm out.
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.confirm}
+              onClick={() => {
+                setOpen(!open);
+              }}
+            >
+              Nah, I'll stay.
+            </Button>
+          </div>
+        </Modal>
+      </Paper>
+    </div>
   );
 }
 

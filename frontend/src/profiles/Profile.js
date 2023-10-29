@@ -68,11 +68,11 @@ function Profile({ logout }) {
           </div>
         )}
         <h4>Saved Locations</h4>
-        {locations.length ? (
+        {/* {locations.length ? (
           <LocationList locations={locations} />
         ) : (
           <p>You have no saved locations yet.</p>
-        )}
+        )} */}
       </div>
       <ProfileForm logout={logout} />
     </div>
