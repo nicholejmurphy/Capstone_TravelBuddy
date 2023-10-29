@@ -1,15 +1,38 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Row,
-  Col,
-  Input,
-  Button,
-  FormFeedback,
-  Popover,
-  PopoverBody,
-  PopoverHeader,
-} from "reactstrap";
+
+import Paper from "@material-ui/core/Paper";
+import Divider from "@material-ui/core/Divider";
+import InputBase from "@material-ui/core/InputBase";
+import Popover from "@material-ui/core/Popover";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import SearchIcon from "@material-ui/icons/Search";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    width: 400,
+  },
+  input: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  tip: {
+    padding: theme.spacing(2),
+    width: "320px",
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+}));
 
 /** Search input for locations
  *  - Parent passes setSearchTerm {state} which will trigger
@@ -18,6 +41,11 @@ import {
 function LocationSearchForm({ searchTerm, setSearchTerm }) {
   const [formData, setFormData] = useState(searchTerm);
   const [error, setError] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const classes = useStyles();
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   // Updates serchterm state on form input change
   function handleChange(e) {
@@ -34,58 +62,72 @@ function LocationSearchForm({ searchTerm, setSearchTerm }) {
     }
   }
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="SearchForm mb-4 mt-4 ml-3 vw-75">
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col>
-            <Input
-              className="shadow"
-              id="search"
-              name="search"
-              type="text"
-              placeholder="Search"
-              value={formData}
-              onChange={handleChange}
-            />
-            {error && (
-              <FormFeedback tooltip invalid>
-                Location search can not be empty.
-              </FormFeedback>
-            )}
-          </Col>
-          <Col>
-            {" "}
-            <Button className="bg-info shadow">Search</Button>
-          </Col>
-        </Row>
-        <div>
-          <Button id="search-tips" type="button">
-            Search Tips
-          </Button>
-          <Popover flip target="search-tips" toggle={function noRefCheck() {}}>
-            <PopoverHeader>Enhancing Your Search</PopoverHeader>
-            <PopoverBody>
-              Try ehancing your search criteria withe these suggestions:
-              <ul>
-                <li>
-                  Be specific with your location{" "}
-                  <small>"Manhattan, NY" instead of "New York"</small>
-                </li>
-                <li>
-                  Your search radius is about 10 miles, try searching with other
-                  nearby locations!
-                </li>
-                <li>
-                  Types of search queries: geographical locations, a resturaunt,
-                  a museum, or a coffee shop!
-                </li>
-              </ul>
-              We hope this helps!
-            </PopoverBody>
-          </Popover>
-        </div>
-      </Form>
+      <Paper component="form" className={classes.root}>
+        <InputBase
+          className={classes.input}
+          id="search"
+          name="search"
+          type="text"
+          placeholder="Search for your next adventure"
+          value={formData}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "search locations" }}
+        />
+        <IconButton
+          type="submit"
+          onClick={handleSubmit}
+          className={classes.iconButton}
+          aria-label="search"
+        >
+          <SearchIcon />
+        </IconButton>
+        <Divider className={classes.divider} orientation="vertical" />
+        <IconButton
+          aria-describedby={id}
+          onClick={handleClick}
+          className={classes.iconButton}
+          color="primary"
+          aria-label="help"
+        >
+          <HelpOutlineIcon />
+        </IconButton>
+
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <Typography
+            className={classes.tip}
+            variant="body2"
+            color="primary"
+            align="center"
+          >
+            Try enhancing your search criteria with specific locations! If a
+            location is broad, you may recieve repetitive data. <br />
+            We hope this helps!
+          </Typography>
+        </Popover>
+      </Paper>
     </div>
   );
 }
