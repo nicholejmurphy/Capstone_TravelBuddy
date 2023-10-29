@@ -133,7 +133,7 @@ function ProfileForm({ logout }) {
 
   return (
     <div>
-      <Typography variant="h3" align="center" className={classes.title}>
+      <Typography variant="h4" align="center" className={classes.title}>
         Profile Settings
       </Typography>
       <Paper className={classes.root}>
