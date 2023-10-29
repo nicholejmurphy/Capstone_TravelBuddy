@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   title: {
+    marginTop: "40px",
     fontWeight: "200",
     color: "#ffffff",
   },
