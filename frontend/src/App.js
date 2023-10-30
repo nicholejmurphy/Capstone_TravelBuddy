@@ -24,6 +24,7 @@ import Routes from "./navigation_routes/Routes";
  */
 const useStyles = makeStyles((theme) => ({
   root: {
+    paddingBottom: "56px",
     minWidth: "430px",
     [theme.breakpoints.up("sm")]: {
       width: "90%",
