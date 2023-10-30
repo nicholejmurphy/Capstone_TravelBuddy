@@ -20,9 +20,12 @@ import PersonIcon from "@material-ui/icons/Person";
 import UserContext from "../auth/UserContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  top: {
     flexGrow: 1,
     width: "100%",
+    position: "fixed",
+    top: 0,
+    zIndex: 1,
   },
   content: {
     width: "100%",
@@ -115,7 +118,7 @@ function Navigation({ logout }) {
 
   return (
     <>
-      <AppBar className={classes.root} position="static">
+      <AppBar className={classes.top} position="static">
         <Container disableGutters className={classes.content}>
           <Toolbar>
             <Link href="/" className={classes.title}>
@@ -126,21 +129,16 @@ function Navigation({ logout }) {
         </Container>
       </AppBar>
       {currUser && (
-        <>
-          <BottomNavigation
-            value={value}
-            onChange={handleChange}
-            showLabels
-            className={classes.bottom}
-          >
-            <BottomNavigationAction
-              label="Locations"
-              icon={<LocationOnIcon />}
-            />
-            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-            <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
-          </BottomNavigation>
-        </>
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          showLabels
+          className={classes.bottom}
+        >
+          <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
+        </BottomNavigation>
       )}
     </>
   );
