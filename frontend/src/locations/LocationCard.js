@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
@@ -74,13 +75,22 @@ function LocationCard({ id, name, address }) {
   return (
     <Card className={classes.root} elevation={5}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={`image of ${name}`}
-          height="140"
-          image={photoUrl ? photoUrl : DEFAUL_IMG}
-          title="Contemplative Reptile"
-        />
+        {photoUrl ? (
+          <CardMedia
+            component="img"
+            alt={`image of ${name}`}
+            height="140"
+            image={photoUrl ? photoUrl : DEFAUL_IMG}
+            title="Contemplative Reptile"
+          />
+        ) : (
+          <Skeleton
+            animation="wave"
+            variant="rect"
+            height="140"
+            className={classes.media}
+          />
+        )}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {name}
