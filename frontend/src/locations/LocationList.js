@@ -9,7 +9,7 @@ import LocationCard from "./LocationCard";
  */
 function LocationList({ locations }) {
   return (
-    <div className="LocationList container rounded shadow">
+    <div className="LocationList">
       {locations.map((l) => (
         <LocationCard
           key={l.location_id}
