@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
-    width: 400,
   },
   input: {
     marginLeft: theme.spacing(2),
@@ -71,64 +70,62 @@ function LocationSearchForm({ searchTerm, setSearchTerm }) {
   };
 
   return (
-    <div className="SearchForm mb-4 mt-4 ml-3 vw-75">
-      <Paper component="form" className={classes.root}>
-        <InputBase
-          className={classes.input}
-          id="search"
-          name="search"
-          type="text"
-          placeholder="Search for your next adventure"
-          value={formData}
-          onChange={handleChange}
-          inputProps={{ "aria-label": "search locations" }}
-        />
-        <IconButton
-          type="submit"
-          onClick={handleSubmit}
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton>
-        <Divider className={classes.divider} orientation="vertical" />
-        <IconButton
-          aria-describedby={id}
-          onClick={handleClick}
-          className={classes.iconButton}
-          color="primary"
-          aria-label="help"
-        >
-          <HelpOutlineIcon />
-        </IconButton>
+    <Paper component="form" className={classes.root}>
+      <InputBase
+        className={classes.input}
+        id="search"
+        name="search"
+        type="text"
+        placeholder="Search for your next adventure"
+        value={formData}
+        onChange={handleChange}
+        inputProps={{ "aria-label": "search locations" }}
+      />
+      <IconButton
+        type="submit"
+        onClick={handleSubmit}
+        className={classes.iconButton}
+        aria-label="search"
+      >
+        <SearchIcon />
+      </IconButton>
+      <Divider className={classes.divider} orientation="vertical" />
+      <IconButton
+        aria-describedby={id}
+        onClick={handleClick}
+        className={classes.iconButton}
+        color="primary"
+        aria-label="help"
+      >
+        <HelpOutlineIcon />
+      </IconButton>
 
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <Typography
+          className={classes.tip}
+          variant="body2"
+          color="primary"
+          align="center"
         >
-          <Typography
-            className={classes.tip}
-            variant="body2"
-            color="primary"
-            align="center"
-          >
-            Try enhancing your search criteria with specific locations! If a
-            location is broad, you may recieve repetitive data. <br />
-            We hope this helps!
-          </Typography>
-        </Popover>
-      </Paper>
-    </div>
+          Try enhancing your search criteria with specific locations! If a
+          location is broad, you may recieve repetitive data. <br />
+          We hope this helps!
+        </Typography>
+      </Popover>
+    </Paper>
   );
 }
 
