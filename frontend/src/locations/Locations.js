@@ -45,16 +45,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffffff",
   },
   body: {
-    width: "100%",
     paddingTop: "10px",
+    flexGrow: 1,
   },
   locations: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    paddingTop: "30px",
-    paddingBottom: "30px",
+    padding: "30px",
     marginTop: "10px",
   },
   card: {
@@ -157,10 +156,18 @@ function Locations() {
           </Typography>
         )}
       </Grid>
-      <Grid item className={classes.body}>
+      <Grid item container>
         <Paper className={classes.locations} elevation={3}>
           {locations ? (
-            <LocationList locations={locations} />
+            <Grid
+              item
+              container
+              className={classes.body}
+              justifyContent="center"
+              spacing={3}
+            >
+              <LocationList locations={locations} />
+            </Grid>
           ) : (
             <Card className={classes.card} elevation={3}>
               <CardHeader

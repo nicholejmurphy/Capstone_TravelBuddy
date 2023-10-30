@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // marginLeft: "15px",
   },
 }));
 
@@ -19,9 +19,19 @@ const useStyles = makeStyles((theme) => ({
 function LocationList({ locations }) {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root} spacing={3}>
+    <>
       {locations.map((l) => (
-        <Grid item xs={12} md={6} lg={4} key={l.location_id}>
+        <Grid
+          item
+          container
+          xs={12}
+          md={6}
+          lg={4}
+          key={l.location_id}
+          className={classes.root}
+          justifyContent="center"
+          alignContent="space-between"
+        >
           <LocationCard
             id={l.location_id}
             name={l.name}
@@ -29,7 +39,7 @@ function LocationList({ locations }) {
           />
         </Grid>
       ))}
-    </Grid>
+    </>
   );
 }
 

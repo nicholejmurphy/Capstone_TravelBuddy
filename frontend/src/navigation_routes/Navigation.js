@@ -118,7 +118,7 @@ function Navigation({ logout }) {
 
   return (
     <>
-      <AppBar className={classes.top} position="static">
+      <AppBar className={classes.top} position="static" elevation={5}>
         <Container disableGutters className={classes.content}>
           <Toolbar>
             <Link href="/" className={classes.title}>
@@ -134,6 +134,7 @@ function Navigation({ logout }) {
           onChange={handleChange}
           showLabels
           className={classes.bottom}
+          elevation={5}
         >
           <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />

@@ -18,7 +18,10 @@ import TravelApi from "../api/travelApi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: "15px",
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      maxWidth: "450px",
+    },
     [theme.breakpoints.down("md")]: {
       maxWidth: "450px",
     },
