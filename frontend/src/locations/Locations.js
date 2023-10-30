@@ -45,21 +45,23 @@ const useStyles = makeStyles((theme) => ({
   },
   selection: {
     margin: "10px",
+    backgroundColor: "#ffffff",
   },
   body: {
     width: "100%",
+    paddingTop: "10px",
   },
   locations: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    paddingTop: "40px",
-    paddingBottom: "40px",
-    marginTop: "20px",
+    paddingTop: "30px",
+    paddingBottom: "30px",
+    marginTop: "10px",
   },
   card: {
-    margin: "auto",
+    marginTop: "30px",
     [theme.breakpoints.down("sm")]: {
       width: "90%",
     },
@@ -148,24 +150,29 @@ function Locations() {
           searchTerm={searchTerm}
         />
       </Grid>
+      <Grid item>
+        {locations && (
+          <Typography variant="subtitle2">
+            Filters:
+            <ToggleButtonGroup
+              size="small"
+              value={category}
+              exclusive
+              onChange={handleChange}
+              className={classes.selection}
+            >
+              <ToggleButton value="geos">Geos</ToggleButton>
+              <ToggleButton value="hotels">Hotels</ToggleButton>
+              <ToggleButton value="restaurants">Restaurants</ToggleButton>
+              <ToggleButton value="attractions">Attractions</ToggleButton>
+            </ToggleButtonGroup>
+          </Typography>
+        )}
+      </Grid>
       <Grid item className={classes.body}>
         <Paper className={classes.locations} elevation={3}>
           {locations ? (
-            <>
-              <ToggleButtonGroup
-                size="small"
-                value={category}
-                exclusive
-                onChange={handleChange}
-                className={classes.selection}
-              >
-                <ToggleButton value="geos">Geos</ToggleButton>
-                <ToggleButton value="hotels">Hotels</ToggleButton>
-                <ToggleButton value="restaurants">Restaurants</ToggleButton>
-                <ToggleButton value="attractions">Attractions</ToggleButton>
-              </ToggleButtonGroup>
-              <LocationList locations={locations} />
-            </>
+            <LocationList locations={locations} />
           ) : (
             <Card className={classes.card} elevation={3}>
               <CardHeader title="Some place REALLY cool..." />
