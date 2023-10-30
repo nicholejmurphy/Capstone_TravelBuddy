@@ -7,10 +7,18 @@ import ProfileForm from "../profiles/ProfileForm";
 import Locations from "../locations/Locations";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: "56px",
+  },
+}));
 
 function Routes({ login, signup, logout }) {
+  const classes = useStyles();
   return (
-    <div className="Routes">
+    <div className={classes.root}>
       <Switch>
         <Route exact path="/">
           <Homepage login={login} signup={signup} />
