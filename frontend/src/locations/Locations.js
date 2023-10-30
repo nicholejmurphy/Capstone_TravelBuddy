@@ -64,11 +64,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "90%",
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       width: "70%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      width: "60%",
     },
   },
   media: {
@@ -174,14 +171,17 @@ function Locations() {
             <LocationList locations={locations} />
           ) : (
             <Card className={classes.card} elevation={3}>
-              <CardHeader title="Some place REALLY cool..." />
+              <CardHeader
+                title="Some place REALLY cool..."
+                subheader="Hoseshoe Bend, AZ"
+              />
               <CardMedia
                 className={classes.media}
                 image="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 title="Horseshoe Bend, AZ"
               />
               <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body1" color="textSecondary" component="p">
                   Wow. Check out this cool spot! This could be you... and we
                   want to help you get there!
                 </Typography>
