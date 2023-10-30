@@ -36,12 +36,12 @@ class TravelApi {
    */
   static async searchLocation(searchTerm, category) {
     // Update searchTerm to be URL encoded if a space existis
-    // searchTerm = searchTerm.trim().replace(/\s+/g, "%20").replace(/,/g, "%2C");
-    // let res = await this.request(`locations/search/${searchTerm}/${category}`);
-    // const locations = res.locations.data;
-    // console.log("SEARCH:", locations);
-    // return locations;
-    return searchRes;
+    searchTerm = searchTerm.trim().replace(/\s+/g, "%20").replace(/,/g, "%2C");
+    let res = await this.request(`locations/search/${searchTerm}/${category}`);
+    const locations = res.locations.data;
+    console.log("SEARCH:", locations);
+    return locations;
+    // return searchRes;
   }
 
   /** Location Details. { locationId } => { locationDetails } */
@@ -60,10 +60,10 @@ class TravelApi {
 
   /** Location Photos. { locationId } => { locationPhotos } */
   static async getLocationPhotos(locationId) {
-    // let res = await this.request(`locations/photos/${locationId}`);
-    // console.log("GET PHOTOS:", res.photos.data);
-    // return res.photos.data;
-    return photosRes;
+    let res = await this.request(`locations/photos/${locationId}`);
+    console.log("GET PHOTOS:", res.photos.data);
+    return res.photos.data;
+    // return photosRes;
   }
 
   /** Location Reviews. { locationId } => { locationReviews } */

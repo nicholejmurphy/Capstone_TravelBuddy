@@ -121,7 +121,7 @@ function LocationSearchForm({ searchTerm, setSearchTerm }) {
           align="center"
         >
           Try enhancing your search criteria with specific locations! If a
-          location is broad, you may recieve repetitive data. <br />
+          search is broad, you may recieve repetitive data. <br />
           We hope this helps!
         </Typography>
       </Popover>
