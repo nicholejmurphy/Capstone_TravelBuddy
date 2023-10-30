@@ -16,7 +16,6 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PersonIcon from "@material-ui/icons/Person";
-import Box from "@material-ui/core/Box";
 
 import UserContext from "../auth/UserContext";
 
