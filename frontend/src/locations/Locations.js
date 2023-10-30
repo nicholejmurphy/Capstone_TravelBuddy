@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import LocationSearchForm from "./LocationSearch";
 import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
-import Loading from "../common/Loading";
 
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
