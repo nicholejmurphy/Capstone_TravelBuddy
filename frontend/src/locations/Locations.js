@@ -1,9 +1,80 @@
 import React, { useState, useEffect } from "react";
-import { ButtonGroup, Button } from "reactstrap";
+
 import LocationSearchForm from "./LocationSearch";
 import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
 import Loading from "../common/Loading";
+
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import { CardMedia, Grid, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import MoreIcon from "@material-ui/icons/More";
+import Tooltip from "@material-ui/core/Tooltip";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // margin: "10px",
+  },
+  title: {
+    marginTop: "30px",
+    marginBottom: "30px",
+    fontWeight: 200,
+    color: "#ffffff",
+  },
+  search: {
+    [theme.breakpoints.down("sm")]: {
+      width: "350px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "90%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "60%",
+    },
+  },
+  selection: {
+    margin: "10px",
+  },
+  body: {
+    width: "100%",
+  },
+  locations: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    paddingTop: "40px",
+    paddingBottom: "40px",
+    marginTop: "20px",
+  },
+  card: {
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "60%",
+    },
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+}));
 
 /** Main container to render Location components
  *
@@ -19,6 +90,7 @@ function Locations() {
   const [locations, setLocations] = useState(null);
   const [category, setCategory] = useState("geos");
   const [searchTerm, setSearchTerm] = useState("");
+  const classes = useStyles();
 
   useEffect(
     function loadLocations() {
@@ -46,55 +118,85 @@ function Locations() {
     [searchTerm, category]
   );
 
+  const handleChange = (event, newCategory) => {
+    if (!newCategory) return;
+    setCategory(newCategory);
+  };
+
   if (dataIsLoading) return <Loading />;
 
   return (
-    <div className="">
-      {searchTerm && <h3>Things to do in {searchTerm}</h3>}
-      <LocationSearchForm
-        setSearchTerm={setSearchTerm}
-        searchTerm={searchTerm}
-      />
-      <ButtonGroup>
-        <Button
-          color="primary"
-          outline
-          onClick={() => setCategory("geos")}
-          active={category === "geos"}
-        >
-          General
-        </Button>
-        <Button
-          color="primary"
-          outline
-          onClick={() => setCategory("hotels")}
-          active={category === "hotels"}
-        >
-          Hotels
-        </Button>
-        <Button
-          color="primary"
-          outline
-          onClick={() => setCategory("restaurants")}
-          active={category === "restaurants"}
-        >
-          Restaurants
-        </Button>
-        <Button
-          color="primary"
-          outline
-          onClick={() => setCategory("attractions")}
-          active={category === "attractions"}
-        >
-          Attractions
-        </Button>
-      </ButtonGroup>
-      {locations ? (
-        <LocationList locations={locations} />
-      ) : (
-        <p>Search for a location to get started. Happy Trails!</p>
-      )}
-    </div>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      className={classes.root}
+    >
+      <Grid item className={classes.title}>
+        {searchTerm ? (
+          <Typography variant="h4">Things to do in {searchTerm}</Typography>
+        ) : (
+          <Typography variant="h4" align="center">
+            Search for a location to get started. <br />
+            Happy Trails!
+          </Typography>
+        )}
+      </Grid>
+      <Grid item className={classes.search}>
+        <LocationSearchForm
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+        />
+      </Grid>
+      <Grid item className={classes.body}>
+        <Paper className={classes.locations} elevation={3}>
+          {locations ? (
+            <>
+              <ToggleButtonGroup
+                size="small"
+                value={category}
+                exclusive
+                onChange={handleChange}
+                className={classes.selection}
+              >
+                <ToggleButton value="geos">Geos</ToggleButton>
+                <ToggleButton value="hotels">Hotels</ToggleButton>
+                <ToggleButton value="restaurants">Restaurants</ToggleButton>
+                <ToggleButton value="attractions">Attractions</ToggleButton>
+              </ToggleButtonGroup>
+              <LocationList locations={locations} />
+            </>
+          ) : (
+            <Card className={classes.card} elevation={3}>
+              <CardHeader title="Some place REALLY cool..." />
+              <CardMedia
+                className={classes.media}
+                image="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                title="Horseshoe Bend, AZ"
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  Wow. Check out this cool spot! This could be you... and we
+                  want to help you get there!
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <Tooltip title="You can add locations to your favorties list and save them for later!">
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="To get more details on a location">
+                  <IconButton aria-label="share">
+                    <MoreIcon />
+                  </IconButton>
+                </Tooltip>
+              </CardActions>
+            </Card>
+          )}
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 
