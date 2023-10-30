@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: 0,
     zIndex: 1,
+    boxShadow: "0px 0px 10px rgba(172, 174, 176, 0.75)",
   },
 }));
 
