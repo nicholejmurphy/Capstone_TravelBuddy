@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
   },
   card: {
-    marginTop: "30px",
     [theme.breakpoints.down("sm")]: {
       width: "90%",
     },
