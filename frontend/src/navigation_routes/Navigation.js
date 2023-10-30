@@ -16,6 +16,8 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PersonIcon from "@material-ui/icons/Person";
+import Box from "@material-ui/core/Box";
+
 import UserContext from "../auth/UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     position: "fixed",
     bottom: 0,
+    zIndex: 1,
   },
 }));
 
@@ -124,16 +127,21 @@ function Navigation({ logout }) {
         </Container>
       </AppBar>
       {currUser && (
-        <BottomNavigation
-          value={value}
-          onChange={handleChange}
-          showLabels
-          className={classes.bottom}
-        >
-          <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
-        </BottomNavigation>
+        <>
+          <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            showLabels
+            className={classes.bottom}
+          >
+            <BottomNavigationAction
+              label="Locations"
+              icon={<LocationOnIcon />}
+            />
+            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
+          </BottomNavigation>
+        </>
       )}
     </>
   );
