@@ -1,11 +1,38 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+
 import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Button } from "reactstrap";
 import TravelApi from "../api/travelApi";
 import LocationPhotos from "./LocationPhotos";
 import Loading from "../common/Loading";
 import LocationReviewList from "./LocationReviewList";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingTop: "56px",
+  },
+  title: {
+    marginTop: "30px",
+    marginBottom: "30px",
+    fontWeight: 200,
+    color: "#ffffff",
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "30px",
+    marginTop: "10px",
+    marginBottom: "20px",
+  },
+}));
 
 /** Shows location details
  *
@@ -20,7 +47,9 @@ function LocationDetails() {
   const [location, setLocation] = useState(null);
   const [reviews, setReviews] = useState(null);
   const [photos, setPhotos] = useState(null);
+
   const { locationId } = useParams();
+  const classes = useStyles();
 
   useEffect(
     function loadLocation() {
@@ -61,32 +90,50 @@ function LocationDetails() {
   if (dataIsLoading) return <Loading />;
 
   return (
-    <div className="">
+    <Grid container className={classes.root}>
       {location ? (
         <div>
           <LocationPhotos photos={photos} />
-          <div>
-            <h1>{location.name}</h1>
-            <p>{location.description}</p>
-            <Button onClick={handleSave}>{saved ? "Saved" : "Save"}</Button>
-            <p>
+          <Typography variant="h4" align="center" className={classes.title}>
+            {location.name}
+          </Typography>
+          <Paper className={classes.body}>
+            <Typography variant="subtitle1">
+              {location.address_obj.address_string}
+            </Typography>
+            <Typography variant="body1">{location.description}</Typography>
+            <Typography variant="caption">
               <img alt="rating icon" src={location.rating_image_url}></img>
               {location.rating} ({location.num_reviews} reviews)
-            </p>
-            <a href={location.write_review}>Write a review</a>
-            <p>
-              <a href={location.web_url}>Learn more on TripAdvisor</a>
-            </p>
-            <p>{location.address_obj.address_string}</p>
-          </div>
-          <LocationReviewList reviews={reviews} />
+            </Typography>
+            <ButtonGroup
+              variant="text"
+              color="primary"
+              aria-label="write a reviw or read more on TripAdvisor"
+            >
+              {/* <Button component={a} to={location.write_review}>
+                Write a Review
+              </Button>
+              <Button component={a} to={location.web_url}>
+                Read more on TripAdvisor
+              </Button> */}
+            </ButtonGroup>
+            {/* <Typography variant="subtitle1">
+              <a href={location.write_review}>Write a review</a>
+              <a href={location.web_url}>Read more on TripAdvisor</a>
+            </Typography> */}
+            <Button onClick={handleSave}>{saved ? "Saved" : "Save"}</Button>
+          </Paper>
+          <Paper className={classes.body}>
+            <LocationReviewList reviews={reviews} />
+          </Paper>
         </div>
       ) : (
         <p>
           Sorry, we are having trouble finding the location you are looking for.
         </p>
       )}
-    </div>
+    </Grid>
   );
 }
 
