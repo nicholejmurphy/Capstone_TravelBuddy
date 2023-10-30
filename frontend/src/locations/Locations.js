@@ -20,9 +20,6 @@ import MoreIcon from "@material-ui/icons/More";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // margin: "10px",
-  },
   title: {
     marginTop: "30px",
     marginBottom: "30px",
@@ -124,12 +121,7 @@ function Locations() {
   if (dataIsLoading) return <Loading />;
 
   return (
-    <Grid
-      container
-      direction="column"
-      alignItems="center"
-      className={classes.root}
-    >
+    <Grid container direction="column" alignItems="center">
       <Grid item className={classes.title}>
         {searchTerm ? (
           <Typography variant="h4">Things to do in {searchTerm}</Typography>

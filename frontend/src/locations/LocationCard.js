@@ -18,8 +18,10 @@ import TravelApi from "../api/travelApi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    margin: theme.spacing(2),
+    marginLeft: "15px",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "450px",
+    },
   },
 }));
 
@@ -88,7 +90,7 @@ function LocationCard({ id, name, address }) {
       <CardActions>
         <Tooltip title="Save for later">
           <IconButton aria-label="add to favorites" onClick={handleSave}>
-            <FavoriteIcon color={saved ? "secondary" : "default"} />
+            <FavoriteIcon color={saved ? "secondary" : "inherit"} />
           </IconButton>
         </Tooltip>
         <Button size="small" color="primary" onClick={handleClick}>
