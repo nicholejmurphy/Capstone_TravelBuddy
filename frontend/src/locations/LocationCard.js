@@ -87,7 +87,7 @@ function LocationCard({ id, name, address }) {
           <Skeleton
             animation="wave"
             variant="rect"
-            height="140"
+            height={140}
             className={classes.media}
           />
         )}
