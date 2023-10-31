@@ -16,6 +16,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PersonIcon from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
 
 import UserContext from "../auth/UserContext";
 
@@ -67,6 +68,7 @@ function Navigation({ logout }) {
 
   const handleClick = (event) => {
     const route = event.target.innerText.toLowerCase();
+
     handleClose();
     if (route === "logout") {
       logout();
@@ -85,7 +87,7 @@ function Navigation({ logout }) {
   };
 
   const handleChange = (event, newValue) => {
-    const routes = ["locations", "favorites", "settings"];
+    const routes = ["", "locations", "favorites", "settings"];
     setValue(newValue);
     history.push(`/${routes[newValue]}`);
   };
@@ -137,6 +139,7 @@ function Navigation({ logout }) {
           className={classes.bottom}
           elevation={5}
         >
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
           <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
