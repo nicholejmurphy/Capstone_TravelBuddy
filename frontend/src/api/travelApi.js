@@ -72,7 +72,8 @@ class TravelApi {
     // let res = await this.request(`locations/reviews/${locationId}`);
     // console.log("GET REVIEWS:", res.reviews.data);
     // return res.reviews.data;
-    return reviewsRes;
+    // return reviewsRes;
+    return [];
   }
 }
 

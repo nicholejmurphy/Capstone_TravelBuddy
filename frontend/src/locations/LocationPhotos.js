@@ -26,7 +26,7 @@ function LocationPhotos({ photos }) {
     <div className={classes.root}>
       <ImageList rowHeight={250} className={classes.imageList} cols={3}>
         {photos.map((p) => (
-          <ImageListItem key={p.id} cols={2}>
+          <ImageListItem key={p.id} cols={2} rowHeight="100%">
             <img key={p.id} src={p.images.original.url} alt={p.caption} />
           </ImageListItem>
         ))}

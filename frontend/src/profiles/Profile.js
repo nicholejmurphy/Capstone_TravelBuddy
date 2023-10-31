@@ -8,7 +8,7 @@ import { Button } from "reactstrap";
 /** Shows user 's profile data
  *  - Gets saved on data and passes to LocationList
  */
-function Profile({ logout }) {
+function Profile() {
   const { savedLocationIds, removeLocation } = useContext(UserContext);
   const [locations, setLocations] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(false);
@@ -67,11 +67,11 @@ function Profile({ logout }) {
           </div>
         )}
         <h4>Saved Locations</h4>
-        {/* {locations.length ? (
+        {locations.length ? (
           <LocationList locations={locations} />
         ) : (
           <p>You have no saved locations yet.</p>
-        )} */}
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import LocationReviewCard from "./LocationReviewCard";
+import { Typography } from "@material-ui/core";
 
 /** Shows a list of all locations
  *
@@ -8,17 +9,19 @@ import LocationReviewCard from "./LocationReviewCard";
  */
 function LocationReviewList({ reviews }) {
   return (
-    <div className="">
-      {reviews ? (
+    <div>
+      <h4>REVIEWS</h4>
+      {reviews.length ? (
         <div>
-          <h4>REVIEWS</h4>
           {reviews.map((r) => (
             <LocationReviewCard key={r.id} review={r} />
           ))}
         </div>
       ) : (
         <div>
-          <p>No reviews to show.</p>
+          <Typography>
+            Hmm... looks like no one has reviewed this location yet.
+          </Typography>
         </div>
       )}
     </div>

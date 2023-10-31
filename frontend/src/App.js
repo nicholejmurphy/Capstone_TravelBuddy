@@ -25,20 +25,20 @@ import Routes from "./navigation_routes/Routes";
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingBottom: "56px",
+    height: "100%",
     minWidth: "430px",
-    [theme.breakpoints.up("sm")]: {
-      width: "90%",
-    },
-    [theme.breakpoints.up("md")]: {
-      width: "80%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      width: "70%",
-    },
   },
   mainGrid: {
     flexGrow: 1,
-    height: "100%",
+    // [theme.breakpoints.up("sm")]: {
+    //   width: "80%",
+    // },
+    // [theme.breakpoints.up("md")]: {
+    //   width: "80%",
+    // },
+    // [theme.breakpoints.up("lg")]: {
+    //   width: "70%",
+    // },
   },
 }));
 
@@ -163,11 +163,16 @@ function App() {
       }}
     >
       <Navigation logout={logout} />
-      <Container className={classes.root}>
-        <Grid className={classes.mainGrid}>
+      <Grid container className={classes.root}>
+        <Grid
+          item
+          container
+          className={classes.mainGrid}
+          justifyContent="center"
+        >
           <Routes login={login} signup={signup} logout={logout} />
         </Grid>
-      </Container>
+      </Grid>
     </UserContext.Provider>
   );
 }

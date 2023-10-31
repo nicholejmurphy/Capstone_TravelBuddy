@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
   },
   buttons: {
-    paddingLeft: 0,
+    // paddingLeft: 0,
   },
 }));
 
@@ -99,7 +99,7 @@ function LocationDetails() {
         <div>
           <LocationPhotos photos={photos} />
           <Paper className={classes.body}>
-            <Grid container item spacing={3}>
+            <Grid container item spacing={2}>
               <Grid item>
                 <Typography variant="h4" className={classes.title}>
                   {location.name}
@@ -107,12 +107,12 @@ function LocationDetails() {
                 <Typography variant="subtitle2">
                   {location.address_obj.address_string}
                 </Typography>
-                <Typography variant="body2">{location.description}</Typography>
+                <Typography variant="body1">{location.description}</Typography>
+                <Typography variant="caption">
+                  <img alt="rating icon" src={location.rating_image_url}></img>
+                  {location.rating} ({location.num_reviews} reviews)
+                </Typography>
               </Grid>
-              <Typography variant="caption">
-                <img alt="rating icon" src={location.rating_image_url}></img>
-                {location.rating} ({location.num_reviews} reviews)
-              </Typography>
               <Grid item container alignItems="center">
                 <Grid item xs={11}>
                   <ButtonGroup
