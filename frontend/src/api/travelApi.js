@@ -36,44 +36,39 @@ class TravelApi {
    */
   static async searchLocation(searchTerm, category) {
     // Update searchTerm to be URL encoded if a space existis
-    // searchTerm = searchTerm.trim().replace(/\s+/g, "%20").replace(/,/g, "%2C");
-    // let res = await this.request(`locations/search/${searchTerm}/${category}`);
-    // const locations = res.locations.data;
-    // console.log("SEARCH:", locations);
-    // return locations;
-    return searchRes;
+    searchTerm = searchTerm.trim().replace(/\s+/g, "%20").replace(/,/g, "%2C");
+    let res = await this.request(`locations/search/${searchTerm}/${category}`);
+    const locations = res.locations.data;
+    return locations;
+    // return searchRes;
   }
 
   /** Location Details. { locationId } => { locationDetails } */
   static async getLocationDetails(locationId) {
-    // try {
-    //   let res = await this.request(`locations/details/${locationId}`);
-    //   console.log("GET DETAILS:", res.location);
-    //   return res.location;
-    // } catch (error) {
-    //   return {
-    //     location_id: locationId,
-    //     name: null,
-    //   };
-    // }
-    return detailsRes;
+    try {
+      let res = await this.request(`locations/details/${locationId}`);
+      return res.location;
+    } catch (error) {
+      return {
+        location_id: locationId,
+        name: null,
+      };
+    }
+    // return detailsRes;
   }
 
   /** Location Photos. { locationId } => { locationPhotos } */
   static async getLocationPhotos(locationId) {
-    // let res = await this.request(`locations/photos/${locationId}`);
-    // console.log("GET PHOTOS:", res.photos.data);
-    // return res.photos.data;
-    return photosRes;
+    let res = await this.request(`locations/photos/${locationId}`);
+    return res.photos.data;
+    // return photosRes;
   }
 
   /** Location Reviews. { locationId } => { locationReviews } */
   static async getLocationReviews(locationId) {
-    // let res = await this.request(`locations/reviews/${locationId}`);
-    // console.log("GET REVIEWS:", res.reviews.data);
-    // return res.reviews.data;
+    let res = await this.request(`locations/reviews/${locationId}`);
+    return res.reviews.data;
     // return reviewsRes;
-    return [];
   }
 }
 
