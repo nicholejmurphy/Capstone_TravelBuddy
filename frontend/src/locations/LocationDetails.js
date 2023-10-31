@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -7,6 +6,10 @@ import { makeStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Link from "@material-ui/core/Link";
 
 import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -20,10 +23,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56px",
   },
   title: {
-    marginTop: "30px",
     marginBottom: "30px",
     fontWeight: 200,
-    color: "#ffffff",
   },
   body: {
     display: "flex",
@@ -31,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "30px",
     marginTop: "10px",
     marginBottom: "20px",
+  },
+  buttons: {
+    paddingLeft: 0,
   },
 }));
 
@@ -75,8 +79,8 @@ function LocationDetails() {
     [locationId, hasSaved]
   );
 
-  async function handleSave(e) {
-    if (e.target.innerHTML === "Save") {
+  async function handleSave() {
+    if (!saved) {
       // Handle saving location
       saveLocation(locationId);
       setSaved(true);
@@ -94,35 +98,57 @@ function LocationDetails() {
       {location ? (
         <div>
           <LocationPhotos photos={photos} />
-          <Typography variant="h4" align="center" className={classes.title}>
-            {location.name}
-          </Typography>
           <Paper className={classes.body}>
-            <Typography variant="subtitle1">
-              {location.address_obj.address_string}
-            </Typography>
-            <Typography variant="body1">{location.description}</Typography>
-            <Typography variant="caption">
-              <img alt="rating icon" src={location.rating_image_url}></img>
-              {location.rating} ({location.num_reviews} reviews)
-            </Typography>
-            <ButtonGroup
-              variant="text"
-              color="primary"
-              aria-label="write a reviw or read more on TripAdvisor"
-            >
-              {/* <Button component={a} to={location.write_review}>
-                Write a Review
-              </Button>
-              <Button component={a} to={location.web_url}>
-                Read more on TripAdvisor
-              </Button> */}
-            </ButtonGroup>
-            {/* <Typography variant="subtitle1">
-              <a href={location.write_review}>Write a review</a>
-              <a href={location.web_url}>Read more on TripAdvisor</a>
-            </Typography> */}
-            <Button onClick={handleSave}>{saved ? "Saved" : "Save"}</Button>
+            <Grid container item spacing={3}>
+              <Grid item>
+                <Typography variant="h4" className={classes.title}>
+                  {location.name}
+                </Typography>
+                <Typography variant="subtitle2">
+                  {location.address_obj.address_string}
+                </Typography>
+                <Typography variant="body2">{location.description}</Typography>
+              </Grid>
+              <Typography variant="caption">
+                <img alt="rating icon" src={location.rating_image_url}></img>
+                {location.rating} ({location.num_reviews} reviews)
+              </Typography>
+              <Grid item container alignItems="center">
+                <Grid item xs={11}>
+                  <ButtonGroup
+                    // variant="text"
+                    color="primary"
+                    size="small"
+                    aria-label="write a reviw or read more on TripAdvisor"
+                  >
+                    <Button
+                      component={Link}
+                      href={location.write_review}
+                      target="_blank"
+                    >
+                      Write a Review
+                    </Button>
+                    <Button
+                      component={Link}
+                      href={location.web_url}
+                      target="_blank"
+                    >
+                      Read more on TripAdvisor
+                    </Button>
+                  </ButtonGroup>
+                </Grid>
+                <Grid item xs={1}>
+                  <Tooltip title="Save for later">
+                    <IconButton
+                      aria-label="add to favorites"
+                      onClick={handleSave}
+                    >
+                      <FavoriteIcon color={saved ? "secondary" : "inherit"} />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </Grid>
           </Paper>
           <Paper className={classes.body}>
             <LocationReviewList reviews={reviews} />
