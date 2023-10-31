@@ -3,7 +3,49 @@ import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
 import Loading from "../common/Loading";
 import LocationList from "../locations/LocationList";
-import { Button } from "reactstrap";
+
+import { Grid, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Skeleton from "@material-ui/lab/Skeleton";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    padding: "30px",
+    marginTop: "10px",
+  },
+  title: {
+    marginTop: "30px",
+    marginBottom: "30px",
+    fontWeight: 200,
+    color: "#ffffff",
+  },
+  body: {
+    paddingTop: "10px",
+    flexGrow: 1,
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  skeletonBox: {
+    width: "100%",
+    height: 250,
+    margin: "10px",
+  },
+  skeletonMedia: {
+    height: 150,
+  },
+  clear: {
+    marginTop: "15px",
+  },
+}));
 
 /** Shows user 's profile data
  *  - Gets saved on data and passes to LocationList
@@ -13,6 +55,7 @@ function Profile() {
   const [locations, setLocations] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(false);
   const [notFoundIds, setNotFoundIds] = useState(null);
+  const classes = useStyles();
 
   useEffect(() => {
     async function getLocationsOnMount() {
@@ -50,30 +93,60 @@ function Profile() {
   if (dataIsLoading) return <Loading />;
 
   return (
-    <div className="Profile bg-light p-4 shadow rounded">
-      <div className="m-3">
-        {notFoundIds && (
+    <Grid>
+      <Typography variant="h4" className={classes.title} align="center">
+        Saved Locations
+      </Typography>
+      {notFoundIds && (
+        <Paper className={classes.root}>
           <div>
-            <h4>Server Error:</h4>
-            <p>
+            <Typography variant="h6">Server Error:</Typography>
+            <Typography variant="body1">
               Unfortunately, details on {notFoundIds.length} of your saved
               locations are no longer avaiable. We know this is not ideal, and
               we are sorry for the inconvienence.
-            </p>
-            <p>
+            </Typography>
+            <Typography variant="body2">
               Clear your invalid locations here:{" "}
-              <Button onClick={handleClear}>Clear</Button>
-            </p>
+            </Typography>
+            <Button
+              color="secondary"
+              variant="contained"
+              size="small"
+              onClick={handleClear}
+              className={classes.clear}
+            >
+              Clear
+            </Button>
           </div>
-        )}
-        <h4>Saved Locations</h4>
+        </Paper>
+      )}
+      <Paper className={classes.root}>
+        {dataIsLoading &&
+          Array.from(new Array(3)).map((index) => (
+            <Box key={index} className={classes.skeletonBox}>
+              <Skeleton
+                key={index}
+                variant="rect"
+                className={classes.skeletonMedia}
+              />
+              <Box pt={0.5} key={index}>
+                <Skeleton />
+                <Skeleton width="60%" />
+              </Box>
+            </Box>
+          ))}
         {locations.length ? (
-          <LocationList locations={locations} />
+          <Grid item container spacing={3}>
+            <LocationList locations={locations} />
+          </Grid>
         ) : (
-          <p>You have no saved locations yet.</p>
+          <Typography variant="subtitle1" align="left">
+            You have no saved locations yet.
+          </Typography>
         )}
-      </div>
-    </div>
+      </Paper>
+    </Grid>
   );
 }
 
