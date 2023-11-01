@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   skeletonBox: {
-    width: "100%",
+    width: "400px",
     height: 250,
     margin: "10px",
   },
@@ -116,7 +116,9 @@ function Locations() {
     <Grid container direction="column" alignItems="center">
       <Grid item className={classes.title}>
         {searchTerm ? (
-          <Typography variant="h4">Things to do in {searchTerm}</Typography>
+          <Typography align="center" variant="h4">
+            Things to do in {searchTerm}
+          </Typography>
         ) : (
           <Typography variant="h4" align="center">
             Let's get started.
@@ -153,12 +155,8 @@ function Locations() {
           {dataIsLoading &&
             Array.from(new Array(3)).map((index) => (
               <Box key={index} className={classes.skeletonBox}>
-                <Skeleton
-                  key={index}
-                  variant="rect"
-                  className={classes.skeletonMedia}
-                />
-                <Box pt={0.5} key={index}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box key={index} pt={0.5}>
                   <Skeleton />
                   <Skeleton width="60%" />
                 </Box>
