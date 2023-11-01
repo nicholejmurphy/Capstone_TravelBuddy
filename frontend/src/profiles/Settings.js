@@ -213,7 +213,7 @@ function Settings({ logout }) {
           <br />
         </form>
       </Paper>
-      <Paper className={classes.root}>
+      <Paper className={classes.settings}>
         <Button
           variant="contained"
           color="secondary"

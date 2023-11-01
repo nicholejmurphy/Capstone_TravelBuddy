@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     padding: "30px",
     marginTop: "10px",
+    width: "100%",
   },
   title: {
     marginTop: "30px",
