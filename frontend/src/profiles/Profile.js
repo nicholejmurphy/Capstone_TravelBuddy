@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
-import Loading from "../common/Loading";
 import LocationList from "../locations/LocationList";
 
 import { Grid, Paper } from "@material-ui/core";
@@ -90,8 +89,6 @@ function Profile() {
     setNotFoundIds(null);
   }
 
-  if (dataIsLoading) return <Loading />;
-
   return (
     <Grid>
       <Typography variant="h4" className={classes.title} align="center">
@@ -137,7 +134,7 @@ function Profile() {
             </Box>
           ))}
         {locations.length ? (
-          <Grid item container spacing={3}>
+          <Grid item container justifyContent="center" spacing={3}>
             <LocationList locations={locations} />
           </Grid>
         ) : (
