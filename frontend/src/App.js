@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: "56px",
     marginBottom: "56px",
+    paddingBottom: "106px",
     height: "100%",
     flexGrow: 1,
   },
