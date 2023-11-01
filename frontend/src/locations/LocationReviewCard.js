@@ -8,9 +8,6 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: "56px",
-  },
   divider: {
     marginBottom: "30px",
   },

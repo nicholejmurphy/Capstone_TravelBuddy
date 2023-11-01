@@ -176,7 +176,7 @@ function Locations() {
             </Grid>
           ) : (
             <>
-              <Card className={classes.root} elevation={5}>
+              <Card elevation={5}>
                 <CardMedia
                   component="img"
                   alt="hoseshoe bend, az"

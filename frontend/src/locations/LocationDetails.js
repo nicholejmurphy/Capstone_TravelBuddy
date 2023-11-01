@@ -19,7 +19,7 @@ import Loading from "../common/Loading";
 import LocationReviewList from "./LocationReviewList";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  locationDetails: {
     paddingTop: "56px",
   },
   title: {
@@ -94,7 +94,7 @@ function LocationDetails() {
   if (dataIsLoading) return <Loading />;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.locationDetails}>
       {location ? (
         <div>
           <LocationPhotos photos={photos} />

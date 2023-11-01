@@ -18,7 +18,7 @@ import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  location: {
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       maxWidth: "450px",
@@ -73,7 +73,7 @@ function LocationCard({ id, name, address }) {
   }
 
   return (
-    <Card className={classes.root} elevation={5}>
+    <Card className={classes.location} elevation={5}>
       <CardActionArea>
         {photoUrl ? (
           <CardMedia

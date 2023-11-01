@@ -4,7 +4,7 @@ import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  photos: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
@@ -23,7 +23,7 @@ function LocationPhotos({ photos }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.photos}>
       <ImageList rowHeight={250} className={classes.imageList} cols={3}>
         {photos.map((p) => (
           <ImageListItem key={p.id} cols={2} rowHeight="100%">

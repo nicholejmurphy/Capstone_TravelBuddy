@@ -23,23 +23,23 @@ import Routes from "./navigation_routes/Routes";
  *
  */
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingBottom: "56px",
+  main: {
+    marginTop: "56px",
+    marginBottom: "56px",
     height: "100%",
-    minWidth: "430px",
-  },
-  mainGrid: {
     flexGrow: 1,
-    // [theme.breakpoints.up("sm")]: {
-    //   width: "80%",
-    // },
-    // [theme.breakpoints.up("md")]: {
-    //   width: "80%",
-    // },
-    // [theme.breakpoints.up("lg")]: {
-    //   width: "70%",
-    // },
   },
+  // mainGrid: {
+  // [theme.breakpoints.up("sm")]: {
+  //   width: "80%",
+  // },
+  // [theme.breakpoints.up("md")]: {
+  //   width: "80%",
+  // },
+  // [theme.breakpoints.up("lg")]: {
+  //   width: "70%",
+  // },
+  // },
 }));
 
 function App() {
@@ -163,15 +163,8 @@ function App() {
       }}
     >
       <Navigation logout={logout} />
-      <Grid container className={classes.root}>
-        <Grid
-          item
-          container
-          className={classes.mainGrid}
-          justifyContent="center"
-        >
-          <Routes login={login} signup={signup} logout={logout} />
-        </Grid>
+      <Grid container justifyContent="center" className={classes.main}>
+        <Routes login={login} signup={signup} logout={logout} />
       </Grid>
     </UserContext.Provider>
   );

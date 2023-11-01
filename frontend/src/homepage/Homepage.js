@@ -15,7 +15,7 @@ import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 
 const useStyles = makeStyles(() => ({
-  root: {
+  home: {
     flexGrow: 1,
     display: "flex",
     justifyContent: "center",
@@ -115,7 +115,7 @@ function Homepage({ login, signup }) {
   }
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.home}>
       {currUser && (
         <Typography className={classes.title} align="center" variant="h5">
           Welcome back, {currUser.firstName}!

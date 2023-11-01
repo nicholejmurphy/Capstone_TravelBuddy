@@ -21,14 +21,14 @@ import HomeIcon from "@material-ui/icons/Home";
 import UserContext from "../auth/UserContext";
 
 const useStyles = makeStyles((theme) => ({
-  top: {
+  navTop: {
     flexGrow: 1,
     width: "100%",
     position: "fixed",
     top: 0,
     zIndex: 1,
   },
-  content: {
+  navContent: {
     width: "100%",
     [theme.breakpoints.up("md")]: {
       width: "80%",
@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
       width: "70%",
     },
   },
-  menuButton: {
+  navMenuButton: {
     color: "#ffffff",
   },
-  title: {
+  navTitle: {
     flexGrow: 1,
     textDecoration: "none",
     boxShadow: "none",
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
     },
   },
-  bottom: {
+  navBottom: {
     width: "100%",
     position: "fixed",
     bottom: 0,
@@ -100,7 +100,7 @@ function Navigation({ logout }) {
           aria-haspopup="true"
           onClick={handleMenuClick}
           edge="end"
-          className={classes.menuButton}
+          className={classes.navMenuButton}
           aria-label="menu"
         >
           <MenuIcon />
@@ -121,10 +121,10 @@ function Navigation({ logout }) {
 
   return (
     <>
-      <AppBar className={classes.top} position="static" elevation={5}>
-        <Container disableGutters className={classes.content}>
+      <AppBar className={classes.navTop} position="static" elevation={5}>
+        <Container disableGutters className={classes.navContent}>
           <Toolbar>
-            <Link href="/" className={classes.title}>
+            <Link href="/" className={classes.navTitle}>
               <Typography variant="h5">TravelBuddy</Typography>
             </Link>
             {currUser && isLoggedIn()}
@@ -136,7 +136,7 @@ function Navigation({ logout }) {
           value={value}
           onChange={handleChange}
           showLabels
-          className={classes.bottom}
+          className={classes.navBottom}
           elevation={5}
         >
           <BottomNavigationAction label="Home" icon={<HomeIcon />} />

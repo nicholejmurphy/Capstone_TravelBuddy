@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Alerts from "../common/Alerts";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  login: {
     margin: "auto",
     padding: "15px",
     width: "250px",
@@ -60,7 +60,7 @@ function LoginForm({ login }) {
     }
   }
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.login}>
       {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
 
       <form className={classes.form} autoComplete="off">

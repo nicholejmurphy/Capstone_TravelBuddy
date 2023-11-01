@@ -3,23 +3,22 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoutes";
 import Homepage from "../homepage/Homepage";
 import Profile from "../profiles/Profile";
-import ProfileForm from "../profiles/ProfileForm";
+import ProfileForm from "../profiles/Settings";
 import Locations from "../locations/Locations";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: "56px",
-    marginBottom: "56px",
+  routes: {
+    minWidth: "430px",
   },
 }));
 
 function Routes({ login, signup, logout }) {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={classes.routes}>
       <Switch>
         <Route exact path="/">
           <Homepage login={login} signup={signup} />

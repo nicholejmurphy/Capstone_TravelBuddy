@@ -11,7 +11,7 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  search: {
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
@@ -70,7 +70,7 @@ function LocationSearchForm({ searchTerm, setSearchTerm }) {
   };
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.search}>
       <InputBase
         className={classes.input}
         id="search"

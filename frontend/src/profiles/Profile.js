@@ -12,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  profile: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -98,7 +98,7 @@ function Profile() {
         Saved Locations
       </Typography>
       {notFoundIds && (
-        <Paper className={classes.root}>
+        <Paper className={classes.profile}>
           <div>
             <Typography variant="h6">Server Error:</Typography>
             <Typography variant="body1">
@@ -121,7 +121,7 @@ function Profile() {
           </div>
         </Paper>
       )}
-      <Paper className={classes.root}>
+      <Paper className={classes.profile}>
         {dataIsLoading &&
           Array.from(new Array(3)).map((index) => (
             <Box key={index} className={classes.skeletonBox}>

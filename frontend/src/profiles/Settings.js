@@ -28,7 +28,7 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  settings: {
     margin: "auto",
     marginTop: "20px",
     padding: "15px",
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
  *  - Requires password input to verify submission
  *  - Updates user info across site state.
  */
-function ProfileForm({ logout }) {
+function Settings({ logout }) {
   const { currUser, setCurrUser } = useContext(UserContext);
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -136,7 +136,7 @@ function ProfileForm({ logout }) {
       <Typography variant="h4" align="center" className={classes.title}>
         Profile Settings
       </Typography>
-      <Paper className={classes.root}>
+      <Paper className={classes.settings}>
         {updateConfirmed ? (
           <Alerts
             type="success"
@@ -266,4 +266,4 @@ function ProfileForm({ logout }) {
   );
 }
 
-export default ProfileForm;
+export default Settings;

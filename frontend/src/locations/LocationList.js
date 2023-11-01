@@ -2,13 +2,6 @@ import React from "react";
 import LocationCard from "./LocationCard";
 
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // marginLeft: "15px",
-  },
-}));
 
 /** Shows a list of all locations
  *
@@ -17,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
  *   usesrs to filter location list by name
  */
 function LocationList({ locations }) {
-  const classes = useStyles();
   return (
     <>
       {locations.map((l) => (
@@ -28,7 +20,6 @@ function LocationList({ locations }) {
           md={6}
           lg={4}
           key={l.location_id}
-          className={classes.root}
           justifyContent="center"
           alignContent="space-between"
         >
