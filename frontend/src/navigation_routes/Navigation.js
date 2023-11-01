@@ -87,7 +87,7 @@ function Navigation({ logout }) {
   };
 
   const handleChange = (event, newValue) => {
-    const routes = ["", "locations", "favorites", "settings"];
+    const routes = ["", "locations", "favorites"];
     setValue(newValue);
     history.push(`/${routes[newValue]}`);
   };
@@ -142,7 +142,6 @@ function Navigation({ logout }) {
           <BottomNavigationAction label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Settings" icon={<PersonIcon />} />
         </BottomNavigation>
       )}
     </>
