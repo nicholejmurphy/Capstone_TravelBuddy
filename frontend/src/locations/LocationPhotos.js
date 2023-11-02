@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   photos: {
     display: "flex",
     flexWrap: "wrap",
