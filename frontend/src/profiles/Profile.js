@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: "40px",
-    marginBottom: "20px",
+    marginBottom: "40px",
     fontWeight: 200,
     color: "#ffffff",
   },
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   skeletonBox: {
-    width: "100%",
+    width: "400px",
     height: 250,
     margin: "10px",
   },
@@ -134,20 +134,31 @@ function Profile() {
         </div>
       )}
       <Paper className={classes.profile}>
-        {dataIsLoading &&
-          Array.from(new Array(3)).map((index) => (
-            <Box key={index} className={classes.skeletonBox}>
-              <Skeleton
-                key={index}
-                variant="rect"
-                className={classes.skeletonMedia}
-              />
-              <Box pt={0.5} key={index}>
+        {dataIsLoading && (
+          <div>
+            <Box className={classes.skeletonBox}>
+              <Skeleton variant="rect" className={classes.skeletonMedia} />
+              <Box pt={0.5}>
                 <Skeleton />
                 <Skeleton width="60%" />
               </Box>
             </Box>
-          ))}
+            <Box className={classes.skeletonBox}>
+              <Skeleton variant="rect" className={classes.skeletonMedia} />
+              <Box pt={0.5}>
+                <Skeleton />
+                <Skeleton width="60%" />
+              </Box>
+            </Box>
+            <Box className={classes.skeletonBox}>
+              <Skeleton variant="rect" className={classes.skeletonMedia} />
+              <Box pt={0.5}>
+                <Skeleton />
+                <Skeleton width="60%" />
+              </Box>
+            </Box>
+          </div>
+        )}
         {locations.length ? (
           <Grid item container justifyContent="center" spacing={3}>
             <LocationList locations={locations} />
