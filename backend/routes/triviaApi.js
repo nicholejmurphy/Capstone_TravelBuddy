@@ -4,7 +4,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const { TRIVIA_API_KEY } = require("./keys");
+const { TRIVIA_API_KEY } = require("../keys");
 
 const BASE_URL = "https://api.api-ninjas.com/v1/trivia?category=geography";
 

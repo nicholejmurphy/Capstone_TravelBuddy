@@ -4,7 +4,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const { TRAVEL_API_KEY } = require("./keys");
+const { TRAVEL_API_KEY } = require("../keys");
 
 const BASE_URL = "https://api.content.tripadvisor.com/api/v1/location";
 
