@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import TravelApi from "../api/travelApi";
 import LocationPhotos from "./LocationPhotos";
 import LocationReviewList from "./LocationReviewList";
+import NotFound from "../common/NotFound";
 
 const useStyles = makeStyles((theme) => ({
   locationDetails: {
@@ -176,9 +177,7 @@ function LocationDetails() {
           </Grid>
         </Grid>
       ) : (
-        <p>
-          Sorry, we are having trouble finding the location you are looking for.
-        </p>
+        <NotFound />
       )}
     </Grid>
   );
