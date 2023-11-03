@@ -12,21 +12,6 @@ import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import UserApi from "../api/userApi";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 const useStyles = makeStyles((theme) => ({
   settingsBody: {
     margin: "auto",
@@ -51,15 +36,19 @@ const useStyles = makeStyles((theme) => ({
     margin: "4px",
   },
   delete: {
+    width: "300px",
+    height: "300px",
     position: "absolute",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: "12px",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    left: "50%",
+    top: "50%",
+    marginLeft: "-150px",
+    marginTop: "-150px",
+    padding: "30px",
+    borderRadius: "8px",
+    backgroundColor: "rgba(255,255,255)",
   },
   confirm: {
-    marginRight: "10px",
+    marginTop: "10px",
   },
 }));
 
@@ -69,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
  */
 function Settings({ logout }) {
   const { currUser, setCurrUser } = useContext(UserContext);
-  const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
   const [updateConfirmed, setUpdateConfirmed] = useState(false);
@@ -144,7 +132,11 @@ function Settings({ logout }) {
       {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
       <Paper className={classes.settingsBody}>
         <Typography variant="h2"></Typography>
-        <form className={classes.form} autoComplete="off">
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
           <Grid
             container
             alignItems="center"
@@ -188,11 +180,7 @@ function Settings({ logout }) {
               />
             </Grid>
           </Grid>
-          <Button
-            className={classes.submit}
-            color="primary"
-            onClick={handleSubmit}
-          >
+          <Button className={classes.submit} color="primary" type="submit">
             Update
           </Button>
           <br />
@@ -202,6 +190,7 @@ function Settings({ logout }) {
         <Button
           variant="contained"
           color="secondary"
+          type="button"
           className={classes.submitDelete}
           onClick={() => {
             setOpen(!open);
@@ -218,7 +207,7 @@ function Settings({ logout }) {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
-          <div className={classes.delete} style={modalStyle}>
+          <div className={classes.delete}>
             <Typography variant="h5">Are you sure??</Typography>
 
             <Typography variant="body1">

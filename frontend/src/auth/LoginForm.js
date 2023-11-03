@@ -63,7 +63,7 @@ function LoginForm({ login }) {
     <Paper className={classes.login}>
       {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
 
-      <form className={classes.form} autoComplete="off">
+      <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
         <Grid
           container
           alignItems="center"
@@ -99,7 +99,7 @@ function LoginForm({ login }) {
           className={classes.submit}
           color="primary"
           size="small"
-          onClick={handleSubmit}
+          type="submit"
         >
           Login
         </Button>

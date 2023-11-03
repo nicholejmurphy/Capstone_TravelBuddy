@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 /** Handles user signup attemps.
  *  - Takes in form data and attempts to authenticate
  *    through UserApi
- *  - If valid, login prop will be triggered therefore updated user data across site.
+ *  - If valid, signup prop will be triggered therefore updated user data across site.
  *  - If invalid data, a list of error messages will show through the { Alert } component
  */
 function SignupForm({ signup }) {
@@ -64,7 +64,7 @@ function SignupForm({ signup }) {
     <Paper className={classes.signup}>
       {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
 
-      <form className={classes.form} autoComplete="off">
+      <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
         <Grid
           container
           alignItems="center"
@@ -124,7 +124,7 @@ function SignupForm({ signup }) {
           className={classes.submit}
           color="primary"
           size="small"
-          onClick={handleSubmit}
+          type="submit"
         >
           SignUp
         </Button>
