@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -75,32 +74,30 @@ function LocationCard({ id, name, address }) {
 
   return (
     <Card className={classes.location} elevation={5}>
-      <CardActionArea>
-        {photoUrl ? (
-          <CardMedia
-            component="img"
-            alt={`image of ${name}`}
-            height="140"
-            image={photoUrl ? photoUrl : DEFAUL_IMG}
-            title="Contemplative Reptile"
-          />
-        ) : (
-          <Skeleton
-            animation="wave"
-            variant="rect"
-            height={140}
-            className={classes.media}
-          />
-        )}
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {address}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      {photoUrl ? (
+        <CardMedia
+          component="img"
+          alt={`image of ${name}`}
+          height="140"
+          image={photoUrl ? photoUrl : DEFAUL_IMG}
+          title="Contemplative Reptile"
+        />
+      ) : (
+        <Skeleton
+          animation="wave"
+          variant="rect"
+          height={140}
+          className={classes.media}
+        />
+      )}
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {name}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {address}
+        </Typography>
+      </CardContent>
       <CardActions>
         <Tooltip title="Save for later">
           <IconButton aria-label="add to favorites" onClick={handleSave}>
