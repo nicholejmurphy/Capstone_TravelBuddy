@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
+    marginBottom: "20px",
   },
   imageList: {
     width: "100%",
@@ -26,7 +27,7 @@ function LocationPhotos({ photos }) {
     <div className={classes.photos}>
       <ImageList rowHeight={250} className={classes.imageList} cols={3}>
         {photos.map((p) => (
-          <ImageListItem key={p.id} cols={2} rowHeight="100%">
+          <ImageListItem key={p.id} cols={2}>
             <img key={p.id} src={p.images.original.url} alt={p.caption} />
           </ImageListItem>
         ))}
