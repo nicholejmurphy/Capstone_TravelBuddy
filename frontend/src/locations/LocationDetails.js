@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontWeight: 200,
+    marginBottom: "10px",
   },
   main: {
     [theme.breakpoints.down("sm")]: {
-      width: "100%",
+      width: "96%",
     },
     [theme.breakpoints.up("sm")]: {
       width: "80%",
@@ -47,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
   },
   address: {
-    marginTop: "5px",
-    marginBottom: "5px",
+    marginTop: "10px",
+    marginBottom: "10px",
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -127,7 +128,7 @@ function LocationDetails() {
             <Paper className={classes.body}>
               <Grid container item spacing={2}>
                 <Grid item>
-                  <Typography variant="h4" className={classes.title}>
+                  <Typography variant="h5" className={classes.title}>
                     {location.name}
                   </Typography>
                   <Typography variant="caption">
@@ -145,7 +146,7 @@ function LocationDetails() {
                   </Typography>
                 </Grid>
                 <Grid item container alignItems="center">
-                  <Grid item xs={11}>
+                  <Grid item xs={12} sm={11}>
                     <ButtonGroup
                       // variant="text"
                       color="primary"
@@ -164,11 +165,17 @@ function LocationDetails() {
                         href={location.web_url}
                         target="_blank"
                       >
-                        Read more on TripAdvisor
+                        Open On TripAdvisor
                       </Button>
                     </ButtonGroup>
                   </Grid>
-                  <Grid item xs={1}>
+                  <Grid
+                    item
+                    container
+                    justifyContent="flex-start"
+                    xs={12}
+                    sm={1}
+                  >
                     <Tooltip title="Save for later">
                       <IconButton
                         aria-label="add to favorites"
