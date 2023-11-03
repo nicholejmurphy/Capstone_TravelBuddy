@@ -16,7 +16,10 @@ const useStyles = makeStyles((theme) => ({
   body: {},
   gif: {
     width: "90%",
-    minWidth: "420px",
+    minWidth: "370px",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
     [theme.breakpoints.up("sm")]: {
       width: "80%",
     },
