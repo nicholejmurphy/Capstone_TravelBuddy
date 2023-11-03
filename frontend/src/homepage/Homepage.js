@@ -16,7 +16,7 @@ import SignupForm from "../auth/SignupForm";
 
 const useStyles = makeStyles(() => ({
   home: {
-    maxWidth: "430px",
+    maxWidth: "390px",
     flexGrow: 1,
     display: "flex",
     justifyContent: "center",
