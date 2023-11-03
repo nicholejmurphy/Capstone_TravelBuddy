@@ -2,18 +2,33 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="MuiGrid-root makeStyles-body-5 MuiGrid-container MuiGrid-justify-content-xs-center"
+  >
     <div
-      class="NotFound bg-dark text-light p-4 rounded shadow"
+      class="MuiPaper-root MuiCard-root makeStyles-gif-6 MuiPaper-elevation1 MuiPaper-rounded"
     >
-      <h2>
-        404 Error.
-      </h2>
-      <p
-        class="lead"
+      <img
+        alt="Cat on a vacuum"
+        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
+        height="200"
+        src="https://media3.giphy.com/media/KcQeAaJVeTcNP4vQYM/giphy.gif?cid=ecf05e47djhk25xlwkzwwa85vn368h78bu776fjtfjpi2ixj&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+        title="Cat on a vacuum"
+      />
+      <div
+        class="MuiCardContent-root"
       >
-        The requested URL was not found on this server 🙃
-      </p>
+        <h2
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-colorSecondary MuiTypography-gutterBottom"
+        >
+          404 Error
+        </h2>
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Okay, we're a little embarassed.. we can't find the URL you've requested. We are sorry for the inconvinence.
+        </p>
+      </div>
     </div>
   </div>
 </DocumentFragment>

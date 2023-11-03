@@ -3,7 +3,12 @@
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class=""
-  />
+    class="makeStyles-photos-3"
+  >
+    <ul
+      class="MuiImageList-root makeStyles-imageList-4"
+      style="margin: -2px;"
+    />
+  </div>
 </DocumentFragment>
 `;

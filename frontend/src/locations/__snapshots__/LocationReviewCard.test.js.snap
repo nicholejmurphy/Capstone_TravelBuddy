@@ -2,30 +2,68 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class=""
-  >
-    <div>
-      <p />
-      <p>
-        Date: 
-      </p>
-      <p>
-        Rating:  
-        <img
-          alt="rating icon"
-        />
-      </p>
-      <p>
-        Trip type: 
-      </p>
-      <p />
-      <small>
-        <a>
-          Read More on TripAdvisor
-        </a>
-      </small>
+  <div>
+    <h6
+      class="MuiTypography-root makeStyles-title-5 MuiTypography-h6"
+    />
+    <div
+      class="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        align="left"
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2"
+        >
+          Date: 
+        </h6>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-subtitle2"
+        >
+          Rating:  
+          <img
+            alt="rating icon"
+          />
+        </p>
+      </div>
+      <div
+        align="right"
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2"
+        >
+          Trip type: 
+        </h6>
+      </div>
     </div>
+    <p
+      class="MuiTypography-root makeStyles-description-6 MuiTypography-body1"
+    />
+    <a
+      aria-disabled="false"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-4 MuiButton-textPrimary MuiButton-textSizeSmall MuiButton-sizeSmall MuiTypography-colorPrimary"
+      role="button"
+      tabindex="0"
+      target="_blank"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Read more
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </a>
+    <hr
+      class="MuiDivider-root"
+    />
   </div>
 </DocumentFragment>
 `;

@@ -7,6 +7,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@material-ui/core/styles";
+
 import Grid from "@material-ui/core/Grid";
 
 import UserApi from "./api/userApi";
@@ -41,17 +42,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     flexGrow: 1,
   },
-  // mainGrid: {
-  // [theme.breakpoints.up("sm")]: {
-  //   width: "80%",
-  // },
-  // [theme.breakpoints.up("md")]: {
-  //   width: "80%",
-  // },
-  // [theme.breakpoints.up("lg")]: {
-  //   width: "70%",
-  // },
-  // },
 }));
 
 function App() {
