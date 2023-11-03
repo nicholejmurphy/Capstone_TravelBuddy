@@ -11,6 +11,26 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
+  title: {
+    marginTop: "40px",
+    marginBottom: "20px",
+    fontWeight: 200,
+    color: "#ffffff",
+  },
+  savedError: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  savedErrorBody: {
+    padding: "20px",
+    marginTop: "10px",
+    width: "90%",
+    maxWidth: "600px",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+  },
+  clear: { marginTop: "5px" },
   profile: {
     display: "flex",
     justifyContent: "center",
@@ -20,12 +40,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     width: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
-  },
-  title: {
-    marginTop: "30px",
-    marginBottom: "30px",
-    fontWeight: 200,
-    color: "#ffffff",
   },
   body: {
     paddingTop: "10px",
@@ -42,9 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
   skeletonMedia: {
     height: 150,
-  },
-  clear: {
-    marginTop: "15px",
   },
 }));
 
@@ -97,28 +108,30 @@ function Profile() {
         Saved Locations
       </Typography>
       {notFoundIds && (
-        <Paper className={classes.profile}>
-          <div>
-            <Typography variant="h6">Server Error:</Typography>
-            <Typography variant="body1">
+        <div className={classes.savedError}>
+          <Paper className={classes.savedErrorBody}>
+            <Typography align="left" color="primary" variant="h6">
+              Server Error
+            </Typography>
+            <Typography align="left" variant="body2">
               Unfortunately, details on {notFoundIds.length} of your saved
               locations are no longer avaiable. We know this is not ideal, and
               we are sorry for the inconvienence.
             </Typography>
-            <Typography variant="body2">
-              Clear your invalid locations here:{" "}
+
+            <Typography align="right">
+              <Button
+                color="secondary"
+                variant="outlined"
+                size="small"
+                onClick={handleClear}
+                className={classes.clear}
+              >
+                Clear
+              </Button>
             </Typography>
-            <Button
-              color="secondary"
-              variant="contained"
-              size="small"
-              onClick={handleClear}
-              className={classes.clear}
-            >
-              Clear
-            </Button>
-          </div>
-        </Paper>
+          </Paper>
+        </div>
       )}
       <Paper className={classes.profile}>
         {dataIsLoading &&
