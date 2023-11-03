@@ -10,6 +10,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Link from "@material-ui/core/Link";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -23,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56px",
   },
   title: {
-    // marginBottom: "px",
     fontWeight: 200,
   },
   main: {
@@ -48,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
   address: {
     marginTop: "5px",
     marginBottom: "5px",
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
   },
 }));
 
@@ -106,7 +111,12 @@ function LocationDetails() {
     }
   }
 
-  if (dataIsLoading) return null;
+  if (dataIsLoading)
+    return (
+      <Backdrop className={classes.backdrop} open={dataIsLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
 
   return (
     <Grid container justifyContent="center" className={classes.locationDetails}>
