@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import UserContext from "../auth/UserContext";
 import TravelApi from "../api/travelApi";
 import LocationList from "../locations/LocationList";
@@ -164,8 +165,11 @@ function Profile() {
             <LocationList locations={locations} />
           </Grid>
         ) : (
-          <Typography variant="subtitle1" align="left">
-            You have no saved locations yet.
+          <Typography align="center" variant="subtitle1">
+            Looks like you don't have any saved locations yet...
+            <br />
+            Head over ot the <Link to="/locations">Locations</Link> page and
+            start exploring!
           </Typography>
         )}
       </Paper>
