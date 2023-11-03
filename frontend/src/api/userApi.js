@@ -12,7 +12,7 @@ class UserApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    // console.debug("API Call:", endpoint, data, method);
+    console.debug("API Call:", endpoint, data, method);
 
     // passing authorization token through the header
     const url = `${BASE_URL}/${endpoint}`;
@@ -66,7 +66,7 @@ class UserApi {
   }
 
   /** Add savedLocation to User.
-   * { userId, { locationId, name, addressString }} => { location }
+   * { locationId, userId } => { locationId }
    */
   static async addSavedLocation(locationId, userId) {
     let res = await this.request(
@@ -78,7 +78,7 @@ class UserApi {
   }
 
   /** Get User's savedLocations.
-   * { userId } => { locations }
+   * { userId } => { locationIds }
    */
   static async getSavedLocations(userId) {
     let res = await this.request(`savedLocations/${userId}`);

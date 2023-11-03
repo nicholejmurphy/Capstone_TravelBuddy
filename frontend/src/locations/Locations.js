@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
  * - Saves locations as state
  * - Passes 'setSearchTerm' to LocationSearchForm which allows
  *   usesrs to filter location list by name
+ * - Passes error and setError state to search form to identify empty search queries
  * - Toggles search category with category buttons which triggers
  *   new search filtered by category.
  * - Passes 'locations' to LocationList

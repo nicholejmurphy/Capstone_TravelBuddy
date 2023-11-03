@@ -1,3 +1,8 @@
+/** Mock API responses for TravelApi
+ *
+ * for use in Dev mode only
+ */
+
 const searchRes = [
   {
     location_id: "3967456",

@@ -29,10 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/** Shows a basic details about a location
+/** Shows basic details about a location
  *
  * - Recieves details about locations from parent: LocationList
- * - Passes location information to children: LocationCard
+ * - Currently triggers api call to get location photo,
+ *   => this will be eventually passed up to parent for managing api call limit errors
  */
 function LocationCard({ id, name, address }) {
   const { saveLocation, hasSaved, removeLocation } = useContext(UserContext);

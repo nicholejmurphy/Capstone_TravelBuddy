@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/** Routes component to handle site routing
+ * - include PrivateRoutes which authorize only logged in user access
+ */
 function Routes({ login, signup, logout }) {
   const classes = useStyles();
   return (

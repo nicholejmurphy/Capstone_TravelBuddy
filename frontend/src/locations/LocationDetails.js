@@ -56,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
  * - Gets location id from url params
  * - Retrieves location details, reviews, and photos from API
  * - Passes reviews and photos to children
+ * - Handles adding and removing from favorties list
+ * - Has access to more information on the trip advisor website via new tab links
  */
 function LocationDetails() {
   const { saveLocation, hasSaved, removeLocation } = useContext(UserContext);

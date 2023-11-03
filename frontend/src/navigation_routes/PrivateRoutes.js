@@ -7,9 +7,7 @@ import UserContext from "../auth/UserContext";
  *  - Checks if there is a current user
  *    yes? Direct to path.
  *    no? Redirect to "/".
- *
  */
-
 function PrivateRoute({ exact, path, children }) {
   const { currUser } = useContext(UserContext);
 

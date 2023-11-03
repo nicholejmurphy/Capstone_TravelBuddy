@@ -1,11 +1,12 @@
 import React from "react";
 import LocationReviewCard from "./LocationReviewCard";
+
 import { Typography } from "@material-ui/core";
 
-/** Shows a list of all locations
+/** Shows a list of all reviews of a location
  *
- * - Recieves reviews list from parent: LcoationDetails
- * - Passes review data to children: LocationReviewCard
+ * - Recieves reviews list from parent: LocationDetails
+ * - Passes review data to children: LocationReviewCardxs
  */
 function LocationReviewList({ reviews }) {
   return (

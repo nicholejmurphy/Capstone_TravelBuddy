@@ -33,14 +33,16 @@ class TriviaApi {
    */
   static async get() {
     let trivia = await this.request(`trivia/`);
+    return trivia;
+
     // A mock API response for testing
+
     // const trivia = {
     //   trivia: {
     //     question: "What is the capital of France?",
     //     answer: "Paris",
     //   },
     // };
-    return trivia;
   }
 }
 

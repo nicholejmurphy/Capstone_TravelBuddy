@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/** NotFound Component shows 404 error message for not found errors. */
 function NotFound() {
   const classes = useStyles();
   return (

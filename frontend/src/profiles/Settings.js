@@ -69,9 +69,7 @@ function Settings({ logout }) {
   const classes = useStyles();
 
   /** Handle form input changes
-   *  - update formData state to catch all form changes
-   *
-   */
+   *  - update formData state to catch all form changes */
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((data) => ({
@@ -86,9 +84,7 @@ function Settings({ logout }) {
    *  - If valid user,
    *    - Update currUser across application
    *    - Reset formErrors
-   *  - If invalid request, show errors
-   *
-   */
+   *  - If invalid request, show errors  */
   async function handleSubmit(e) {
     e.preventDefault();
     const profileData = {

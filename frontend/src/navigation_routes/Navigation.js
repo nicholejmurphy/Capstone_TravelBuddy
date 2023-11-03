@@ -62,6 +62,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/** Navigation component
+ *
+ * - Conditional rendering based on if a user is logged in and viewport size
+ * - Renders basic nav bar with nav links (include bottom navbar links if below small breakpoint)
+ * - Renders bottom app bar for mobile viewports
+ * - Has an array of route names and routes are tracked as active based on their index in the routes array
+ */
 function Navigation({ logout }) {
   const { currUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);

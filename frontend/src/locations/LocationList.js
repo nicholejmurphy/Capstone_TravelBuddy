@@ -5,9 +5,8 @@ import Grid from "@material-ui/core/Grid";
 
 /** Shows a list of all locations
  *
- * - Saves locations as state
- * - Passes 'search()' to LocationSearchForm which allows
- *   usesrs to filter location list by name
+ * - Recieves list of locations from parent
+ * - Maps data to location cards and renders inside a responsive grid
  */
 function LocationList({ locations }) {
   return (

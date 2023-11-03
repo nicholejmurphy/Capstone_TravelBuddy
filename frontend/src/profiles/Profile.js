@@ -60,8 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/** Shows user 's profile data
- *  - Gets saved on data and passes to LocationList
+/** Shows User's saved locations (favorites) data
+ *  - Gets saved data and passes to LocationList
+ *
+ * { Further Study: }
+ * Adding a drop down for user's saved locations
+ * and will add saved translations/conversions here or on separate pages
  */
 function Profile() {
   const { savedLocationIds, removeLocation } = useContext(UserContext);

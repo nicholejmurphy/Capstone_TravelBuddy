@@ -34,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /** Search input for locations
- *  - Parent passes setSearchTerm {state} which will trigger
+ *  - Parent passes setSearchTerm & searchTerm {state} which will trigger
  *    useEffect updating locations in parent
+ *  - searchTerm may not be empty, otherwise error alert will show
  */
 function LocationSearchForm({ searchTerm, setSearchTerm, setError }) {
   const [formData, setFormData] = useState(searchTerm);

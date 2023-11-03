@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
 
 /** Shows location photos
  * - Recieves list of photos from parent: LocationDetails
+ * - Generates a scrollable list of images
  */
 function LocationPhotos({ photos }) {
   const classes = useStyles();

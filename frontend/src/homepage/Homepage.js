@@ -66,6 +66,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+/** Homepage for TavelBuddy.
+ *
+ *  - Responsive to user logged in or not
+ *  - Shows random triva facts from around the world, gets fact on first render
+ *  - If no user, signup/login forms are displayed
+ *  - If user is logged in, a welcome is displayed
+ */
 function Homepage({ login, signup }) {
   const [trivia, setTrivia] = useState(null);
   const [method, setMethod] = useState("login");

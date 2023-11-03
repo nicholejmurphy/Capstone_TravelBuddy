@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 /** Shows details about a location's review
  * - Recieves review from parent: LocationReviewList
+ * - Has access links to trip advisor for more details
  */
 function LocationReviewCard({ review }) {
   const classes = useStyles();

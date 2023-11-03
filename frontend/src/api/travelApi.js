@@ -1,5 +1,7 @@
 import axios from "axios";
-import { searchRes, photosRes, detailsRes, reviewsRes } from "./mockTravelApi";
+
+// Mock API response imports for dev mode
+// import { searchRes, photosRes, detailsRes, reviewsRes } from "./mockTravelApi";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
