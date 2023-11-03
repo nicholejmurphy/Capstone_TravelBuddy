@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import LocationSearchForm from "./LocationSearch";
 import LocationList from "./LocationList";
 import TravelApi from "../api/travelApi";
+import Alerts from "../common/Alerts";
 
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
@@ -23,17 +24,15 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     [theme.breakpoints.down("sm")]: {
-      width: "350px",
+      width: "90%",
     },
     [theme.breakpoints.up("sm")]: {
-      width: "90%",
+      width: "80%",
     },
     [theme.breakpoints.up("md")]: {
       width: "70%",
     },
-    [theme.breakpoints.up("lg")]: {
-      width: "60%",
-    },
+    maxWidth: "700px",
   },
   selection: {
     margin: "10px",
@@ -50,6 +49,16 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     padding: "30px",
     marginTop: "10px",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "80%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
   },
   media: {
     height: 0,
@@ -79,6 +88,8 @@ function Locations() {
   const [locations, setLocations] = useState(null);
   const [category, setCategory] = useState("geos");
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState(false);
+
   const classes = useStyles();
 
   useEffect(
@@ -126,9 +137,19 @@ function Locations() {
         )}
       </Grid>
       <Grid item className={classes.search}>
+        {error && (
+          <Alerts
+            type="error"
+            messages={[
+              "It looks like you attempted a search with no criteria. Give us at least something to go off of...",
+            ]}
+          />
+        )}
         <LocationSearchForm
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
+          error={error}
+          setError={setError}
         />
       </Grid>
       <Grid item>
@@ -150,7 +171,7 @@ function Locations() {
           </Typography>
         )}
       </Grid>
-      <Grid item container>
+      <Grid item container justifyContent="center">
         <Paper className={classes.locations} elevation={3}>
           {dataIsLoading &&
             Array.from(new Array(3)).map((index) => (
