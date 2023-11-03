@@ -1,12 +1,12 @@
 import React from "react";
 import Alert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   alert: {
-    width: "100%",
-    marginTop: "5px",
-    marginBottom: "15px",
+    width: "420px",
+    margin: "auto",
     "& > * + *": {
       margin: theme.spacing(2),
     },
@@ -22,13 +22,13 @@ function Alerts({ type, messages }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.alert}>
+    <Grid container justifyContent="center" className={classes.alert}>
       {messages.map((message) => (
         <Alert severity={type} key={message}>
           {message}
         </Alert>
       ))}
-    </div>
+    </Grid>
   );
 }
 

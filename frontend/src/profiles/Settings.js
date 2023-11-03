@@ -28,7 +28,7 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  settings: {
+  settingsBody: {
     margin: "auto",
     marginTop: "20px",
     padding: "15px",
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: "40px",
+    marginBottom: "20px",
     fontWeight: "200",
     color: "#ffffff",
   },
@@ -64,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
 
 /** Handles user profile information update
  *  - Pulls user data from currUser state to populate form.
- *  - Requires password input to verify submission
  *  - Updates user info across site state.
  */
 function Settings({ logout }) {
@@ -96,7 +96,6 @@ function Settings({ logout }) {
    *  - Attempts to updated profile through UserApi
    *   { data } => { user }
    *  - If valid user,
-   *    - Update form data and clear password
    *    - Update currUser across application
    *    - Reset formErrors
    *  - If invalid request, show errors
@@ -119,7 +118,7 @@ function Settings({ logout }) {
     }
     setCurrUser(updatedUser);
     setUpdateConfirmed(true);
-    setFormData((data) => ({ ...data, password: "" }));
+    setFormData((data) => ({ ...data }));
     setFormErrors([]);
   }
 
@@ -136,16 +135,14 @@ function Settings({ logout }) {
       <Typography variant="h4" align="center" className={classes.title}>
         Profile Settings
       </Typography>
-      <Paper className={classes.settings}>
-        {updateConfirmed ? (
-          <Alerts
-            type="success"
-            messages={["Profile has been successfully updated!"]}
-          />
-        ) : null}
-        {formErrors.length ? (
-          <Alerts type="error" messages={formErrors} />
-        ) : null}
+      {updateConfirmed ? (
+        <Alerts
+          type="success"
+          messages={["Profile has been successfully updated!"]}
+        />
+      ) : null}
+      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
+      <Paper className={classes.settingsBody}>
         <Typography variant="h2"></Typography>
         <form className={classes.form} autoComplete="off">
           <Grid
@@ -190,18 +187,6 @@ function Settings({ logout }) {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item>
-              <TextField
-                required
-                id="password"
-                label="Password"
-                name="password"
-                type="password"
-                variant="outlined"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </Grid>
           </Grid>
           <Button
             className={classes.submit}
@@ -213,7 +198,7 @@ function Settings({ logout }) {
           <br />
         </form>
       </Paper>
-      <Paper className={classes.settings}>
+      <Paper className={classes.settingsBody}>
         <Button
           variant="contained"
           color="secondary"
