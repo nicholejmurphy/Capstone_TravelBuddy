@@ -155,21 +155,18 @@ function Locations() {
       </Grid>
       <Grid item>
         {locations && (
-          <Typography variant="subtitle2">
-            Filters:
-            <ToggleButtonGroup
-              size="small"
-              value={category}
-              exclusive
-              onChange={handleChange}
-              className={classes.selection}
-            >
-              <ToggleButton value="geos">Geos</ToggleButton>
-              <ToggleButton value="hotels">Hotels</ToggleButton>
-              <ToggleButton value="restaurants">Restaurants</ToggleButton>
-              <ToggleButton value="attractions">Attractions</ToggleButton>
-            </ToggleButtonGroup>
-          </Typography>
+          <ToggleButtonGroup
+            size="small"
+            value={category}
+            exclusive
+            onChange={handleChange}
+            className={classes.selection}
+          >
+            <ToggleButton value="geos">Geos</ToggleButton>
+            <ToggleButton value="hotels">Hotels</ToggleButton>
+            <ToggleButton value="restaurants">Restaurants</ToggleButton>
+            <ToggleButton value="attractions">Attractions</ToggleButton>
+          </ToggleButtonGroup>
         )}
       </Grid>
       <Grid item container justifyContent="center">
