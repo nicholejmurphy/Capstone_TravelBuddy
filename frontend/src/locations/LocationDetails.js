@@ -10,12 +10,13 @@ import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Link from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import TravelApi from "../api/travelApi";
 import LocationPhotos from "./LocationPhotos";
-import Loading from "../common/Loading";
 import LocationReviewList from "./LocationReviewList";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,18 +24,31 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56px",
   },
   title: {
-    marginBottom: "30px",
+    // marginBottom: "px",
     fontWeight: 200,
   },
+  main: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "80%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "60%",
+    },
+  },
   body: {
-    display: "flex",
-    flexDirection: "column",
     padding: "30px",
     marginTop: "10px",
     marginBottom: "20px",
   },
-  buttons: {
-    // paddingLeft: 0,
+  address: {
+    marginTop: "5px",
+    marginBottom: "5px",
   },
 }));
 
@@ -76,7 +90,7 @@ function LocationDetails() {
       }
       getLocation();
     },
-    [locationId, hasSaved]
+    [locationId]
   );
 
   async function handleSave() {
@@ -91,69 +105,76 @@ function LocationDetails() {
     }
   }
 
-  if (dataIsLoading) return <Loading />;
+  if (dataIsLoading) return null;
 
   return (
-    <Grid container className={classes.locationDetails}>
+    <Grid container justifyContent="center" className={classes.locationDetails}>
       {location ? (
-        <div>
-          <LocationPhotos photos={photos} />
-          <Paper className={classes.body}>
-            <Grid container item spacing={2}>
-              <Grid item>
-                <Typography variant="h4" className={classes.title}>
-                  {location.name}
-                </Typography>
-                <Typography variant="subtitle2">
-                  {location.address_obj.address_string}
-                </Typography>
-                <Typography variant="body1">{location.description}</Typography>
-                <Typography variant="caption">
-                  <img alt="rating icon" src={location.rating_image_url}></img>
-                  {location.rating} ({location.num_reviews} reviews)
-                </Typography>
-              </Grid>
-              <Grid item container alignItems="center">
-                <Grid item xs={11}>
-                  <ButtonGroup
-                    // variant="text"
-                    color="primary"
-                    size="small"
-                    aria-label="write a reviw or read more on TripAdvisor"
-                  >
-                    <Button
-                      component={Link}
-                      href={location.write_review}
-                      target="_blank"
-                    >
-                      Write a Review
-                    </Button>
-                    <Button
-                      component={Link}
-                      href={location.web_url}
-                      target="_blank"
-                    >
-                      Read more on TripAdvisor
-                    </Button>
-                  </ButtonGroup>
+        <Grid container item justifyContent="center">
+          <Grid item className={classes.main}>
+            <LocationPhotos photos={photos} />
+            <Paper className={classes.body}>
+              <Grid container item spacing={2}>
+                <Grid item>
+                  <Typography variant="h4" className={classes.title}>
+                    {location.name}
+                  </Typography>
+                  <Typography variant="caption">
+                    <img
+                      alt="rating icon"
+                      src={location.rating_image_url}
+                    ></img>
+                    {location.rating} ({location.num_reviews} reviews)
+                  </Typography>
+                  <Typography variant="subtitle2" className={classes.address}>
+                    {location.address_obj.address_string}
+                  </Typography>
+                  <Typography variant="body1">
+                    {location.description}
+                  </Typography>
                 </Grid>
-                <Grid item xs={1}>
-                  <Tooltip title="Save for later">
-                    <IconButton
-                      aria-label="add to favorites"
-                      onClick={handleSave}
+                <Grid item container alignItems="center">
+                  <Grid item xs={11}>
+                    <ButtonGroup
+                      // variant="text"
+                      color="primary"
+                      size="small"
+                      aria-label="write a reviw or read more on TripAdvisor"
                     >
-                      <FavoriteIcon color={saved ? "secondary" : "inherit"} />
-                    </IconButton>
-                  </Tooltip>
+                      <Button
+                        component={Link}
+                        href={location.write_review}
+                        target="_blank"
+                      >
+                        Write a Review
+                      </Button>
+                      <Button
+                        component={Link}
+                        href={location.web_url}
+                        target="_blank"
+                      >
+                        Read more on TripAdvisor
+                      </Button>
+                    </ButtonGroup>
+                  </Grid>
+                  <Grid item xs={1}>
+                    <Tooltip title="Save for later">
+                      <IconButton
+                        aria-label="add to favorites"
+                        onClick={handleSave}
+                      >
+                        <FavoriteIcon color={saved ? "secondary" : "inherit"} />
+                      </IconButton>
+                    </Tooltip>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-          <Paper className={classes.body}>
-            <LocationReviewList reviews={reviews} />
-          </Paper>
-        </div>
+            </Paper>
+            <Paper className={classes.body}>
+              <LocationReviewList reviews={reviews} />
+            </Paper>
+          </Grid>
+        </Grid>
       ) : (
         <p>
           Sorry, we are having trouble finding the location you are looking for.
