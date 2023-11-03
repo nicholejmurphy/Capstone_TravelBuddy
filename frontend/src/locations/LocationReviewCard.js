@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: "20px",
+    marginBottom: "5px",
+  },
+  description: {
+    marginTop: "10px",
   },
 }));
 
@@ -29,20 +33,26 @@ function LocationReviewCard({ review }) {
         {review.title}
       </Typography>
       <Grid container justifyContent="flex-start">
-        <Grid item xs={6}>
+        <Grid item xs={12} align="left">
           <Typography variant="subtitle2">
+            Date: {review.travel_date}
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="subtitle2" component="p">
             Rating: {review.rating}{" "}
             <img alt="rating icon" src={review.rating_image_url} />
           </Typography>
         </Grid>
         <Grid item xs={6} align="right">
           <Typography variant="subtitle2">
-            Date: {review.travel_date}
+            Trip type: {review.trip_type}
           </Typography>
         </Grid>
       </Grid>
-      <Typography variant="body1">{review.text}</Typography>
-      <Typography variant="subtitle2">Trip type: {review.trip_type}</Typography>
+      <Typography variant="body1" className={classes.description}>
+        {review.text}
+      </Typography>
       <Button
         component={Link}
         color="primary"
