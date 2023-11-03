@@ -19,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
   description: {
     marginTop: "10px",
   },
+  rating: {
+    marginBottom: "10px",
+  },
+  ratingText: {
+    backgroundColor: "rgba(104, 58, 183,0.1)",
+    borderRadius: "8px",
+    padding: "8px",
+  },
 }));
 
 /** Shows details about a location's review
@@ -34,18 +42,22 @@ function LocationReviewCard({ review }) {
         {review.title}
       </Typography>
       <Grid container justifyContent="flex-start">
-        <Grid item xs={12} align="left">
+        <Grid item xs={12} align="left" className={classes.rating}>
+          <Typography variant="caption" className={classes.ratingText}>
+            Rating: {review.rating}
+            <img
+              alt="rating icon"
+              src={review.rating_image_url}
+              style={{ width: "85px" }}
+            />{" "}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <Typography variant="subtitle2">
             Date: {review.travel_date}
           </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant="subtitle2" component="p">
-            Rating: {review.rating}{" "}
-            <img alt="rating icon" src={review.rating_image_url} />
-          </Typography>
-        </Grid>
-        <Grid item xs={6} align="right">
+        <Grid item xs={false} sm={6} align="right">
           <Typography variant="subtitle2">
             Trip type: {review.trip_type}
           </Typography>
@@ -57,7 +69,7 @@ function LocationReviewCard({ review }) {
       <Button
         component={Link}
         color="primary"
-        href={review.web_url}
+        href={review.url}
         target="_blank"
         className={classes.button}
         size="small"
