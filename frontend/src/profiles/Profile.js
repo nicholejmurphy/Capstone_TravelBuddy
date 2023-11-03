@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   savedErrorBody: {
-    padding: "20px",
+    padding: "15px",
     marginTop: "10px",
     width: "90%",
     maxWidth: "600px",
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     padding: "30px",
-    marginTop: "10px",
-    width: "100%",
+    marginTop: "auto",
+    width: "90%",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
   body: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   skeletonBox: {
-    width: "400px",
+    width: "380px",
     height: 250,
     margin: "10px",
   },
@@ -138,45 +138,46 @@ function Profile() {
           </Paper>
         </div>
       )}
-      <Paper className={classes.profile}>
-        {dataIsLoading && (
-          <div>
-            <Box className={classes.skeletonBox}>
-              <Skeleton variant="rect" className={classes.skeletonMedia} />
-              <Box pt={0.5}>
-                <Skeleton />
-                <Skeleton width="60%" />
+      <Grid container justifyContent="center">
+        <Paper className={classes.profile}>
+          {dataIsLoading && (
+            <div>
+              <Box className={classes.skeletonBox}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box pt={0.5}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
               </Box>
-            </Box>
-            <Box className={classes.skeletonBox}>
-              <Skeleton variant="rect" className={classes.skeletonMedia} />
-              <Box pt={0.5}>
-                <Skeleton />
-                <Skeleton width="60%" />
+              <Box className={classes.skeletonBox}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box pt={0.5}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
               </Box>
-            </Box>
-            <Box className={classes.skeletonBox}>
-              <Skeleton variant="rect" className={classes.skeletonMedia} />
-              <Box pt={0.5}>
-                <Skeleton />
-                <Skeleton width="60%" />
+              <Box className={classes.skeletonBox}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box pt={0.5}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
               </Box>
-            </Box>
-          </div>
-        )}
-        {locations.length ? (
-          <Grid item container justifyContent="center" spacing={3}>
-            <LocationList locations={locations} />
-          </Grid>
-        ) : (
-          <Typography align="center" variant="subtitle1">
-            Looks like you don't have any saved locations yet...
-            <br />
-            Head over ot the <Link to="/locations">Locations</Link> page and
-            start exploring!
-          </Typography>
-        )}
-      </Paper>
+            </div>
+          )}
+          {locations.length ? (
+            <Grid item container justifyContent="center" spacing={3}>
+              <LocationList locations={locations} />
+            </Grid>
+          ) : (
+            <Typography align="center" variant="subtitle1">
+              Looks like you don't have any saved locations yet... Head over ot
+              the <Link to="/locations">Locations</Link> page and start
+              exploring!
+            </Typography>
+          )}
+        </Paper>
+      </Grid>
     </Grid>
   );
 }
