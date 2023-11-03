@@ -10,7 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
-import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -20,8 +19,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import UserContext from "../auth/UserContext";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   navTop: {

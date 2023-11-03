@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import Alerts from "../common/Alerts";
-
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import InputBase from "@material-ui/core/InputBase";

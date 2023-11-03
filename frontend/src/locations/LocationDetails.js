@@ -10,8 +10,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Link from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
-import Skeleton from "@material-ui/lab/Skeleton";
 
 import UserContext from "../auth/UserContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
