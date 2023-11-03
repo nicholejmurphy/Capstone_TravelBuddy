@@ -34,3 +34,11 @@ TravelBuddy utilizes multiple external APIs as well.
 ![React.js API Calls list](/documentaion/React.jsAPICalls.jpg)
 
 Notes:
+
+- error handling 429 code on locations
+- key prop for anon skeletons loading locations
+- saved locations test invaild save and clear
+- Check for and Delete loading component
+
+- install
+- Using for standardizing typography styling

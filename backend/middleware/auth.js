@@ -27,7 +27,7 @@ function authenticateJWT(req, res, next) {
   }
 }
 
-/** Middleware to use when they must be logged in.
+/** Middleware to use when user must be logged in.
  *
  * If not, raises Unauthorized.
  */
@@ -41,8 +41,8 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
-/** Middleware to use when they must provide a valid token & be user matching
- *  username provided as route param.
+/** Middleware to use when user must provide a valid token & be user matching
+ *  user_id provided as route param.
  *
  *  If not, raises Unauthorized.
  */

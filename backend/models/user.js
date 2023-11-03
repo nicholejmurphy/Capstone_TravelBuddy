@@ -87,7 +87,7 @@ class User {
 
   /** Given a user id, return data about user.
    *
-   * Returns { username, first_name, last_name }
+   * Returns { id, username, firstName, lastName }
    *
    * Throws NotFoundError if user not found.
    **/
