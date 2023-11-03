@@ -65,11 +65,11 @@ function SignupForm({ signup }) {
   }
   return (
     <Grid container justifyContent="center">
-      <div className={classes.error}>
-        {formErrors.length ? (
+      {formErrors.length ? (
+        <div className={classes.error}>
           <Alerts type="error" messages={formErrors} />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
       <Paper className={classes.signup}>
         <form
           className={classes.form}
