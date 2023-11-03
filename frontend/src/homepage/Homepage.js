@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import Skeleton from "@material-ui/lab/Skeleton";
+import Grid from "@material-ui/core/Grid";
 
 import UserContext from "../auth/UserContext";
 import TriviaApi from "../api/triviaApi";
@@ -16,6 +16,7 @@ import SignupForm from "../auth/SignupForm";
 
 const useStyles = makeStyles(() => ({
   home: {
+    maxWidth: "430px",
     flexGrow: 1,
     display: "flex",
     justifyContent: "center",
@@ -33,16 +34,16 @@ const useStyles = makeStyles(() => ({
     marginTop: "40px",
     fontSize: "180%",
     minWidth: "350px",
-    maxWidth: "430px",
   },
   trivia: {
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
-    alignItems: "center",
     marginTop: "40px",
     padding: "8px",
     color: "#ffffff",
+  },
+  loadingTrivia: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   access: {
     margin: "5px",
@@ -54,6 +55,7 @@ const useStyles = makeStyles(() => ({
   },
   toggle: {
     height: "15px",
+    width: "100px",
     margin: "5px",
   },
   answer: {
@@ -127,37 +129,49 @@ function Homepage({ login, signup }) {
         Let's do this.
       </Typography>
       {trivia ? (
-        <Box className={classes.trivia}>
-          <Typography variant="h5">Geography Trivia</Typography>
-          <Typography variant="subtitle1">{trivia.question}</Typography>
-          <ToggleButton
-            className={classes.toggle}
-            value="check"
-            selected={revealed}
-            onChange={() => {
-              setRevealed(!revealed);
-            }}
-          >
-            <Typography variant="body1">
-              {revealed ? "Hide" : "Reveal"}
+        <Grid container justifyContent="center" className={classes.trivia}>
+          <Grid item xs={12}>
+            <Typography variant="h5" align="center">
+              Geography Trivia
             </Typography>
-          </ToggleButton>
-          <Fade in={revealed}>
-            <Typography
-              className={classes.answer}
-              align="center"
-              variant="body2"
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="subtitle1" align="center">
+              {trivia.question}
+            </Typography>
+          </Grid>
+          <Grid item container justifyContent="center" xs={12}>
+            <ToggleButton
+              className={classes.toggle}
+              value="check"
+              selected={revealed}
+              onChange={() => {
+                setRevealed(!revealed);
+              }}
             >
-              {trivia.answer}
-            </Typography>
-          </Fade>
-        </Box>
+              <Typography variant="body1">
+                {revealed ? "Hide" : "Reveal"}
+              </Typography>
+            </ToggleButton>
+          </Grid>
+          <Grid item xs={12}>
+            <Fade in={revealed}>
+              <Typography
+                className={classes.answer}
+                align="center"
+                variant="body2"
+              >
+                {trivia.answer}
+              </Typography>
+            </Fade>
+          </Grid>
+        </Grid>
       ) : (
-        <Box className={classes.trivia}>
-          <Skeleton variant="text" height={30} width={150} />
-          <Skeleton variant="text" height={40} width={200} />
-          <Skeleton variant="rect" height={20} width={50} />
-        </Box>
+        <div className={classes.trivia}>
+          <Skeleton variant="text" height={60} width="200px" />
+          <Skeleton variant="text" height={40} width="200px" />
+          <Skeleton variant="text" height={40} width="200px" />
+        </div>
       )}
       {!currUser && notLoggedIn()}
     </Container>
