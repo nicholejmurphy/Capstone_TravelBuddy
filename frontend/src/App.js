@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { decodeToken } from "react-jwt";
 
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  ThemeProvider,
+  createTheme,
+} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import UserApi from "./api/userApi";
@@ -10,6 +14,14 @@ import UserContext from "./auth/UserContext";
 import Loading from "./common/Loading";
 import Navigation from "./navigation_routes/Navigation";
 import Routes from "./navigation_routes/Routes";
+
+const theme = createTheme({
+  // typography: {
+  //   h5: {
+  //     fontSize: 100,
+  //   },
+  // },
+});
 
 /** TravelBuddy Application
  *
@@ -152,21 +164,23 @@ function App() {
   }
 
   return (
-    <UserContext.Provider
-      value={{
-        currUser,
-        setCurrUser,
-        savedLocationIds,
-        saveLocation,
-        removeLocation,
-        hasSaved,
-      }}
-    >
-      <Navigation logout={logout} />
-      <Grid container justifyContent="center" className={classes.main}>
-        <Routes login={login} signup={signup} logout={logout} />
-      </Grid>
-    </UserContext.Provider>
+    <ThemeProvider theme={theme}>
+      <UserContext.Provider
+        value={{
+          currUser,
+          setCurrUser,
+          savedLocationIds,
+          saveLocation,
+          removeLocation,
+          hasSaved,
+        }}
+      >
+        <Navigation logout={logout} />
+        <Grid container justifyContent="center" className={classes.main}>
+          <Routes login={login} signup={signup} logout={logout} />
+        </Grid>
+      </UserContext.Provider>
+    </ThemeProvider>
   );
 }
 
