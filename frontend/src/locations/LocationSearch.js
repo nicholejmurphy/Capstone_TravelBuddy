@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Alerts from "../common/Alerts";
+
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import InputBase from "@material-ui/core/InputBase";
@@ -37,9 +39,8 @@ const useStyles = makeStyles((theme) => ({
  *  - Parent passes setSearchTerm {state} which will trigger
  *    useEffect updating locations in parent
  */
-function LocationSearchForm({ searchTerm, setSearchTerm }) {
+function LocationSearchForm({ searchTerm, setSearchTerm, setError }) {
   const [formData, setFormData] = useState(searchTerm);
-  const [error, setError] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
