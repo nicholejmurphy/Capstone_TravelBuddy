@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "30px",
     marginTop: "10px",
     width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
   title: {
     marginTop: "30px",
