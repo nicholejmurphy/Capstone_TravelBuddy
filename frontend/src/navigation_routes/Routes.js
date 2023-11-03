@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   routes: {
-    minWidth: "430px",
+    minWidth: "380px",
   },
 }));
 
