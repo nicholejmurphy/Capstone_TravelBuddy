@@ -8,12 +8,12 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
-  divider: {
-    marginBottom: "30px",
-  },
   button: {
     marginTop: "15px",
     marginBottom: "15px",
+  },
+  title: {
+    marginTop: "20px",
   },
 }));
 
@@ -25,15 +25,17 @@ function LocationReviewCard({ review }) {
 
   return (
     <div>
-      <Typography variant="h6">{review.title}</Typography>
+      <Typography variant="h6" className={classes.title}>
+        {review.title}
+      </Typography>
       <Grid container justifyContent="flex-start">
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={6}>
           <Typography variant="subtitle2">
             Rating: {review.rating}{" "}
             <img alt="rating icon" src={review.rating_image_url} />
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} align="right">
+        <Grid item xs={6} align="right">
           <Typography variant="subtitle2">
             Date: {review.travel_date}
           </Typography>
@@ -44,13 +46,12 @@ function LocationReviewCard({ review }) {
       <Button
         component={Link}
         color="primary"
-        variant="outlined"
         href={review.web_url}
         target="_blank"
         className={classes.button}
         size="small"
       >
-        Read more on TripAdvisor
+        Read more
       </Button>
       <Divider className={classes.divider} />
     </div>
