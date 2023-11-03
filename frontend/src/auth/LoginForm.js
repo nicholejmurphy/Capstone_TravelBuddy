@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
     width: "250px",
   },
+  error: {
+    margin: "10px",
+  },
   form: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -60,51 +63,60 @@ function LoginForm({ login }) {
     }
   }
   return (
-    <Paper className={classes.login}>
-      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
-
-      <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
+    <Grid container justifyContent="center">
+      <div className={classes.error}>
+        {formErrors.length ? (
+          <Alerts type="error" messages={formErrors} />
+        ) : null}
+      </div>
+      <Paper className={classes.login}>
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit}
+          autoComplete="off"
         >
-          <Grid item>
-            <TextField
-              required
-              id="username"
-              label="Username"
-              name="username"
-              type="text"
-              variant="outlined"
-              value={formData.username}
-              onChange={handleChange}
-            />
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            direction="column"
+          >
+            <Grid item>
+              <TextField
+                required
+                id="username"
+                label="Username"
+                name="username"
+                type="text"
+                variant="outlined"
+                value={formData.username}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="password"
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="password"
-              label="Password"
-              name="password"
-              type="password"
-              variant="outlined"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </Grid>
-        </Grid>
-        <Button
-          className={classes.submit}
-          color="primary"
-          size="small"
-          type="submit"
-        >
-          Login
-        </Button>
-      </form>
-    </Paper>
+          <Button
+            className={classes.submit}
+            color="primary"
+            size="small"
+            type="submit"
+          >
+            Login
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
 

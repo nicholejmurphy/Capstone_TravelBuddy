@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
     width: "250px",
   },
+  error: {
+    margin: "10px",
+  },
   form: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
@@ -61,75 +64,84 @@ function SignupForm({ signup }) {
     setFormErrors(res.errors);
   }
   return (
-    <Paper className={classes.signup}>
-      {formErrors.length ? <Alerts type="error" messages={formErrors} /> : null}
-
-      <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
+    <Grid container justifyContent="center">
+      <div className={classes.error}>
+        {formErrors.length ? (
+          <Alerts type="error" messages={formErrors} />
+        ) : null}
+      </div>
+      <Paper className={classes.signup}>
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit}
+          autoComplete="off"
         >
-          <Grid item>
-            <TextField
-              required
-              id="username"
-              label="Username"
-              name="username"
-              type="text"
-              variant="outlined"
-              value={formData.username}
-              onChange={handleChange}
-            />
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            direction="column"
+          >
+            <Grid item>
+              <TextField
+                required
+                id="username"
+                label="Username"
+                name="username"
+                type="text"
+                variant="outlined"
+                value={formData.username}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="first_name"
+                label="First Name"
+                name="firstName"
+                type="text"
+                variant="outlined"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="last_name"
+                label="Last Name"
+                name="lastName"
+                type="text"
+                variant="outlined"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                required
+                id="password"
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="first_name"
-              label="First Name"
-              name="firstName"
-              type="text"
-              variant="outlined"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="last_name"
-              label="Last Name"
-              name="lastName"
-              type="text"
-              variant="outlined"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              required
-              id="password"
-              label="Password"
-              name="password"
-              type="password"
-              variant="outlined"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </Grid>
-        </Grid>
-        <Button
-          className={classes.submit}
-          color="primary"
-          size="small"
-          type="submit"
-        >
-          SignUp
-        </Button>
-      </form>
-    </Paper>
+          <Button
+            className={classes.submit}
+            color="primary"
+            size="small"
+            type="submit"
+          >
+            SignUp
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
 
