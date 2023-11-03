@@ -57,6 +57,7 @@ const useStyles = makeStyles(() => ({
     height: "15px",
     width: "100px",
     margin: "5px",
+    backgroundColor: "#ffffff",
   },
   answer: {
     padding: "10px",
