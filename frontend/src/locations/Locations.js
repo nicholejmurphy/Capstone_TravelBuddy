@@ -173,16 +173,31 @@ function Locations() {
       </Grid>
       <Grid item container justifyContent="center">
         <Paper className={classes.locations} elevation={3}>
-          {dataIsLoading &&
-            Array.from(new Array(3)).map((index) => (
-              <Box key={index} className={classes.skeletonBox}>
+          {dataIsLoading && (
+            <div>
+              <Box className={classes.skeletonBox}>
                 <Skeleton variant="rect" className={classes.skeletonMedia} />
-                <Box key={index} pt={0.5}>
+                <Box pt={0.5}>
                   <Skeleton />
                   <Skeleton width="60%" />
                 </Box>
               </Box>
-            ))}
+              <Box className={classes.skeletonBox}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box pt={0.5}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
+              </Box>
+              <Box className={classes.skeletonBox}>
+                <Skeleton variant="rect" className={classes.skeletonMedia} />
+                <Box pt={0.5}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
+              </Box>
+            </div>
+          )}
           {locations ? (
             <Grid
               item
