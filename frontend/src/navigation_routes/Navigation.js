@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -16,8 +17,11 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import HomeIcon from "@material-ui/icons/Home";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import UserContext from "../auth/UserContext";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   navTop: {
@@ -42,12 +46,15 @@ const useStyles = makeStyles((theme) => ({
   navTitle: {
     flexGrow: 1,
     textDecoration: "none",
-    boxShadow: "none",
-    color: "#ffffff",
     "&:hover": {
       color: "#d6d0db",
-      textDecoration: "none",
     },
+  },
+  navLink: {
+    "&:hover": {
+      color: "#d6d0db",
+    },
+    margin: "5px",
   },
   navBottom: {
     width: "100%",
@@ -61,9 +68,12 @@ const useStyles = makeStyles((theme) => ({
 function Navigation({ logout }) {
   const { currUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [value, setValue] = useState(0);
+  const [activePage, setActivePage] = useState(0);
   const history = useHistory();
   const classes = useStyles();
+  const theme = useTheme();
+  const smallViewport = useMediaQuery(theme.breakpoints.down("xs"));
+  const routes = ["", "locations", "favorites"];
 
   const handleClick = (event) => {
     const route = event.target.innerText.toLowerCase();
@@ -71,8 +81,13 @@ function Navigation({ logout }) {
     handleClose();
     if (route === "logout") {
       logout();
+      setActivePage(0);
+      history.push(`/`);
+    } else if (route === "travelbuddy") {
+      setActivePage(0);
       history.push(`/`);
     } else {
+      setActivePage(routes.indexOf(route));
       history.push(`/${route}`);
     }
   };
@@ -85,15 +100,14 @@ function Navigation({ logout }) {
     setAnchorEl(null);
   };
 
-  const handleChange = (event, newValue) => {
-    const routes = ["", "locations", "favorites"];
-    setValue(newValue);
-    history.push(`/${routes[newValue]}`);
+  const handleChange = (event, newPage) => {
+    setActivePage(newPage);
+    history.push(`/${routes[newPage]}`);
   };
 
   function isLoggedIn() {
     return (
-      <>
+      <Grid item container xs={1} justifyContent="flex-end">
         <IconButton
           aria-controls="simple-menu"
           aria-haspopup="true"
@@ -114,7 +128,66 @@ function Navigation({ logout }) {
           <MenuItem onClick={handleClick}>Settings</MenuItem>
           <MenuItem onClick={handleClick}>Logout</MenuItem>
         </Menu>
-      </>
+      </Grid>
+    );
+  }
+
+  function showSmallNav() {
+    if (!currUser) return null;
+    return (
+      <BottomNavigation
+        value={activePage}
+        onChange={handleChange}
+        showLabels
+        className={classes.navBottom}
+        elevation={5}
+      >
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      </BottomNavigation>
+    );
+  }
+
+  function showRegNav() {
+    if (!currUser) return null;
+    return (
+      <Grid
+        item
+        container
+        justifyContent="flex-end"
+        alignItems="center"
+        xs={10}
+        spacing={2}
+      >
+        <Grid item>
+          <Typography
+            variant="body1"
+            color="inherit"
+            onClick={handleClick}
+            className={classes.navLink}
+            style={{
+              fontWeight: routes[activePage] === "locations" ? 500 : 200,
+            }}
+          >
+            LOCATIONS
+          </Typography>{" "}
+        </Grid>
+
+        <Grid item>
+          <Typography
+            variant="body1"
+            color="inherit"
+            onClick={handleClick}
+            className={classes.navLink}
+            style={{
+              fontWeight: routes[activePage] === "favorites" ? 500 : 200,
+            }}
+          >
+            FAVORITES
+          </Typography>
+        </Grid>
+      </Grid>
     );
   }
 
@@ -123,26 +196,22 @@ function Navigation({ logout }) {
       <AppBar className={classes.navTop} position="static" elevation={5}>
         <Container disableGutters className={classes.navContent}>
           <Toolbar>
-            <Link href="/" className={classes.navTitle}>
-              <Typography variant="h5">TravelBuddy</Typography>
-            </Link>
-            {currUser && isLoggedIn()}
+            <Typography
+              variant="h5"
+              component="div"
+              onClick={handleClick}
+              className={classes.navTitle}
+            >
+              TravelBuddy
+            </Typography>
+            <Grid container justifyContent="flex-end">
+              {!smallViewport && showRegNav()}
+              {currUser && isLoggedIn()}
+            </Grid>
           </Toolbar>
         </Container>
       </AppBar>
-      {currUser && (
-        <BottomNavigation
-          value={value}
-          onChange={handleChange}
-          showLabels
-          className={classes.navBottom}
-          elevation={5}
-        >
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        </BottomNavigation>
-      )}
+      {smallViewport && showSmallNav()}
     </>
   );
 }
