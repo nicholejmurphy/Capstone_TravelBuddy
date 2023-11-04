@@ -77,7 +77,7 @@ function Navigation({ logout }) {
   const classes = useStyles();
   const theme = useTheme();
   const smallViewport = useMediaQuery(theme.breakpoints.down("xs"));
-  const routes = ["", "locations", "favorites"];
+  const routes = ["", "locations", "favorites", "settings"];
 
   const handleClick = (event) => {
     const route = event.target.innerText.toLowerCase();
