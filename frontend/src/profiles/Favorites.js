@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
   clear: { marginTop: "5px" },
-  profile: {
+  favorites: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
  * Adding a drop down for user's saved locations
  * and will add saved translations/conversions here or on separate pages
  */
-function Profile() {
+function Favorites() {
   const { savedLocationIds, removeLocation } = useContext(UserContext);
   const [locations, setLocations] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(false);
@@ -139,7 +139,7 @@ function Profile() {
         </div>
       )}
       <Grid container justifyContent="center">
-        <Paper className={classes.profile}>
+        <Paper className={classes.favorites}>
           {dataIsLoading && (
             <div>
               <Box className={classes.skeletonBox}>
@@ -182,4 +182,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Favorites;
