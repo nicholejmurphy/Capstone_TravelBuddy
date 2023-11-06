@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoutes";
 import Homepage from "../homepage/Homepage";
-import Profile from "../profiles/Profile";
-import ProfileForm from "../profiles/Settings";
+import Favorites from "../profiles/Favorites";
+import Settings from "../profiles/Settings";
 import Locations from "../locations/Locations";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
@@ -26,9 +26,9 @@ function Routes({ login, signup, logout }) {
         <Route exact path="/">
           <Homepage login={login} signup={signup} />
         </Route>
-        <Route path="/settings">
-          <ProfileForm logout={logout} />
-        </Route>
+        <PrivateRoute path="/settings">
+          <Settings logout={logout} />
+        </PrivateRoute>
         <PrivateRoute exact path="/locations">
           <Locations />
         </PrivateRoute>
@@ -36,7 +36,7 @@ function Routes({ login, signup, logout }) {
           <LocationDetails />
         </PrivateRoute>
         <PrivateRoute path="/favorites">
-          <Profile />
+          <Favorites />
         </PrivateRoute>
         <Route path="*">
           <NotFound />
