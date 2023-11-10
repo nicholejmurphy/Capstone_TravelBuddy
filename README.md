@@ -155,7 +155,10 @@ npm start
 
 - Deployed on Render with ElephantSQL
 - 2 servers
--
+- dotenv module to access env variables which are a on Render
+- Need to address API challenges and call limits
+- Update some of the mobile viewport stylings
+- Trouble shooting 404 with page history
 
 ## Future Project Updates:
 
