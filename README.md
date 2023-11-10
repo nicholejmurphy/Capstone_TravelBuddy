@@ -120,6 +120,18 @@ npm start
 
 - SPA w/ Material UI
 - Mobile friendly
+- Heavy planning stages, starting with API returns vs database structures
+
+## Data Model
+
+- Simple user input with light API data (location_id)
+- PostgreSQL database and direct SQL queries from backend models which are called in the BE routes
+- One to many relationships users > savedLocations
+
+## API & Routing Design
+
+- All API calls are handled in the BE,
+- User data RESTful
 
 ## Learning Curves
 
