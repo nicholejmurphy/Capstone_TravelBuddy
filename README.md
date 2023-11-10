@@ -116,6 +116,21 @@ npm start
 - Security: bcrypt password hashing
 - Styling: Material UI v4
 
+## Focus
+
+- SPA w/ Material UI
+- Mobile friendly
+
+## Learning Curves
+
+- MUI v4
+- Responsiveness
+- 429 Error code API limits
+
+## Tradeoffs
+
+- Location Details modal vs route.. user sharing/access experience
+
 ## Future Project Updates:
 
 - **API IMPLEMENTATION:** Adding a translator and conversion API as additional features for the app including functionality to save translations and common currrency conversions to a user's account. This will involve implementing more tables within the TravelBuddy pSQL database and with RESTful routes to access and manipulate.
