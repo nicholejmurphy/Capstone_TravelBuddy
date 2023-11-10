@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
+    marginBottom: "10px",
     flexDirection: "column",
   },
   savedErrorBody: {

@@ -130,18 +130,32 @@ npm start
 
 ## API & Routing Design
 
-- All API calls are handled in the BE,
+- All API calls are handled in the BE, keys.js are in .gitignore
 - User data RESTful
+- Separate route files for
+
+## Frontend
+
+- React
+- See component hierarchy
 
 ## Learning Curves
 
 - MUI v4
 - Responsiveness
 - 429 Error code API limits
-
-## Tradeoffs
-
 - Location Details modal vs route.. user sharing/access experience
+- Mock testing FE
+
+## Additional Features:
+
+- Trivia, conversion, translator
+
+## Deployment & Next steps
+
+- Deployed on Render with ElephantSQL
+- 2 servers
+-
 
 ## Future Project Updates:
 
