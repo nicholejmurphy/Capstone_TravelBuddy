@@ -41,7 +41,7 @@ function LocationCard({ id, name, address }) {
   const history = useHistory();
   const classes = useStyles();
 
-  const DEFAUL_IMG =
+  const DEFAULT_IMG =
     "https://images.unsplash.com/photo-1558481795-7f0a7c906f5e?auto=format&fit=crop&q=80&w=3296&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
   // Check if user has saved the location
@@ -79,8 +79,8 @@ function LocationCard({ id, name, address }) {
           component="img"
           alt={`image of ${name}`}
           height="140"
-          image={photoUrl ? photoUrl : DEFAUL_IMG}
-          title="Contemplative Reptile"
+          image={photoUrl ? photoUrl : DEFAULT_IMG}
+          title={`image of ${name}`}
         />
       ) : (
         <Skeleton
