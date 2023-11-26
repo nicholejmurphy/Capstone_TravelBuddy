@@ -35,7 +35,7 @@ Below is a diagram of the React.js routes and components.
 
 ### API Documentation
 
-TravelBuddy utilizes multiple external APIs, allowing usser's access to a wide variety of information to support their travel needs.
+TravelBuddy utilizes multiple external APIs, allowing user's access to a wide variety of information to support their travel needs.
 
 1. TripAdvisor (Location data, reviews, & photos)
 2. API Ninjas (Trivia)
@@ -52,7 +52,7 @@ You can see TravelBuddy deployed [here](https://travelbuddy-egbq.onrender.com/).
 
 ### Installation
 
-> You will need an API access key from the APIs listed above to gain full functioanlity access
+> You will need an API access key from the APIs listed above to gain full functionality access
 
 If you prefer to deploy manually, follow these steps:
 
@@ -172,3 +172,21 @@ npm start
 - On signup "cannot preform state update on unmounted component"
 - **USEEFFECT DEPENDENCIES** HasSaved in useEffect of locationDetails toos up for entire comp. rerendering.. break into smaller comp.
 - **STREAMLINE MUI IMPORTS** For MUI Dependencies should {deconstruct} or indv import?
+
+Overall very well!
+Very good walkthrough overview and demo
+
+- demo a smidg long (keep less than 5 minutes )
+- strategy, only cover the most essential things
+  - integration exercise ( talk about a button and flow of functionality )
+  - show form main feature (search funcitonality)
+- backend
+  - create an outline to best give overview
+- Prepare to explain more about troubles
+- Have outline to the side, when doing the engineering portion, show the code more
+
+Technical knowledge
+
+- Work on:
+  - Review conceptual assessment (how the web works)
+  - Google common (FE) engineering questions
