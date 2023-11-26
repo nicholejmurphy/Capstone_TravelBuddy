@@ -2,55 +2,72 @@
 
 _"Everything you need in a travel app."_
 
-This is my final captstone project for my Software Engineering course with Springboard.
+This is my final capstone project for my Software Engineering course with Springboard.
 
 ## General Overview
 
-TravelBuddy is a mobile friendly full-stack single page web application that emphasizes user ease and customization. TravelBuddy allows users to search for attractions, resturaunts, hotels, and general geographic locations from across the globe and recieve a fun trivia fact along the way.
+TravelBuddy is a mobile friendly full-stack single page web application that emphasizes user ease and customization. TravelBuddy allows users to search for attractions, restaurants, hotels, and general geographic locations from across the globe and receive a fun trivia fact along the way.
+
+## Tech Stack
+
+- PostgreSQL database: RDBMS to store and manipulate user data
+- Validation: Implemented middleware to handle user authorization for backend routing & JSON schema validation with JSONschema.
+- Testing: unit and integration tests using Jest
+- Error handling: customized error handling features
+- Dependency management: with Node Package Manager
+- Environment variables: using Dotenv
+- Security: Bcrypt password hashing
+- Styling: Material UI v4
+
+## Focus
+
+In building this application, I wanted to be very intentional with the planning process and spent a great amount of time organizing the databases, sorting through API responses, planning the models structures, and mapping user flows for a thoughtful user experience.
+![Notes & Planning](/documentation/Planning.jpg)
+My intentions with this application were to practice skills in building an efficient and intentional Single Page Application that is also mobile friendly with a responsive design. I introduced myself to Material UI v4 for this application and wanted to achieve a modern and eye catching design.
 
 ## Documentation
 
-### PostgreSQL Database
-
-The backend server utilizes a PostgreSQL database for storing user data. This database simply uses a one to many relationship in storing basic saved data from external APIs to generate a customized experience for the user. Passwords are hashed and stored using bcrypt encoding with a work factor of 12.
-
-Below is the Entity Relationship Diagram for this project.
-
-![Entity Relationship Diagram](/documentation/ERD.jpg)
-
-### Backend Node.js Overview
-
-TravelBuddy is built on a backend Node.js server and and a Frontend React.js server. The backend is a Node.js RESTful API used to store, update, and access user data. The backend also handles all external API calls behind the scenes for the React server. Users can create an account to save information for quick access at anytime.
-
-Below is a flow chart of the Node.js routes
-![Node.js Routes Diagram](/documentation/BackendRoutes.jpg)
-
-### Frontend React.js Overview
-
-The frontend application is styled and designed with Material UI v4 as a modern and responsive Single Page Application. Below is the general React.js component layout.
-TravelBuddy uses a Context provider for wrapping components with basic user data to allow for reduced prop drilling and and ease of information shairng. Routes within the purple dashed box signify private routes which authorizes only logged in users to be able to acces designated parts of the application.
-
-Below is a diagram of the React.js routes and components.
-![React.js Routes and Compnents Diagram](/documentation/ReactComponentMap.jpg)
-
-### API Documentation
+### APIs
 
 TravelBuddy utilizes multiple external APIs, allowing user's access to a wide variety of information to support their travel needs.
+APIs used:
 
 1. TripAdvisor (Location data, reviews, & photos)
 2. API Ninjas (Trivia)
 3. Translator [To be implemented]
 4. Currency Converter [To be implemented]
 
+Privacy:
+All API calls are handled in the backend. API keys are stored in a .env file which is listed in .gitignore to keep private.
+
+### Backend Overview
+
+TravelBuddy is built on a backend Node.js server and a Frontend React.js server. The backend is a Node.js RESTful API used to store, update, and access user data. The backend also handles all external API calls behind the scenes for the React server. Users can create an account to save information for quick access at any time.
+
+![Node.js Routes Diagram](/documentation/BackendRoutes.jpg)
+
+#### The Database
+
+The backend server utilizes a PostgreSQL database for storing user data from simple user input with light API data (location_id). This database simply uses one to many relationships in storing basic saved data from external APIs to generate a customized experience for the user. Passwords are hashed and stored using bcrypt encoding with a work factor of 12. Direct SQL queries are made from backend models which are called in the backend routes.
+
+![Entity Relationship Diagram](/documentation/ERD.jpg)
+
+### Frontend Overview
+
+The frontend application is styled and designed with Material UI v4 as a modern and responsive Single Page Application. Below is the general React.js component layout.
+TravelBuddy uses a Context provider for wrapping components with basic user data to allow for reduced prop drilling and ease of information sharing. Routes within the purple dashed box signify private routes which authorizes only logged in users to be able to access designated parts of the application.
+
+![React.js Routes and Components Diagram](/documentation/ReactComponentMap.jpg)
+
 ### Deployment
 
-TravelBuddy is currently deployed using an ElephantSQL database paired with the OnRender cloud service.
+TravelBuddy is currently deployed on two servers using an ElephantSQL database paired with the OnRender cloud service. They are deployed as a web application (backend) and a static site (frontend). The API keys for external sources are saved as environment variables which are pulled from 'dotenv' in the backend.
 You can see TravelBuddy deployed [here](https://travelbuddy-egbq.onrender.com/).
 
 > **Please note** <br/>
 > The deployment of TravelBuddy is hosted on a free cloud service which can often cause delays in loading. Due to the free version's limitations, the server will go to sleep after a period of inactivity.
 
-### Installation
+#### Installation
 
 > You will need an API access key from the APIs listed above to gain full functionality access
 
@@ -105,88 +122,30 @@ npm start
 npm start
 ```
 
-### Technologies used
+## Reflections
 
-- PostgreSQL database: RDBMS to store and manipulate user data
-- Validation: Implemented middleware to handle user authorization for backend routing & JSON schema validation with jsonschema.
-- Testing: unit and integration tests using Jest
-- Error handling: customized error handling features
-- Dependency management: with node package manager
-- Environment variables: using dotenv
-- Security: bcrypt password hashing
-- Styling: Material UI v4
+### Learning Curves
 
-## Focus
+- Learning MUI v4 for more modern styling implementations
+- Responsiveness for building a mobile friendly SPA across all viewport sizes
+- 429 Error code API limits for dynamic data needs
+- User experience architecture with Location Details modal vs separate route
+- Mock testing frontend and building a mock context provider
 
-- SPA w/ Material UI
-- Mobile friendly
-- Heavy planning stages, starting with API returns vs database structures
+### Next Implementations
 
-## Data Model
+I will be adding in a currency converter and language translator functionality that will allow users a quick access to additional resources.
 
-- Simple user input with light API data (location_id)
-- PostgreSQL database and direct SQL queries from backend models which are called in the BE routes
-- One to many relationships users > savedLocations
+### Future Project Growth
 
-## API & Routing Design
-
-- All API calls are handled in the BE, keys.js are in .gitignore
-- User data RESTful
-- Separate route files for
-
-## Frontend
-
-- React
-- See component hierarchy
-
-## Learning Curves
-
-- MUI v4
-- Responsiveness
-- 429 Error code API limits
-- Location Details modal vs route.. user sharing/access experience
-- Mock testing FE
-
-## Additional Features:
-
-- Trivia, conversion, translator
-
-## Deployment & Next steps
-
-- Deployed on Render with ElephantSQL
-- 2 servers
-- dotenv module to access env variables which are a on Render
-- Need to address API challenges and call limits
-- Update some of the mobile viewport stylings
-- Trouble shooting 404 with page history
-
-## Future Project Updates:
-
-- **API IMPLEMENTATION:** Adding a translator and conversion API as additional features for the app including functionality to save translations and common currrency conversions to a user's account. This will involve implementing more tables within the TravelBuddy pSQL database and with RESTful routes to access and manipulate.
+- **404 WITH HISTORY ON DEPLOYMENT:** The currently deployed application on render is not functioning properly with page history navigation. It is currently throwing 404s when using the 'back' feature on the browser for most pages.
+- **API IMPLEMENTATION:** Adding a translator and conversion API as additional features for the app including functionality to save translations and common currency conversions to a user's account. This will involve implementing more tables within the TravelBuddy pSQL database and with RESTful routes to access and manipulate.
 - **PHOTO DETAILS** Add modals and info for photos in locationDetails for each location. This will share credit and additional details for each listed photo in information.
 - **API LIMIT** Include error handling 429 code on locations
   - To mitigate error responses, I will pass up photo api calls to parent with set timer to avoid api call limit error
 - **PHOTO DISPLAY** Handle LocationCard no photo to display for locations without a photo.
-- **UPDATE THEMEPROVIDER** Consolidate styling to reduce duplication and to create consistant themeing
+- **UPDATE THEMEPROVIDER** Consolidate styling to reduce duplication and to create consistent theming
 - **MOCK TESTING** Add mock user context for testing
-- On signup "cannot preform state update on unmounted component"
-- **USEEFFECT DEPENDENCIES** HasSaved in useEffect of locationDetails toos up for entire comp. rerendering.. break into smaller comp.
-- **STREAMLINE MUI IMPORTS** For MUI Dependencies should {deconstruct} or indv import?
-
-Overall very well!
-Very good walkthrough overview and demo
-
-- demo a smidg long (keep less than 5 minutes )
-- strategy, only cover the most essential things
-  - integration exercise ( talk about a button and flow of functionality )
-  - show form main feature (search funcitonality)
-- backend
-  - create an outline to best give overview
-- Prepare to explain more about troubles
-- Have outline to the side, when doing the engineering portion, show the code more
-
-Technical knowledge
-
-- Work on:
-  - Review conceptual assessment (how the web works)
-  - Google common (FE) engineering questions
+- On signup "cannot perform state update on unmounted component"
+- **USEEFFECT DEPENDENCIES** HasSaved in useEffect of locationDetails move up for entire comp. rerendering.. break into smaller comp.
+- **STREAMLINE MUI IMPORTS** For MUI Dependencies should {deconstruct} or individual import?
