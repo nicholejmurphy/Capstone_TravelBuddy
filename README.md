@@ -98,10 +98,12 @@ Create a keys.js file to add your API keys to and export as:
 ```
 const TRAVEL_API_KEY = "";
 const TRIVIA_API_KEY = "";
+const CONVERSION_API_KEY = "";
 
 module.exports = {
   TRAVEL_API_KEY,
   TRIVIA_API_KEY,
+  CONVERSION_API_KEY
 };
 ```
 
