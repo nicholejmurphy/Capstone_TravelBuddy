@@ -33,7 +33,7 @@ class ConversionApi {
    * - Data = {to: "CODE", from: "CODE", amount: "float"}
    *
    */
-  static async get() {
+  static async convert() {
     let conversion = await this.request(`conversions/`, data);
     return conversion;
 
