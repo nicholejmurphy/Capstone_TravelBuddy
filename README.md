@@ -32,10 +32,10 @@ My intentions with this application were to practice skills in building an effic
 TravelBuddy utilizes multiple external APIs, allowing user's access to a wide variety of information to support their travel needs.
 APIs used:
 
-1. TripAdvisor (Location data, reviews, & photos)
-2. API Ninjas (Trivia)
-3. Translator [To be implemented]
-4. Currency Converter [To be implemented]
+1. TripAdvisor https://api.content.tripadvisor.com/api/v1/location
+2. API Ninjas https://api.api-ninjas.com/v1/trivia?category=geography
+3. DeepL https://www.deepl.com/docs-api/api-access
+4. ExchangeRate http://api.exchangerate.host
 
 Privacy:
 All API calls are handled in the backend. API keys are stored in a .env file which is listed in .gitignore to keep private.
