@@ -15,13 +15,13 @@ const translator = new deepl.Translator(process.env.TRANSLATOR_API_KEY);
  *   If source language is ommitted, the API will attempt to detect it
  **/
 router.get("/translate", async function (req, res, next) {
-  const { to, from, text } = req.query;
+  const { to, from, text } = req.body;
   try {
     const result = await translator.translateText(text, from, to, {
       splitSentences: "on",
       formality: "prefer_less",
     });
-    return res.json(result.text);
+    return res.json(result);
   } catch (err) {
     return next(err);
   }
