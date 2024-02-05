@@ -30,11 +30,14 @@ class ConversionApi {
    *
    * - Sends request to backend which triggers and API
    *   call to ExchangeRate.host convert endpoint
-   * - Data = {to: "CODE", from: "CODE", amount: "float"}
+   * - data = {to: "CODE", from: "CODE", amount: "float"}
    *
    */
-  static async convert() {
-    let conversion = await this.request(`conversions/`, data);
+  static async convert(data) {
+    const { from, to, amount } = data;
+    let conversion = await this.request(
+      `conversions/?from=${from}&to=${to}&amount=${amount}`
+    );
     return conversion;
 
     // A mock API response for testing
