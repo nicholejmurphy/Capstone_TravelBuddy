@@ -5,6 +5,7 @@ import Homepage from "../homepage/Homepage";
 import Favorites from "../profiles/Favorites";
 import Settings from "../profiles/Settings";
 import Locations from "../locations/Locations";
+import Conversions from "../currencyConversion/Conversions";
 import LocationDetails from "../locations/LocationDetails";
 import NotFound from "../common/NotFound";
 import { makeStyles } from "@material-ui/core";
@@ -28,6 +29,9 @@ function Routes({ login, signup, logout }) {
         </Route>
         <PrivateRoute path="/settings">
           <Settings logout={logout} />
+        </PrivateRoute>
+        <PrivateRoute exact path="/converter">
+          <Conversions />
         </PrivateRoute>
         <PrivateRoute exact path="/locations">
           <Locations />
