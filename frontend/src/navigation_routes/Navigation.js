@@ -16,6 +16,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import HomeIcon from "@material-ui/icons/Home";
+import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import UserContext from "../auth/UserContext";
@@ -77,7 +78,7 @@ function Navigation({ logout }) {
   const classes = useStyles();
   const theme = useTheme();
   const smallViewport = useMediaQuery(theme.breakpoints.down("xs"));
-  const routes = ["", "locations", "favorites", "settings"];
+  const routes = ["", "locations", "favorites", "converter", "settings"];
 
   const handleClick = (event) => {
     const route = event.target.innerText.toLowerCase();
@@ -149,6 +150,7 @@ function Navigation({ logout }) {
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Converter" icon={<LocalAtmIcon />} />
       </BottomNavigation>
     );
   }
@@ -189,6 +191,19 @@ function Navigation({ logout }) {
             }}
           >
             FAVORITES
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            variant="body1"
+            color="inherit"
+            onClick={handleClick}
+            className={classes.navLink}
+            style={{
+              fontWeight: routes[activePage] === "converter" ? 500 : 200,
+            }}
+          >
+            CONVERTER
           </Typography>
         </Grid>
       </Grid>
