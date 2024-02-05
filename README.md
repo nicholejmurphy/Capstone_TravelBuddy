@@ -140,7 +140,7 @@ I will be adding in a currency converter and language translator functionality t
 
 ### Future Project Growth
 
-- **404 WITH HISTORY ON DEPLOYMENT:** The currently deployed application on render is not functioning properly with page history navigation. It is currently throwing 404s when using the 'back' feature on the browser for most pages.
+- **404 WITH HISTORY ON DEPLOYMENT:** The currently deployed application on render is not functioning properly with page history navigation. It is currently throwing 404s when using the 'back' feature on the browser for most pages. This is not occuring on locally deployed application. Likely this is caused by slowed deployment service.
 - **API IMPLEMENTATION:** Adding a translator and conversion API as additional features for the app including functionality to save translations and common currency conversions to a user's account. This will involve implementing more tables within the TravelBuddy pSQL database and with RESTful routes to access and manipulate.
 - **PHOTO DETAILS** Add modals and info for photos in locationDetails for each location. This will share credit and additional details for each listed photo in information.
 - **API LIMIT** Include error handling 429 code on locations
