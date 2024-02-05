@@ -6,7 +6,7 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const secret_key = process.env.CONVERSION_API_KEY;
+const secret_key = process.env.CONVERTER_API_KEY;
 
 const BASE_URL = `http://api.exchangerate.host/convert?access_key=${secret_key}`;
 
@@ -15,12 +15,12 @@ const BASE_URL = `http://api.exchangerate.host/convert?access_key=${secret_key}`
  *
  **/
 router.get("/", async function (req, res, next) {
-  const { to, from, amount } = req.body;
+  const { to, from, amount } = req.query;
   try {
     const result = await axios.get(
       `${BASE_URL}&from=${from}&to=${to}&amount=${amount}`
     );
-    return res.json({ conversion: result.data });
+    return res.json(result.data);
   } catch (err) {
     return next(err);
   }
