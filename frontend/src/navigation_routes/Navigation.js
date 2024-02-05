@@ -13,7 +13,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Container from "@material-ui/core/Container";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import HomeIcon from "@material-ui/icons/Home";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
@@ -78,7 +77,7 @@ function Navigation({ logout }) {
   const classes = useStyles();
   const theme = useTheme();
   const smallViewport = useMediaQuery(theme.breakpoints.down("xs"));
-  const routes = ["", "locations", "favorites", "converter", "settings"];
+  const routes = ["", "locations", "converter", "settings", "favorites"];
 
   const handleClick = (event) => {
     const route = event.target.innerText.toLowerCase();
@@ -131,6 +130,7 @@ function Navigation({ logout }) {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClick}>Settings</MenuItem>
+          <MenuItem onClick={handleClick}>Favorites</MenuItem>
           <MenuItem onClick={handleClick}>Logout</MenuItem>
         </Menu>
       </Grid>
@@ -149,7 +149,6 @@ function Navigation({ logout }) {
       >
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction label="Locations" icon={<LocationOnIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Converter" icon={<LocalAtmIcon />} />
       </BottomNavigation>
     );
@@ -180,19 +179,6 @@ function Navigation({ logout }) {
           </Typography>{" "}
         </Grid>
 
-        <Grid item>
-          <Typography
-            variant="body1"
-            color="inherit"
-            onClick={handleClick}
-            className={classes.navLink}
-            style={{
-              fontWeight: routes[activePage] === "favorites" ? 500 : 200,
-            }}
-          >
-            FAVORITES
-          </Typography>
-        </Grid>
         <Grid item>
           <Typography
             variant="body1"
